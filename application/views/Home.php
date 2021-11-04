@@ -1,75 +1,36 @@
 <!-- Header -->
 <header id="header" class="header">
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
+		<div class="row justify-content-between">
+			<div class="col-lg-6 mb-5">
+				<div class="text-container">
+					<h1 class="h1-large">Solusi Template Undangan Online</h1>
+					<p class="p-large"><span class="text-primary">Your Wedding</span> penyedia template undangan pernikahan online, juga tersedia custom website sesuai keinginan</p>
+					<a class="btn-solid-reg page-scroll" href="#registration">BUAT</a>
+					<a class="btn-outline-reg page-scroll" href="#features">DEMO</a>
+				</div>
+			</div>
+			<div class="col-lg-4">
 				<!-- Text Slider -->
 				<div class="slider-container">
 					<div class="swiper-container text-slider">
 						<div class="swiper-wrapper">
 							<!-- Slide -->
-							<div class="swiper-slide">
-								<div class="row">
-									<div class="col-lg-6 col-xl-7">
-										<div class="image-container">
-											<img class="img-fluid" src="<?= base_url('assets'); ?>/img/header-slide-1.jpg" alt="alternative">
-										</div> <!-- end of image-container -->
-									</div> <!-- end of col -->
-									<div class="col-lg-6 col-xl-5">
-										<div class="text-container">
-											<h1 class="h1-large">Desktop App Landing Page</h1>
-											<p class="p-large">The first desktop app for web designers. Create beautiful
-												websites with minimum HTML/CSS</p>
-											<a class="btn-solid-lg page-scroll" href="#registration">FREE TRIAL</a>
-											<a class="btn-outline-lg page-scroll" href="#features">DISCOVER</a>
-										</div> <!-- end of text-container -->
-									</div> <!-- end of col -->
-								</div> <!-- end of row -->
-							</div> <!-- end of swiper-slide -->
-							<!-- end of slide -->
-
-							<!-- Slide -->
-							<div class="swiper-slide">
-								<div class="row">
-									<div class="col-lg-6 col-xl-7">
-										<div class="image-container">
-											<img class="img-fluid" src="<?= base_url('assets'); ?>/img/header-slide-2.jpg" alt="alternative">
-										</div> <!-- end of image-container -->
-									</div> <!-- end of col -->
-									<div class="col-lg-6 col-xl-5">
-										<div class="text-container">
-											<h1 class="h1-large">Web Design Desktop App</h1>
-											<p class="p-large">Sketch your layout, mockup the prototye and create the
-												actual design using Revo web design app</p>
-											<a class="btn-solid-lg page-scroll" href="#registration">FREE TRIAL</a>
-											<a class="btn-outline-lg page-scroll" href="#features">DISCOVER</a>
-										</div> <!-- end of text-container -->
-									</div> <!-- end of col -->
-								</div> <!-- end of row -->
-							</div> <!-- end of swiper-slide -->
-							<!-- end of slide -->
-
-							<!-- Slide -->
-							<div class="swiper-slide">
-								<div class="row">
-									<div class="col-lg-6 col-xl-7">
-										<div class="image-container">
-											<img class="img-fluid" src="<?= base_url('assets'); ?>/img/header-slide-3.jpg" alt="alternative">
-										</div> <!-- end of image-container -->
-									</div> <!-- end of col -->
-									<div class="col-lg-6 col-xl-5">
-										<div class="text-container">
-											<h1 class="h1-large">Prototype And Create Designs</h1>
-											<p class="p-large">With Revo it's a breeze to turn your designs intro code.
-												Use the visual builder and export as HTML</p>
-											<a class="btn-solid-lg page-scroll" href="#registration">FREE TRIAL</a>
-											<a class="btn-outline-lg page-scroll" href="#features">DISCOVER</a>
-										</div> <!-- end of text-container -->
-									</div> <!-- end of col -->
-								</div> <!-- end of row -->
-							</div> <!-- end of swiper-slide -->
-							<!-- end of slide -->
-
+							<?php $i = 0;
+							foreach ($template as $t) :
+								$i++; ?>
+								<div class="swiper-slide">
+									<div class="row justify-content-center">
+										<div class="col">
+											<div class="text-center">
+												<a href="<?= base_url('demo/index/' . $i . '/john_merlin'); ?>">
+													<img class="img-fluid" src="<?= base_url('assets'); ?>/img/template/<?= $t['tema']; ?>" alt="<?= $t['nama_template']; ?>" width="240">
+												</a>
+											</div> <!-- end of image-container -->
+										</div> <!-- end of col -->
+									</div> <!-- end of row -->
+								</div> <!-- end of swiper-slide -->
+							<?php endforeach; ?>
 						</div> <!-- end of swiper-wrapper -->
 
 						<!-- Add Arrows -->
@@ -83,377 +44,244 @@
 
 			</div> <!-- end of col -->
 		</div> <!-- end of row -->
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="partner-container">
-					<p class="p-small">Featured in</p>
-					<img class="img-fluid" src="<?= base_url('assets'); ?>/img/partner-logo-1.png" alt="alternative">
-					<img class="img-fluid" src="<?= base_url('assets'); ?>/img/partner-logo-2.png" alt="alternative">
-					<img class="img-fluid" src="<?= base_url('assets'); ?>/img/partner-logo-3.png" alt="alternative">
-					<img class="img-fluid" src="<?= base_url('assets'); ?>/img/partner-logo-4.png" alt="alternative">
-					<img class="img-fluid" src="<?= base_url('assets'); ?>/img/partner-logo-5.png" alt="alternative">
-				</div> <!-- end of partner-container -->
-			</div> <!-- end of col -->
-		</div> <!-- end of row -->
 	</div> <!-- end of container -->
 </header> <!-- end of header -->
 <!-- end of header -->
 
 
-<!-- Registration -->
-<div id="registration" class="form-1 bg-dark-blue">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6">
-				<div class="text-container">
-					<h2>Register For The Free Trial</h2>
-					<p>You are just a few clicks away from using the first desktop app dedicated to web designers and
-						developers. Fill out the form to get the 30-day trial and you will receive the download link</p>
-					<ul class="list-unstyled li-space-lg">
-						<li class="media">
-							<i class="fas fa-square"></i>
-							<div class="media-body"><strong>Prototype easier</strong> using intuitive features and
-								design tools</div>
-						</li>
-						<li class="media">
-							<i class="fas fa-square"></i>
-							<div class="media-body"><strong>Design layouts</strong> with faster with efficient
-								components</div>
-						</li>
-						<li class="media">
-							<i class="fas fa-square"></i>
-							<div class="media-body"><strong>Export to code</strong> and effortlessly upload your
-								projects online</div>
-						</li>
-					</ul>
-				</div> <!-- end of text-container -->
-			</div> <!-- end of col -->
-			<div class="col-lg-6">
-
-				<!-- Registration Form -->
-				<form id="registrationForm">
-					<div class="form-group">
-						<input type="text" class="form-control-input" id="rname" required>
-						<label class="label-control" for="rname">Name</label>
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control-input" id="roccupation" required>
-						<label class="label-control" for="roccupation">Occupation</label>
-					</div>
-					<div class="form-group">
-						<input type="email" class="form-control-input" id="remail" required>
-						<label class="label-control" for="remail">Email</label>
-					</div>
-					<div class="form-group checkbox">
-						<input type="checkbox" id="rterms" value="Agreed-to-Terms" required>I agree with the website's
-						<a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms & Conditions</a>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="form-control-submit-button">SIGN UP</button>
-					</div>
-				</form>
-				<!-- end of registration form -->
-
-			</div> <!-- end of col -->
-		</div> <!-- end of row -->
-	</div> <!-- end of container -->
-</div> <!-- end of form-1 -->
-<!-- end of registration -->
-
-
 <!-- Features -->
-<div id="features" class="cards-1 bg-dark-blue">
+<div id="fitur" class="cards-1 bg-dark-blue">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="h2-heading">Revo's Features</h2>
-				<p class="p-heading">Revo is the first desktop app which helps web designers and developers create
-					beautiful and efficient layouts for their online projects</p>
+				<h2 class="h2-heading">Fitur Template</h2>
+				<p class="p-heading">your wedding menyediakan fitur - fitur menarik untuk menarik para pengunjung dan memuaskan anda. berikut ini adalah fitur yang akan ada dalam undangan anda</p>
 			</div> <!-- end of div -->
 		</div> <!-- end of row -->
 		<div class="row">
 			<div class="col-lg-12">
-
 				<!-- Card -->
 				<div class="card">
 					<div class="card-image">
-						<i class="fas fa-rocket"></i>
+						<i class="fas fa-camera-retro"></i>
 					</div>
 					<div class="card-body">
-						<h5 class="card-title">Prototype Faster</h5>
-						<p>Cutting edge tools that will help you sketch your ideas in record time and prepare the design
+						<h5 class="card-title">PHOTO GALERY & VIDEO</h5>
+						<p>anda bisa melakukan upload foto prewedding dan video prewedding kedalam undangan
 						</p>
 					</div>
 				</div>
 				<!-- end of card -->
-
 				<!-- Card -->
 				<div class="card">
 					<div class="card-image">
-						<i class="fas fa-tv"></i>
+						<i class="fas fa-music"></i>
 					</div>
 					<div class="card-body">
-						<h5 class="card-title">Design Layouts</h5>
-						<p>Turn your prototypes into final designs using established and well-known features</p>
+						<h5 class="card-title">BACKSOUND</h5>
+						<p>Undangan anda akan tersedia music backsound untuk memperindah tampilan</p>
 					</div>
 				</div>
 				<!-- end of card -->
-
 				<!-- Card -->
 				<div class="card">
 					<div class="card-image">
-						<i class="fas fa-user-tag"></i>
+						<i class="fas fa-gift"></i>
 					</div>
 					<div class="card-body">
-						<h5 class="card-title">Export To Code</h5>
-						<p>When you're done designing export your layouts quickly to editable HTML/CSS code</p>
+						<h5 class="card-title">KIRIM HADIAH</h5>
+						<p>pengunjung bisa mengirim hadiah melalui virtual account anda atau alamat untuk hadiah berupa barang</p>
 					</div>
 				</div>
-				<!-- end of card -->
-
-			</div> <!-- end of col -->
-		</div> <!-- end of row -->
-	</div> <!-- end of container -->
+				<div class="card">
+					<div class="card-image">
+						<i class="fas fa-map-marked-alt"></i>
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">ALAMAT MAPS</h5>
+						<p>Dengan Alamat berupa maps pengunjung akan lebih mudah mengetahui lokasi acara</p>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-image">
+						<i class="fas fa-user-check"></i>
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">KEHADIRAN & BUKU TAMU</h5>
+						<p>Pengunjung dapat melakukan kehadiran untuk memastikan diri hadir</p>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-image">
+						<i class="fas fa-copy"></i>
+					</div>
+					<div class="card-body">
+						<h5 class="card-title">PROFILE SINGKAT MEMPELAI</h5>
+						<p>Anda Juga dapat menceritakan profile singkat tentang diri anda atau pasangan anda didalam undangan</p>
+					</div>
+				</div>
+			</div>
+			<!-- end of card -->
+		</div> <!-- end of col -->
+	</div> <!-- end of row -->
+</div> <!-- end of container -->
 </div> <!-- end of cards-1 -->
 <!-- end of features -->
 
+<div class="slider-1" id="demo">>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- Card Slider -->
+				<div class="slider-container">
+					<div class="swiper-container card-slider">
+						<div class="swiper-wrapper">
+
+							<!-- Slide -->
+							<?php foreach ($template as $t2) : ?>
+								<div class="swiper-slide">
+									<div class="card">
+										<img src="<?= base_url('assets'); ?>/img/template/<?= $t2['tema']; ?>" alt="<?= $t2['nama_template']; ?>">
+									</div>
+								</div> <!-- end of swiper-slide -->
+							<?php endforeach; ?>
+							<!-- end of slide -->
+						</div> <!-- end of swiper-wrapper -->
+
+						<!-- Add Arrows -->
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+						<!-- end of add arrows -->
+
+					</div> <!-- end of swiper-container -->
+				</div> <!-- end of slider-container -->
+				<!-- end of card slider -->
+
+			</div> <!-- end of col -->
+		</div> <!-- end of row -->
+	</div> <!-- end of container -->
+</div>
 
 <!-- Details 1 -->
-<div id="details" class="basic-1 bg-dark-blue">
+<div id="harga" class="basic-1 bg-dark-blue">
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 col-xl-7">
-				<div class="image-container">
-					<img class="img-fluid" src="<?= base_url('assets'); ?>/img/details-1.jpg" alt="alternative">
-				</div> <!-- end of image-container -->
-			</div> <!-- end of col -->
-			<div class="col-lg-6 col-xl-5">
-				<div class="text-container">
-					<h2>Prototype With Revo</h2>
-					<p>Our experienced designers and developers have implemented cutting edge tools that will help you
-						sketch your ideas in record time and prepare the design</p>
-					<ul class="list-unstyled li-space-lg">
-						<li class="media">
-							<i class="fas fa-square"></i>
-							<div class="media-body"><strong>Use a single app</strong> to get from sketch to actual code
-							</div>
+		<div class="row text-center align-items-end">
+			<!-- Pricing Table-->
+			<div class="col-lg-4 mb-5 mb-lg-0">
+				<div class="bg-white p-5 rounded-lg shadow text-dark">
+					<h1 class="h6 text-uppercase font-weight-bold mb-4">Basic Publish</h1>
+					<h2 class="h1 font-weight-bold">Rp 100.000<span class="text-small font-weight-normal ml-2">/ Minggu</span></h2>
+
+					<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+					<ul class="list-unstyled my-5 text-small text-left">
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> Unlimated Pengunjung
 						</li>
-						<li class="media">
-							<i class="fas fa-square"></i>
-							<div class="media-body"><strong>Bundled templates</strong> to help you get inspired faster
-							</div>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> Buku tamu gratis
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> backsound music
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> kirim hadiah virtual account
 						</li>
 					</ul>
-					<a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox">LIGHTBOX</a>
-				</div> <!-- end of text-container -->
-			</div> <!-- end of col -->
-		</div> <!-- end of row -->
-	</div> <!-- end of container -->
-</div> <!-- end of basic-1 -->
+					<a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
+				</div>
+			</div>
+			<div class="col-lg-4 mb-5 mb-lg-0">
+				<div class="bg-white p-5 rounded-lg shadow text-dark">
+					<h1 class="h6 text-uppercase font-weight-bold mb-4">Pro Publish</h1>
+					<h2 class="h1 font-weight-bold">Rp 200.000<span class="text-small font-weight-normal ml-2">/ bulan</span></h2>
+
+					<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+					<ul class="list-unstyled my-5 text-small text-left">
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> Unlimated Pengunjung
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> Buku tamu gratis
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> backsound music
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> kirim hadiah virtual account
+						</li>
+					</ul>
+					<a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
+				</div>
+			</div>
+			<div class="col-lg-4 mb-5 mb-lg-0">
+				<div class="bg-white p-5 rounded-lg shadow text-dark">
+					<h1 class="h6 text-uppercase font-weight-bold mb-4">Enterprise Publish</h1>
+					<h2 class="h1 font-weight-bold">Rp 500.000<span class="text-small font-weight-normal ml-2">/ setengah tahun</span></h2>
+
+					<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+					<ul class="list-unstyled my-5 text-small text-left">
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> Unlimated Pengunjung
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> Buku tamu gratis
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> backsound music
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> kirim hadiah virtual account
+						</li>
+					</ul>
+					<a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
+				</div>
+			</div>
+			<!-- END -->
+		</div>
+		<div class="row text-center align-items-end justify-content-center my-3">
+			<!-- Pricing Table-->
+			<div class="col-lg-4 mb-5 mb-lg-0">
+				<div class="bg-white p-5 rounded-lg shadow text-dark">
+					<h1 class="h6 text-uppercase font-weight-bold mb-4">Custom Website</h1>
+					<h2 class="h1 font-weight-bold">Rp 50.000<span class="text-small font-weight-normal ml-2">/ Fitur</span></h2>
+
+					<div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+					<ul class="list-unstyled my-5 text-small text-left">
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> terima jadi
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> deign sesuai keinginan
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> fitur sesuai permintaan
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> backsound music custom
+						</li>
+						<li class="mb-3">
+							<i class="fa fa-check mr-2 text-primary"></i> Semuanya terserah anda
+						</li>
+					</ul>
+					<a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
+				</div>
+			</div>
+			<!-- END -->
+		</div>
+	</div>
+</div>
+<!-- end of basic-1 -->
 <!-- end of details 1 -->
 
-
-<!-- Details Lightbox -->
-<!-- Lightbox -->
-<div id="details-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
-	<div class="row">
-		<button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
-		<div class="col-lg-8">
-			<div class="image-container">
-				<img class="img-fluid" src="<?= base_url('assets'); ?>/img/details-lightbox.jpg" alt="alternative">
-			</div> <!-- end of image-container -->
-		</div> <!-- end of col -->
-		<div class="col-lg-4">
-			<h3>Goals Setting</h3>
-			<hr>
-			<p>The app can easily help you track your personal development evolution if you take the time to set it up.
-			</p>
-			<h4>User Feedback</h4>
-			<p>This is a great app which can help you save time and make your live easier. And it will help improve your
-				productivity.</p>
-			<ul class="list-unstyled li-space-lg">
-				<li class="media">
-					<i class="fas fa-square"></i>
-					<div class="media-body">Splash screen panel</div>
-				</li>
-				<li class="media">
-					<i class="fas fa-square"></i>
-					<div class="media-body">Statistics graph report</div>
-				</li>
-				<li class="media">
-					<i class="fas fa-square"></i>
-					<div class="media-body">Events calendar layout</div>
-				</li>
-				<li class="media">
-					<i class="fas fa-square"></i>
-					<div class="media-body">Location details screen</div>
-				</li>
-				<li class="media">
-					<i class="fas fa-square"></i>
-					<div class="media-body">Onboarding steps interface</div>
-				</li>
-			</ul>
-			<a class="btn-solid-reg mfp-close page-scroll" href="#registration">FREE TRIAL</a> <button
-				class="btn-outline-reg mfp-close as-button" type="button">BACK</button>
-		</div> <!-- end of col -->
-	</div> <!-- end of row -->
-</div> <!-- end of lightbox-basic -->
-<!-- end of lightbox -->
-<!-- end of details lightbox -->
-
-
-<!-- Details 2 -->
-<div class="tabs">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 col-xl-5">
-				<div class="tabs-container">
-
-					<!-- Tabs Links -->
-					<ul class="nav nav-tabs" id="revoTabs" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab"
-								aria-controls="tab-1" aria-selected="true">PROTOTYPE</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab"
-								aria-controls="tab-2" aria-selected="false">DESIGN</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="nav-tab-3" data-toggle="tab" href="#tab-3" role="tab"
-								aria-controls="tab-3" aria-selected="false">EXPORT</a>
-						</li>
-					</ul>
-					<!-- end of tabs links -->
-
-					<!-- Tabs Content -->
-					<div class="tab-content" id="revoTabsContent">
-
-						<!-- Tab -->
-						<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
-							<h4>Prototype Easier With Revo</h4>
-							<p>It's now easier than ever to get your ideas into completed designs with Revo desktop app.
-								Our <a class="turquoise page-scroll" href="#features">features</a> section shows how we
-								are able to achieve all this.</p>
-							<ul class="list-unstyled li-space-lg">
-								<li class="media">
-									<i class="fas fa-square"></i>
-									<div class="media-body"><strong>Experienced teams</strong> of top designers and
-										developers</div>
-								</li>
-								<li class="media">
-									<i class="fas fa-square"></i>
-									<div class="media-body"><strong>Enthusiastic passion</strong> for all things web
-										design related</div>
-								</li>
-								<li class="media">
-									<i class="fas fa-square"></i>
-									<div class="media-body"><strong>Focus on simplicity</strong> when it comes to the
-										user interface</div>
-								</li>
-							</ul>
-						</div> <!-- end of tab-pane -->
-						<!-- end of tab -->
-
-						<!-- Tab -->
-						<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
-							<ul class="list-unstyled li-space-lg">
-								<li class="media">
-									<div class="media-bullet">1.</div>
-									<div class="media-body"><strong>Speed</strong> is important for our users so we
-										invest a lot of time and resources to make everything work faster</div>
-								</li>
-								<li class="media">
-									<div class="media-bullet">2.</div>
-									<div class="media-body"><strong>Reliability</strong> is what we're focused on
-										achieving besides speed because we want our app to work all the time</div>
-								</li>
-								<li class="media">
-									<div class="media-bullet">3.</div>
-									<div class="media-body"><strong>Standards</strong> are another factor that we take
-										into consideration when developing our tools</div>
-								</li>
-								<li class="media">
-									<div class="media-bullet">4.</div>
-									<div class="media-body"><strong>Performance</strong> is a key factor for our desktop
-										apps</div>
-								</li>
-							</ul>
-						</div> <!-- end of tab-pane -->
-						<!-- end of tab -->
-
-						<!-- Tab -->
-						<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
-							<p><strong>Our goal is to empower</strong> web designers and developers reach their full
-								potential and help them get their designs from layouts to code in the shortest amount of
-								time.</p>
-							<p><strong>Design and layouts</strong> are the main focus of our apps but we also work on
-								export-to-code functionalities.</p>
-							<ul class="list-unstyled li-space-lg">
-								<li class="media">
-									<i class="fas fa-square"></i>
-									<div class="media-body">It's a fun and captivating endeavour that we love</div>
-								</li>
-								<li class="media">
-									<i class="fas fa-square"></i>
-									<div class="media-body">We're passionate about our work and it shows</div>
-								</li>
-							</ul>
-						</div> <!-- end of tab-pane -->
-						<!-- end of tab -->
-
-					</div> <!-- end of tab-content -->
-					<!-- end of tabs content -->
-
-				</div> <!-- end of tabs-container -->
-			</div> <!-- end of col -->
-			<div class="col-lg-6 col-xl-7">
-				<div class="image-container">
-					<img class="img-fluid" src="<?= base_url('assets'); ?>/img/details-2.jpg" alt="alternative">
-				</div> <!-- end of image-container -->
-			</div> <!-- end of col -->
-		</div> <!-- end of row -->
-	</div> <!-- end of container -->
-</div> <!-- end of tabs -->
-<!-- end of details 2 -->
-
-
-<!-- Video -->
-<div class="basic-2 bg-dark-blue">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h2 class="h2-heading">Video Presentation</h2>
-				<p class="p-heading">Check out our video presentation for Revo desktop app. It will take you through an
-					entire design project from the initial sketch to the final code</p>
-
-				<!-- Video Preview -->
-				<div class="image-container">
-					<div class="video-wrapper">
-						<a class="popup-youtube" href="https://www.youtube.com/watch?v=fLCjQJCekTs"
-							data-effect="fadeIn">
-							<img class="img-fluid" src="<?= base_url('assets'); ?>/img/video-preview.jpg" alt="alternative">
-							<span class="video-play-button">
-								<span></span>
-							</span>
-						</a>
-					</div> <!-- end of video-wrapper -->
-				</div> <!-- end of image-container -->
-				<!-- end of video preview -->
-
-			</div> <!-- end of col -->
-		</div> <!-- end of row -->
-	</div> <!-- end of container -->
-</div> <!-- end of basic-2 -->
-<!-- end of video -->
-
-
-<!-- Testimonials -->
 <div class="slider-1">
-	<div class="container">
+	<div class="container text-center">
+		<h4 class="mb-5">Testimoni</h4>
 		<div class="row">
 			<div class="col-lg-12">
-
 				<!-- Card Slider -->
 				<div class="slider-container">
 					<div class="swiper-container card-slider">
@@ -554,72 +382,19 @@
 </div> <!-- end of slider-1 -->
 <!-- end of testimonials -->
 
-
-<!-- Purchase -->
-<div id="purchase" class="basic-3 bg-dark-blue">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h2 class="h2-heading">Get Revo And Start Designing</h2>
-				<p class="p-heading p-large">The first desktop app for web designers and developers which helps them get
-					their ideas from initial sketch to finalized code easier. Revo brings to the table cutting-edge
-					technologies to help you get projects online faster.</p>
-				<a class="btn-solid-lg" href="#your-link">$89 BUY</a> <a class="btn-outline-lg page-scroll"
-					href="#registration">FREE TRIAL</a>
-			</div> <!-- end of col -->
-		</div> <!-- end of row -->
-	</div> <!-- end of container -->
-</div> <!-- end of basic-3 -->
-<!-- end of purchase -->
-
-
-<!-- Resources -->
-<div class="basic-4 bg-dark-blue">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="resource-container">
-					<img class="img-fluid" src="<?= base_url('assets'); ?>/img/resources-1.jpg" alt="alternative">
-					<div class="text-container">
-						<h4>User Showcases</h4>
-						<p>Check out these awesome customer showcases to convince you to give Revo and try right away
-						</p>
-					</div> <!-- end of text-container -->
-				</div> <!-- end of resource-container -->
-				<div class="resource-container">
-					<img class="img-fluid" src="<?= base_url('assets'); ?>/img/resources-2.jpg" alt="alternative">
-					<div class="text-container">
-						<h4>Knowledge Center</h4>
-						<p>We've gathered some great resources to help you learn how to use Revo and overcome issues</p>
-					</div> <!-- end of text-container -->
-				</div> <!-- end of resource-container -->
-			</div> <!-- end of col -->
-		</div> <!-- end of row -->
-	</div> <!-- end of container -->
-</div> <!-- end of basic-4 -->
-<!-- end of resources -->
-
-
 <!-- Footer -->
 <div class="footer">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="footer-col first">
-					<h6>About Revo</h6>
-					<p class="p-small">Revo is a desktop app website Bootstrap HTML template created for desktop
-						applications, to present their features and control panel options</p>
+					<h6>Tentang Your Wedding</h6>
+					<p class="p-small">Your Wedding Merupakan platform penyedia design template undangan pernikahan secara online pembayaran hanya akan di kenakan pada saat publishing</p>
 				</div> <!-- end of footer-col -->
 				<div class="footer-col second">
-					<h6>Links</h6>
+					<h6>Note</h6>
 					<ul class="list-unstyled li-space-lg p-small">
-						<li>Important: <a href="terms.html">Terms & Conditions</a>, <a href="privacy.html">Privacy
-								Policy</a></li>
-						<li>Useful: <a href="#">Colorpicker</a>, <a href="#">Icon Library</a>, <a
-								href="#">Illustrations</a></li>
-						<li>Menu: <a class="page-scroll" href="#header">Home</a>, <a class="page-scroll"
-								href="#registration">Trial</a>, <a class="page-scroll" href="#features">Features</a>, <a
-								class="page-scroll" href="#details">Details</a></li>
+						<p>design di website ini GRATIS bayar hanya untuk publish</p>
 					</ul>
 				</div> <!-- end of footer-col -->
 				<div class="footer-col third">
@@ -647,8 +422,7 @@
 							<i class="fab fa-instagram fa-stack-1x"></i>
 						</a>
 					</span>
-					<p class="p-small">We would love to hear from you <a
-							href="mailto:contact@website.com"><strong>contact@website.com</strong></a></p>
+					<p class="p-small">Follow Social Media Kami<br><a href="customercare@yourwedding.com"><strong>customercare@yourwedding.com</strong></a></p>
 				</div> <!-- end of footer-col -->
 			</div> <!-- end of col -->
 		</div> <!-- end of row -->

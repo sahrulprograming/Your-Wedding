@@ -22,13 +22,13 @@
 	<title><?= $title; ?></title>
 
 	<!-- Styles -->
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 	<link href="<?= base_url('assets'); ?>/css/default/bootstrap.css" rel="stylesheet">
 	<link href="<?= base_url('assets'); ?>/css/default/fontawesome-all.css" rel="stylesheet">
 	<link href="<?= base_url('assets'); ?>/css/default/swiper.css" rel="stylesheet">
 	<link href="<?= base_url('assets'); ?>/css/default/magnific-popup.css" rel="stylesheet">
 	<link href="<?= base_url('assets'); ?>/css/default/styles.css" rel="stylesheet">
+	<link href="<?= base_url('assets'); ?>/css/default/app.css" rel="stylesheet">
 
 	<!-- Favicon  -->
 	<link rel="icon" href="<?= base_url('assets'); ?>/img/logo.ico">
