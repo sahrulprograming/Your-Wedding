@@ -1,4 +1,4 @@
-<audio loop id="music">
+<audio autoplay loop id="music">
     <source src="<?= base_url('assets'); ?>/demo/audio/Its_You.mp3" type="audio/mpeg">
 </audio>
 <div class="background" style="background-image: linear-gradient(rgba(46,27,23,0.7),rgba(46,27,23,0.7)), url(<?= base_url('assets'); ?>/demo/image/bg3.jpg);"></div>
@@ -8,7 +8,7 @@
         <img src="<?= base_url('assets'); ?>/demo/audio/volume.svg" id="icon-music">
     </div>
     <!-- Hero -->
-    <section class="" id="hero" style="background-image: url(<?= base_url('assets'); ?>/demo/image/template/<?= $tema; ?>); background-repeat: no-repeat;background-size: cover;">
+    <section class="bg-light" id="hero" style="background-image: url(<?= base_url('assets'); ?>/demo/image/template/<?= $tema; ?>); background-repeat: no-repeat;background-size: cover;">
         <div class="hero text-center" data-aos="fade-right" data-aos-duration="1200">
             <div class="judul mb-3">
                 <h1>Undangan Pernikahan</h1>
@@ -200,7 +200,7 @@
                         terima kasih telah setia melihat undangan kami dan berikut ini adalah video prewedding kami
                     </p>
                 </div>
-                <iframe width="340" height="199" src="https://www.youtube.com/embed/FgN4ieKQKw8?">
+                <iframe width="340" height="199" src="https://www.youtube.com/embed/wQwk96-66Ik?">
                     <!-- autoplay=1&mute=1 -->
                 </iframe>
             </div>

@@ -32,3 +32,12 @@ function format_jam($jam)
 {
     return substr($jam, 0, 5);
 }
+
+function format_tanggal_database($tanggal)
+{
+    $hari = explode(' ', $tanggal)[0];
+    $bulan = explode(' ', $tanggal)[1];
+    $tahun = explode(' ', $tanggal)[2];
+    if (strtolower($bulan) == 'january')
+        echo "$tahun-$bulan-$hari";
+}
