@@ -1,44 +1,44 @@
-let step = document.getElementsByClassName('step');
-let prevBtn = document.getElementById('prev-btn');
-let nextBtn = document.getElementById('next-btn');
-let submitBtn = document.getElementById('submit-btn');
-let form = document.getElementsByTagName('form')[0];
-let preloader = document.getElementById('preloader-wrapper');
-let bodyElement = document.querySelector('body');
-let succcessDiv = document.getElementById('success');
+let step = $('.step');
+let prevBtn = $('#prev-btn');
+let nextBtn = $('#next-btn');
+let submitBtn = $('#submit-btn');
+let form = $('#form-wrapper');
+let preloader = $('#preloader-wrapper');
+let bodyElement = $('body');
+let succcessDiv = $('#success');
 
 let current_step = 0;
-let stepCount = 8
+let stepCount = step.length-1
 step[current_step].classList.add('d-block');
 if (current_step == 0) {
-    prevBtn.classList.add('d-none');
-    submitBtn.classList.add('d-none');
-    nextBtn.classList.add('d-inline-block');
+    prevBtn.addClass('d-none');
+    submitBtn.addClass('d-none');
+    nextBtn.addClass('d-inline-block');
 }
 const progress = (value) => {
     document.getElementsByClassName('progress-bar')[0].style.width = `${value}%`;
 }
 
-nextBtn.addEventListener('click', () => {
+nextBtn.on('click', () => {
     current_step++;
     let previous_step = current_step - 1;
     if ((current_step > 0) && (current_step <= stepCount)) {
-        prevBtn.classList.remove('d-none');
-        prevBtn.classList.add('d-inline-block');
+        prevBtn.removeClass('d-none');
+        prevBtn.addClass('d-inline-block');
         step[current_step].classList.remove('d-none');
         step[current_step].classList.add('d-block');
         step[previous_step].classList.remove('d-block');
         step[previous_step].classList.add('d-none');
         if (current_step == stepCount) {
-            submitBtn.classList.remove('d-none');
-            submitBtn.classList.add('d-inline-block');
-            nextBtn.classList.remove('d-inline-block');
-            nextBtn.classList.add('d-none');
+            submitBtn.removeClass('d-none');
+            submitBtn.addClass('d-inline-block');
+            nextBtn.removeClass('d-inline-block');
+            nextBtn.addClass('d-none');
         }
     } else {
         if (current_step > stepCount) {
             form.onsubmit = () => {
-                return true
+                alert('Berhasil')
             }
         }
     }
@@ -46,29 +46,29 @@ nextBtn.addEventListener('click', () => {
 });
 
 
-prevBtn.addEventListener('click', () => {
+prevBtn.on('click', () => {
     if (current_step > 0) {
         current_step--;
         let previous_step = current_step + 1;
-        prevBtn.classList.add('d-none');
-        prevBtn.classList.add('d-inline-block');
+        prevBtn.addClass('d-none');
+        prevBtn.addClass('d-inline-block');
         step[current_step].classList.remove('d-none');
         step[current_step].classList.add('d-block')
         step[previous_step].classList.remove('d-block');
         step[previous_step].classList.add('d-none');
         if (current_step < stepCount) {
-            submitBtn.classList.remove('d-inline-block');
-            submitBtn.classList.add('d-none');
-            nextBtn.classList.remove('d-none');
-            nextBtn.classList.add('d-inline-block');
-            prevBtn.classList.remove('d-none');
-            prevBtn.classList.add('d-inline-block');
+            submitBtn.removeClass('d-inline-block');
+            submitBtn.addClass('d-none');
+            nextBtn.removeClass('d-none');
+            nextBtn.addClass('d-inline-block');
+            prevBtn.removeClass('d-none');
+            prevBtn.addClass('d-inline-block');
         }
     }
 
     if (current_step == 0) {
-        prevBtn.classList.remove('d-inline-block');
-        prevBtn.classList.add('d-none');
+        prevBtn.removeClass('d-inline-block');
+        prevBtn.addClass('d-none');
     }
     progress((100 / stepCount) * current_step);
 });

@@ -39,7 +39,7 @@
                     <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 0%"></div>
                 </div>
                 <div id="qbox-container">
-                    <form class="needs-validation" id="form-wrapper" method="post" name="form-wrapper">
+                    <form action="<?= current_url(); ?>" class="needs-validation" id="form-wrapper" method="post" name="form-wrapper" enctype="multipart/form-data">
                         <!-- STEPS HERE -->
                         <div id="steps-container">
                             <!-- Mempelai Pria -->
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic">TANGGAL</label>
-                                    <input class="form-control" id="datepicker" neme="tanggal_akad" type="text">
+                                    <input class="form-control" id="datepicker" name="tanggal_akad" type="text">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">JAM</label>
@@ -122,11 +122,11 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic">TANGGAL</label>
-                                    <input class="form-control" id="datepicker" neme="tanggal_resepsi" type="text">
+                                    <input class="form-control" id="datepicker2" name="tanggal_resepsi" type="text">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">JAM</label>
-                                    <input class="form-control" id="timepicker" name="jam_resepsi" type="text">
+                                    <input class="form-control" id="timepicker2" name="jam_resepsi" type="text">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic">NAMA VIRTUAL AKUN</label>
-                                    <input class="form-control" id="nama_VA" neme="nama_VA_1" type="text">
+                                    <input class="form-control" id="nama_VA" name="nama_VA_1" type="text">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">NOMER VIRTUAL AKUN</label>
@@ -182,7 +182,7 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic">KATA PENGANTAR</label>
-                                    <input class="form-control" id="nama_VA" neme="nama_VA_1" type="text">
+                                    <input class="form-control" id="nama_VA" name="nama_VA_1" type="text">
                                 </div>
                             </div>
                             <div class="step">
@@ -192,6 +192,11 @@
                                         <p>satu langkah lagi website anda jadi</p>
                                         <p>Click submit untuk melanjutkan.</p>
                                     </div>
+                                </div>
+                            </div>
+                            <div id="success">
+                                <div class="mt-5">
+                                    <h4 class="text-white">Success! Website anda telah jadi klik ➜ <a class="lihat-undangan" href="">Disini</a> untuk melihat!</h4>
                                 </div>
                             </div>
                         </div>
@@ -228,6 +233,14 @@
                 date: false,
                 format: 'HH:mm'
             });
+            $('#datepicker2').bootstrapMaterialDatePicker({
+                time: false,
+                format: 'DD MMMM YYYY'
+            });
+            $('#timepicker2').bootstrapMaterialDatePicker({
+                date: false,
+                format: 'HH:mm'
+            });
         });
     </script>
     <!-- image upliadify -->
@@ -251,7 +264,7 @@
                 </div>
                 <div class="mt-5">
                     <label class="form-label fw-normal fst-italic">NAMA VIRTUAL AKUN</label>
-                    <input class="form-control" id="nama_VA" neme="nama_VA_` + no_baru + `" type="text">
+                    <input class="form-control" id="nama_VA" name="nama_VA_` + no_baru + `" type="text">
                 </div>
                 <div class="mt-2">
                     <label class="form-label fw-normal fst-italic">NOMER VIRTUAL AKUN</label>
@@ -281,38 +294,13 @@
 
     <!-- on submit -->
     <script>
-        submitBtn.addEventListener('click', () => {
-            $.ajax({
-                url: "<?= base_url('customer/undangan/coba'); ?>",
-                type: "POST",
-                data: $('#nama_lengkap_pria').val(),
-                success: function(result) {
-                    console.log(result);
-                    if (result == 'Berhasil') {
-                        swal("Berhasil!", "Terima Kasih sudah berkomentar!", {
-                            icon: "success",
-                            buttons: {
-                                confirm: {
-                                    className: 'btn btn-success'
-                                }
-                            },
-                        });
-                        succcessDiv.classList.remove('d-none');
-                        succcessDiv.classList.add('d-block');
-                    } else {
-                        swal("Gagal!", "ada yang salah coba di cek!", {
-                            icon: "error",
-                            buttons: {
-                                confirm: {
-                                    className: 'btn btn-danger'
-                                }
-                            },
-                        });
-                    }
-                }
-            })
+        submitBtn.on('click', function() {
+            form.submit();
+        })
+    </script>
 
-        });
+    <script>
+
     </script>
 </body>
 

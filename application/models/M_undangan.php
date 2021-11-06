@@ -31,7 +31,8 @@ class M_undangan extends CI_Model
     }
     public function tambah_data_undangan()
     {
-        echo $_POST;
+        var_dump($_POST);
+        var_dump($_FILES);
         die;
     }
 }
