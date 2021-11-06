@@ -18,6 +18,7 @@
 
     <!-- Jquery -->
     <script src="<?= base_url('assets'); ?>/vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url('assets'); ?>/vendor/sweetalert/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -41,7 +42,6 @@
                     <form class="needs-validation" id="form-wrapper" method="post" name="form-wrapper">
                         <!-- STEPS HERE -->
                         <div id="steps-container">
-
                             <!-- Mempelai Pria -->
                             <div class="step" style="width: 100%;">
                                 <div class="judul text-center">
@@ -53,11 +53,11 @@
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">NAMA LENGKAP</label>
-                                    <input class="form-control" id="nama_lengkap" name="nama_lengkap" type="text">
+                                    <input class="form-control" id="nama_lengkap_pria" name="nama_lengkap_pria" type="text">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">NAMA PANGGILAN</label>
-                                    <input class="form-control" id="nama_panggilan" name="nama_panggilan" type="text">
+                                    <input class="form-control" id="nama_panggilan_pria" name="nama_panggilan_pria" type="text">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">NAMA PANGGILAN AYAH</label>
@@ -80,11 +80,11 @@
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">NAMA LENGKAP</label>
-                                    <input class="form-control" id="nama_lengkap" name="nama_lengkap" type="text">
+                                    <input class="form-control" id="nama_lengkap_wanita" name="nama_lengkap_wanita" type="text">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">NAMA PANGGILAN</label>
-                                    <input class="form-control" id="nama_panggilan" name="nama_panggilan" type="text">
+                                    <input class="form-control" id="nama_panggilan_wanita" name="nama_panggilan_wanita" type="text">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">NAMA PANGGILAN AYAH</label>
@@ -139,7 +139,7 @@
                                 </div>
                                 <div class="card mt-5">
                                     <div class="card-body">
-                                        <input id="image-uploadify" type="file" accept="image/*" multiple>
+                                        <input id="image-uploadify" type="file" accept="image/*" name="foto" multiple>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic text-uppercase">Video Youtube</label>
-                                    <input class="form-control" id="lokasi_akad" name="lokasi_akad" type="text" placeholder="paste link video">
+                                    <input class="form-control" id="video_youtube" name="video_youtube" type="text" placeholder="paste link video">
                                 </div>
                             </div>
                             <div class="step" style="width: 100%;">
@@ -194,20 +194,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="success">
-                                <div class="mt-5">
-                                    <h4>Success! Website anda telah jadi klik di sini untuk melihat!</h4>
-                                    <p>Meanwhile, clean your hands often, use soap and water, or an alcohol-based
-                                        hand rub, maintain a safe distance from anyone who is coughing or sneezing
-                                        and always wear a mask when physical distancing is not possible.</p>
-                                    <a class="back-link" href="">Go back from the beginning ➜</a>
-                                </div>
-                            </div>
                         </div>
                         <div id="q-box__buttons">
                             <button id="prev-btn" type="button">Previous</button>
                             <button id="next-btn" type="button">Next</button>
-                            <button id="submit-btn" type="submit">Submit</button>
+                            <button id="submit-btn" type="button">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -286,6 +277,42 @@
                 $('#total_VA').val(no_terakhir - 1);
             }
         }
+    </script>
+
+    <!-- on submit -->
+    <script>
+        submitBtn.addEventListener('click', () => {
+            $.ajax({
+                url: "<?= base_url('customer/undangan/coba'); ?>",
+                type: "POST",
+                data: $('#nama_lengkap_pria').val(),
+                success: function(result) {
+                    console.log(result);
+                    if (result == 'Berhasil') {
+                        swal("Berhasil!", "Terima Kasih sudah berkomentar!", {
+                            icon: "success",
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-success'
+                                }
+                            },
+                        });
+                        succcessDiv.classList.remove('d-none');
+                        succcessDiv.classList.add('d-block');
+                    } else {
+                        swal("Gagal!", "ada yang salah coba di cek!", {
+                            icon: "error",
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-danger'
+                                }
+                            },
+                        });
+                    }
+                }
+            })
+
+        });
     </script>
 </body>
 

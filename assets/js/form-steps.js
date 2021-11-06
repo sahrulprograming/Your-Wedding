@@ -7,9 +7,6 @@ let preloader = document.getElementById('preloader-wrapper');
 let bodyElement = document.querySelector('body');
 let succcessDiv = document.getElementById('success');
 
-form.onsubmit = () => {
-    return false
-}
 let current_step = 0;
 let stepCount = 8
 step[current_step].classList.add('d-block');
@@ -74,26 +71,4 @@ prevBtn.addEventListener('click', () => {
         prevBtn.classList.add('d-none');
     }
     progress((100 / stepCount) * current_step);
-});
-
-
-submitBtn.addEventListener('click', () => {
-    preloader.classList.add('d-block');
-
-    const timer = ms => new Promise(res => setTimeout(res, ms));
-
-    timer(3000)
-        .then(() => {
-            bodyElement.classList.add('loaded');
-        }).then(() => {
-            step[stepCount].classList.remove('d-block');
-            step[stepCount].classList.add('d-none');
-            prevBtn.classList.remove('d-inline-block');
-            prevBtn.classList.add('d-none');
-            submitBtn.classList.remove('d-inline-block');
-            submitBtn.classList.add('d-none');
-            succcessDiv.classList.remove('d-none');
-            succcessDiv.classList.add('d-block');
-        })
-
 });

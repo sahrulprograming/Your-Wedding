@@ -29,4 +29,9 @@ class M_undangan extends CI_Model
         $this->db->order_by($order_by, 'DESC');
         return $this->db->get($table)->result_array();
     }
+    public function tambah_data_undangan()
+    {
+        echo $_POST;
+        die;
+    }
 }
