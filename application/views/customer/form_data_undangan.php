@@ -38,7 +38,7 @@
                     <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 0%"></div>
                 </div>
                 <div id="qbox-container">
-                    <form class="needs-validation" id="form-wrapper" method="post" name="form-wrapper">
+                    <form action="<?= base_url(current_url()); ?>" class="needs-validation" id="form-wrapper" method="post" name="form-wrapper">
                         <!-- STEPS HERE -->
                         <div id="steps-container">
 
@@ -182,7 +182,7 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic">KATA PENGANTAR</label>
-                                    <input class="form-control" id="nama_VA" neme="nama_VA_1" type="text">
+                                    <textarea class="form-control" id="kata_pengantar" name="kata_pengantar" type="text"></textarea>
                                 </div>
                             </div>
                             <div class="step">

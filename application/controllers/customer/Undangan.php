@@ -20,6 +20,9 @@ class Undangan extends CI_Controller
     }
     public function form($id_template)
     {
+        if ($_POST) {
+            $this->M_undangan->tambah_data_undangan();
+        }
         format_tanggal_database('12 November 2021');
         $role = $this->session->userdata('role');
         $data['template'] = $this->M_template->ambil_satu_data(['ID_Template' => $id_template]);
