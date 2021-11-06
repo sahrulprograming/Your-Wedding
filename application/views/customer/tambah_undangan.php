@@ -30,7 +30,7 @@
                                         <h5><?= strtoupper(str_replace('-', ' ', $t['nama_template'])); ?></h5>
                                     </div>
                                     <div class="card-body">
-                                        <img src="<?= base_url('assets'); ?>/img/template/bg-1.png" alt="" width="180">
+                                        <img src="<?= base_url('assets'); ?>/img/template/<?= $t['tema'] ?>" alt="" width="180">
                                     </div>
                                     <div class="card-footer">
                                         <a href="<?= base_url('customer/undangan/form/' . $t['ID_Template']); ?>" class="btn btn-primary">Pilih</a>
