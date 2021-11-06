@@ -176,19 +176,27 @@
                                 </div>
                                 <input type="hidden" id="total_VA" value="1">
                             </div>
+                            <div class="step" style="width: 100%;">
+                                <div class="judul text-center">
+                                    <h3 class="fw-bold text-uppercase">Kelengkapan website</h3>
+                                </div>
+                                <div class="mt-5">
+                                    <label class="form-label fw-normal fst-italic">KATA PENGANTAR</label>
+                                    <input class="form-control" id="nama_VA" neme="nama_VA_1" type="text">
+                                </div>
+                            </div>
                             <div class="step">
                                 <div class="mt-1">
                                     <div class="closing-text">
-                                        <h4>That's about it! Stay healthy!</h4>
-                                        <p>We will assess your information and will let you know soon if you need to
-                                            get tested for COVID-19.</p>
-                                        <p>Click on the submit button to continue.</p>
+                                        <h4>Selamat!</h4>
+                                        <p>satu langkah lagi website anda jadi</p>
+                                        <p>Click submit untuk melanjutkan.</p>
                                     </div>
                                 </div>
                             </div>
                             <div id="success">
                                 <div class="mt-5">
-                                    <h4>Success! We'll get back to you ASAP!</h4>
+                                    <h4>Success! Website anda telah jadi klik di sini untuk melihat!</h4>
                                     <p>Meanwhile, clean your hands often, use soap and water, or an alcohol-based
                                         hand rub, maintain a safe distance from anyone who is coughing or sneezing
                                         and always wear a mask when physical distancing is not possible.</p>
