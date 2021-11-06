@@ -128,33 +128,47 @@
 </div> <!-- end of cards-1 -->
 <!-- end of features -->
 
-<div class="slider-1" id="demo">>
+<div class="slider-1" id="demo">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header mb-5 text-center">
+						<h3>Demo Template</h3>
+					</div>
+					<div class="card-body">
+						<div class="slider-container">
+							<div class="swiper-container card-slider">
+								<div class="swiper-wrapper">
+									<!-- Slide -->
+									<?php $i = 0;
+									foreach ($template as $t) :
+										$i++; ?>
+										<div class="swiper-slide">
+											<div class="row justify-content-center">
+												<div class="col">
+													<div class="text-center">
+														<a href="<?= base_url('demo/index/' . $i . '/john_merlin'); ?>">
+															<img class="img-fluid" src="<?= base_url('assets'); ?>/img/template/<?= $t['tema']; ?>" alt="<?= $t['nama_template']; ?>" width="240">
+														</a>
+													</div> <!-- end of image-container -->
+												</div> <!-- end of col -->
+											</div> <!-- end of row -->
+										</div> <!-- end of swiper-slide -->
+									<?php endforeach; ?>
+								</div> <!-- end of swiper-wrapper -->
+
+								<!-- Add Arrows -->
+								<div class="swiper-button-next"></div>
+								<div class="swiper-button-prev"></div>
+								<!-- end of add arrows -->
+
+							</div> <!-- end of swiper-container -->
+						</div>
+					</div>
+				</div>
 				<!-- Card Slider -->
-				<div class="slider-container">
-					<div class="swiper-container card-slider">
-						<div class="swiper-wrapper">
-
-							<!-- Slide -->
-							<?php foreach ($template as $t2) : ?>
-								<div class="swiper-slide">
-									<div class="card">
-										<img src="<?= base_url('assets'); ?>/img/template/<?= $t2['tema']; ?>" alt="<?= $t2['nama_template']; ?>">
-									</div>
-								</div> <!-- end of swiper-slide -->
-							<?php endforeach; ?>
-							<!-- end of slide -->
-						</div> <!-- end of swiper-wrapper -->
-
-						<!-- Add Arrows -->
-						<div class="swiper-button-next"></div>
-						<div class="swiper-button-prev"></div>
-						<!-- end of add arrows -->
-
-					</div> <!-- end of swiper-container -->
-				</div> <!-- end of slider-container -->
+				<!-- end of slider-container -->
 				<!-- end of card slider -->
 
 			</div> <!-- end of col -->
