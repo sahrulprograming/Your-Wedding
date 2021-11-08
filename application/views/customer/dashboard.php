@@ -1,5 +1,6 @@
 <div class="main-panel">
     <div class="content">
+        <?= $this->session->flashdata('notif'); ?>
         <div class="panel-header bg-primary-gradient">
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
@@ -22,13 +23,13 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center">
-                                        <i class="flaticon-chart-pie text-warning"></i>
+                                        <i class="flaticon-interface-6 text-warning"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Number</p>
-                                        <h4 class="card-title">150GB</h4>
+                                        <p class="card-category">Undangan</p>
+                                        <h4 class="card-title">11</h4>
                                     </div>
                                 </div>
                             </div>
@@ -41,13 +42,13 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center">
-                                        <i class="flaticon-coins text-success"></i>
+                                        <i class="flaticon-interface text-success"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Revenue</p>
-                                        <h4 class="card-title">$ 1,345</h4>
+                                        <p class="card-category">Jumlah Pengunjung</p>
+                                        <h4 class="card-title">100</h4>
                                     </div>
                                 </div>
                             </div>
@@ -60,12 +61,12 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center">
-                                        <i class="flaticon-error text-danger"></i>
+                                        <i class="flaticon-users text-info"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Errors</p>
+                                        <p class="card-category">Jumlah Tamu</p>
                                         <h4 class="card-title">23</h4>
                                     </div>
                                 </div>
@@ -79,12 +80,12 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="icon-big text-center">
-                                        <i class="flaticon-twitter text-primary"></i>
+                                        <i class="flaticon-chat-2 text-primary"></i>
                                     </div>
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Followers</p>
+                                        <p class="card-category">Jumlah Komentar</p>
                                         <h4 class="card-title">+45K</h4>
                                     </div>
                                 </div>

@@ -16,9 +16,15 @@ class M_auth extends CI_Model
                     'foto' => $customer['foto'],
                     'email' => $customer['email'],
                 ]);
-                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                <strong>Login Berhasil!</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                $cek_file = file_exists(FCPATH . "./assets/img/customer/" . $this->session->userdata('id'));
+                if (!$cek_file) {
+                    mkdir(FCPATH . "./assets/img/customer/" . $this->session->userdata('id'));
+                }
+                $this->session->set_flashdata('notif', '<div class="alert alert-success bg-success text-white alert-dismissible fade show" role="alert">
+                <strong>Login berhasil!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
                 </div>');
                 redirect('customer/home/dashboard');
             } else {
@@ -32,14 +38,20 @@ class M_auth extends CI_Model
             if (password_verify($password, $administrator['password'])) {
                 $this->session->set_userdata([
                     'role' => 'administrator',
-                    'id' => $administrator['IDC'],
+                    'id' => $administrator['ID_admin'],
                     'nama' => $administrator['nama_lengkap'],
                     'foto' => $administrator['foto'],
                     'email' => $administrator['email'],
                 ]);
-                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                <strong>Login Berhasil!</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                $cek_file = file_exists(FCPATH . "./assets/img/" . $this->session->userdata('role') . "/" . $this->session->userdata('id'));
+                if (!$cek_file) {
+                    mkdir(FCPATH . "./assets/img/" . $this->session->userdata('role') . "/" . $this->session->userdata('id'));
+                }
+                $this->session->set_flashdata('notif', '<div class="alert alert-success bg-success text-white alert-dismissible fade show" role="alert">
+                <strong>Login berhasil!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
                 </div>');
                 redirect('administrator/home/dashboard');
             } else {

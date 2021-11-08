@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Bootstrap 5: COVID-19 Self Checker Multi-step Form</title>
+    <title><?= $title; ?></title>
+    <!-- Favicon  -->
+    <link rel="icon" href="<?= base_url('assets'); ?>/img/logo.ico">
     <!-- material icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/icons.css">
@@ -19,14 +21,19 @@
     <!-- Jquery -->
     <script src="<?= base_url('assets'); ?>/vendor/jquery/jquery.min.js"></script>
     <script src="<?= base_url('assets'); ?>/vendor/sweetalert/sweetalert.min.js"></script>
+    <style>
+        input.tidak_valid {
+            background-color: #ffdddd !important;
+        }
+    </style>
 </head>
 
 <body>
     <!-- CONTAINER -->
     <div class="container d-flex align-items-center justify-content-center min-vh-100">
-        <div class="row g-0 justify-content-center border border-white" style="height: 85vh;">
+        <div class="row g-0 justify-content-center" style="height: 85vh;">
             <!-- TITLE -->
-            <div class="col-lg-4 offset-lg-1 mx-0 px-0">
+            <div class="col-lg-4 offset-lg-1 mx-0 px-0 shadow " style="overflow-y: hidden; height: 100%;">
                 <div id="title-container">
                     <img class="template-image" src="<?= base_url('assets'); ?>/img/template/<?= $template['tema']; ?>">
                     <h2 class="mb-2 text-uppercase"><?= str_replace('-', ' ', $template['nama_template']); ?></h2>
@@ -113,6 +120,19 @@
                                     <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
                                     <input class="form-control" id="lokasi_akad" name="lokasi_akad" type="text" placeholder="paste link google maps lokasi">
                                 </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-normal fst-italic text-uppercase">embed lokasi maps</label>
+                                    <input class="form-control" id="lokasi_akad_embed" name="lokasi_akad_embed" type="text" placeholder="paste script embed">
+                                </div>
+                                <div class="mt-2">
+                                    <div class="image-container">
+                                        <div class="video-wrapper text-end">
+                                            <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
+                                                Lihat cara embed
+                                            </a>
+                                        </div> <!-- end of video-wrapper -->
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Jadwal Resepsi -->
@@ -132,6 +152,10 @@
                                     <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
                                     <input class="form-control" id="lokasi_resepsi" name="lokasi_resepsi" type="text" placeholder="paste link google maps lokasi">
                                 </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-normal fst-italic text-uppercase">embed lokasi maps</label>
+                                    <input class="form-control" id="lokasi_resepsi_embed" name="lokasi_resepsi_embed" type="text" placeholder="paste script embed">
+                                </div>
                             </div>
                             <div class="step" style="width: 100%;">
                                 <div class="judul text-center">
@@ -139,7 +163,7 @@
                                 </div>
                                 <div class="card mt-5">
                                     <div class="card-body">
-                                        <input id="image-uploadify" type="file" accept="image/*" name="foto" multiple>
+                                        <input id="image-uploadify" type="file" accept="image/*" name="foto[]" multiple>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +178,18 @@
                             </div>
                             <div class="step" style="width: 100%;">
                                 <div class="judul text-center">
-                                    <h3 class="fw-bold text-uppercase">Virtual akun gift 1</h3>
+                                    <h3 class="fw-bold text-uppercase">data Kirim Kado</h3>
+                                </div>
+                                <div class="mt-5">
+                                    <label class="form-label fw-normal fst-italic">LINK GOOGLE MAPS</label>
+                                    <input class="form-control" id="alamat_kado" name="alamat_kado" type="text" placeholder="paste link maps">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label fw-normal fst-italic text-uppercase">embed lokasi maps</label>
+                                    <input class="form-control" id="embed_alamat_kado" name="embed_alamat_kado" type="text" placeholder="paste script embed">
+                                </div>
+                                <div class="judul text-center mt-5">
+                                    <h3 class="fw-bold text-uppercase">Virtual akun 1</h3>
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic">NAMA VIRTUAL AKUN</label>
@@ -174,7 +209,7 @@
                                     <button type="button" class="btn btn-sm btn-primary" id="tambah">Tambah 1</button>
                                     <button type="button" class="btn btn-sm btn-primary" id="hapus">Hapus 1</button>
                                 </div>
-                                <input type="hidden" id="total_VA" value="1">
+                                <input type="hidden" id="total_VA" name="total_VA" value="1">
                             </div>
                             <div class="step" style="width: 100%;">
                                 <div class="judul text-center">
@@ -182,28 +217,34 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic">KATA PENGANTAR</label>
-                                    <input class="form-control" id="nama_VA" name="nama_VA_1" type="text">
+                                    <textarea class="form-control" id="kata_pengantar" name="kata_pengantar" type="text" rows="5" placeholder="Ketik atau lihat contekan"></textarea>
+                                </div>
+                                <div class="mt-2">
+                                    <button type="button" class="btn btn-info" id="contek">lihat contekan</button>
+                                </div>
+                                <div class="mt-2 d-none" id="output-contek">
+                                    <select class="form-select" id="contekan">
+                                        <option selected>Open this select menu</option>
+                                        <?php foreach ($contekan as $contekan) : ?>
+                                            <option value="<?= $contekan['kata_pengantar']; ?>" style="word-wrap:break-word !importent"><?= substr($contekan['kata_pengantar'], 0, 35); ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="step">
                                 <div class="mt-1">
-                                    <div class="closing-text">
-                                        <h4>Selamat!</h4>
+                                    <div class="closing-text text-white">
+                                        <h2 style="color: #49FF00 !important">Selamat!</h2>
                                         <p>satu langkah lagi website anda jadi</p>
                                         <p>Click submit untuk melanjutkan.</p>
                                     </div>
-                                </div>
-                            </div>
-                            <div id="success">
-                                <div class="mt-5">
-                                    <h4 class="text-white">Success! Website anda telah jadi klik ➜ <a class="lihat-undangan" href="">Disini</a> untuk melihat!</h4>
                                 </div>
                             </div>
                         </div>
                         <div id="q-box__buttons">
                             <button id="prev-btn" type="button">Previous</button>
                             <button id="next-btn" type="button">Next</button>
-                            <button id="submit-btn" type="button">Submit</button>
+                            <button id="submit-btn" type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -260,7 +301,7 @@
             var input_baru = `
             <div class="mt-5" id="VA_` + no_baru + `">
                 <div class="judul text-center">
-                    <h3 class="fw-bold text-uppercase">Virtual akun gift ` + no_baru + `</h3>
+                    <h3 class="fw-bold text-uppercase">Virtual akun ` + no_baru + `</h3>
                 </div>
                 <div class="mt-5">
                     <label class="form-label fw-normal fst-italic">NAMA VIRTUAL AKUN</label>
@@ -290,17 +331,35 @@
                 $('#total_VA').val(no_terakhir - 1);
             }
         }
+
+        // contekan kata pengantar
+        $('#contek').on('click', function() {
+            $('#output-contek').toggleClass('d-none');
+            $('#contekan').change(function() {
+                $('#contekan :selected').each(function() {
+                    $('#kata_pengantar').val($(this).val())
+                })
+            });
+        })
     </script>
 
     <!-- on submit -->
     <script>
-        submitBtn.on('click', function() {
-            form.submit();
-        })
-    </script>
+        form.submit(function(e) {
+            let fd = new FormData();
+            $.ajax({
+                url: e.attr("action"),
+                type: e.attr("method"),
+                data: fd,
+                async: false,
+                cache: false,
+                contentType: false,
+                success: function(result) {
+                    console.log(result);
+                }
+            })
 
-    <script>
-
+        });
     </script>
 </body>
 

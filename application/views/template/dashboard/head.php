@@ -27,9 +27,11 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/dashboard/bootstrap.min.css">
 	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/dashboard/atlantis.min.css">
+	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/vendor/bootstrap-5/css/bootstrap.min.css">
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/dashboard/demo.css">
+	<script src="<?= base_url('assets'); ?>/js/dashboard/core/jquery.3.2.1.min.js"></script>
 </head>
 
 <body data-background-color="dark">

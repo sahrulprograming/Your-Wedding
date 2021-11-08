@@ -20,7 +20,7 @@ class Demo extends CI_Controller
             $data['IDU'] = $IDU;
             $data['title'] = str_replace('_', ' & ', $url);
             $this->load->view('demo/template/head', $data);
-            $this->load->view('demo/template-1', $data);
+            $this->load->view('demo/template-demo', $data);
             $this->load->view('demo/template/footer');
         } else {
             redirect('home');

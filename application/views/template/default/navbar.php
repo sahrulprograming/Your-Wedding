@@ -32,16 +32,46 @@
                         <div class="dropdown-divider"></div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('authentication'); ?>">
-                        <button class="btn btn-outline-reg m-2">LOGIN</button>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('authentication'); ?>">
-                        <button class="btn btn-solid-reg">DAFTAR</button>
-                    </a>
-                </li>
+                <?php if (!$this->session->userdata('id')) : ?>
+                    <li class="nav-item">
+                        <a href="<?= base_url('authentication'); ?>">
+                            <button class="btn btn-outline-reg m-2">LOGIN</button>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('authentication'); ?>">
+                            <button class="btn btn-solid-reg">DAFTAR</button>
+                        </a>
+                    </li>
+                <?php else : ?>
+                    <li class="nav-item dropdown hidden-caret ml-3">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <div class="avatar-sm">
+                                <img src="<?= base_url('assets'); ?>/img/<?= $this->session->userdata('role'); ?>/<?= $this->session->userdata('foto'); ?>" alt="..." class="avatar-img rounded-circle">
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user animated fadeIn">
+                            <div class="dropdown-user-scroll scrollbar-outer">
+                                <li>
+                                    <div class="user-box">
+                                        <div class="avatar-lg"><img src="<?= base_url('assets'); ?>/img/<?= $this->session->userdata('role'); ?>/<?= $this->session->userdata('foto'); ?>" alt="image profile" class="avatar-img rounded"></div>
+                                        <div class="u-text text-white">
+                                            <h4><?= $this->session->userdata('nama'); ?></h4>
+                                            <p class="text-muted"><?= $this->session->userdata('email'); ?></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">My Profile</a>
+                                    <a class="dropdown-item" href="<?= base_url($this->session->userdata('role') . '/home/dashboard'); ?>">Dashboard</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="<?= base_url('authentication/logout'); ?>">Logout</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                <?php endif ?>
             </ul>
 
         </div> <!-- end of navbar-collapse -->

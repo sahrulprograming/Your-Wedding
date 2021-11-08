@@ -20,6 +20,7 @@ const progress = (value) => {
 }
 
 nextBtn.on('click', () => {
+    // if (!validasiForm(step[current_step])) return false;
     current_step++;
     let previous_step = current_step - 1;
     if ((current_step > 0) && (current_step <= stepCount)) {
@@ -72,3 +73,18 @@ prevBtn.on('click', () => {
     }
     progress((100 / stepCount) * current_step);
 });
+
+function validasiForm(current_step) {
+    let valid = true;
+    current_step = current_step.getElementsByTagName('input')
+    for (i=0; i < current_step.length; i++){
+        if (current_step[i].value == ""){
+            current_step[i].classList.add('tidak_valid');
+            valid = false;
+        }
+        else{
+            current_step[i].classList.remove('tidak_valid');
+        }
+    }
+    return valid;
+}

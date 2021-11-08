@@ -200,7 +200,7 @@
                         terima kasih telah setia melihat undangan kami dan berikut ini adalah video prewedding kami
                     </p>
                 </div>
-                <iframe width="340" height="199" src="https://www.youtube.com/embed/wQwk96-66Ik?">
+                <iframe width="340" height="199" src="https://www.youtube.com/embed/<?= format_link_youtube(data_undangan($IDDU, 'video')); ?>?autoplay=1&mute=1">
                     <!-- autoplay=1&mute=1 -->
                 </iframe>
             </div>
@@ -255,7 +255,7 @@
                 <div class="input-group input-group-sm mt-3">
                     <select class="single-select form-control" name="IDVA" id="IDVA">
                         <option selected value="null">Silahkan pilih virtual account</option>
-                        <?php foreach (virtual_account($IDU) as $pay) : ?>
+                        <?php foreach (virtual_account($IDDU) as $pay) : ?>
                             <option value="<?= $pay['IDVA']; ?>"><?= $pay['nama_VA']; ?></option>
                         <?php endforeach ?>
                     </select>
