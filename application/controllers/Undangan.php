@@ -11,16 +11,20 @@ class Undangan extends CI_Controller
     {
         $undangan = $this->M_undangan->ambil_satu_data(['IDU' => $IDU]);
         if ($undangan) {
+            if ($undangan['IDC'] === $this->session->userdata('id')) {
+                $data['kembali'] = $this->session->userdata('kembali');
+            }
             $ID_Template = $undangan['ID_Template'];
             $template = $this->M_template->ambil_satu_data(['ID_Template' => $ID_Template]);
             $data['tamu'] = str_replace('%20', ' ', $tamu);
             $data['template'] = $template['nama_template'];
             $data['tema'] = $template['tema'];
             $data['IDDU'] = $undangan['IDDU'];
+            $data['IDC'] = $undangan['IDC'];
             $data['IDU'] = $IDU;
             $data['title'] = str_replace('_', ' & ', $url);
             $this->load->view('demo/template/head', $data);
-            $this->load->view('demo/' . $template['nama_template'], $data);
+            $this->load->view('undangan/template', $data);
             $this->load->view('demo/template/footer');
         } else {
             redirect('home');
@@ -65,10 +69,10 @@ class Undangan extends CI_Controller
     }
     public function kehadiran()
     {
-        $cek = $this->db->get_where('buku_tamu', ['IDDU' => $this->input->post('IDDU'), 'nama' => $this->input->post('nama')])->row_array();
+        $cek = $this->db->get_where('buku_tamu', ['IDU' => $this->input->post('IDU'), 'nama' => $this->input->post('nama')])->row_array();
         if (!$cek) {
             $data = [
-                'IDDU' => $this->input->post('IDDU'),
+                'IDU' => $this->input->post('IDU'),
                 'nama' => $this->input->post('nama'),
                 'hubungan' => $this->input->post('hubungan'),
                 'kehadiran' => $this->input->post('kehadiran'),

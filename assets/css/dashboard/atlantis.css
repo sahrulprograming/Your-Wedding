@@ -7070,7 +7070,7 @@ label.error {
 .profile-pic:focus {
 	text-decoration: none;
 }
-
+ 
 .navbar-header .dropdown-toggle::after {
 	vertical-align: middle;
 	color: #555;

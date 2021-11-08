@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller
+class Tentang extends CI_Controller
 {
     public function __construct()
     {
@@ -9,7 +9,14 @@ class Dashboard extends CI_Controller
     }
     public function website()
     {
-        echo "tentang website";
+        $test = base_url('authentication/daftar');
+
+        $expected_result = true;
+
+        $test_name = 'Sistem login';
+
+        $this->unit->run($test, $expected_result, $test_name);
+        echo $this->unit->report();
     }
     public function harga()
     {

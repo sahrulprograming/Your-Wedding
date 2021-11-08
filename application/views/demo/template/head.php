@@ -24,6 +24,7 @@
 
     <!-- Icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/icon/flaticon/flaticon.css">
 
     <link rel="icon" href="<?= base_url('assets'); ?>/img/logo.ico" type="image/png" />
     <!-- Jequery -->
