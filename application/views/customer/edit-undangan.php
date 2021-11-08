@@ -64,7 +64,7 @@
                         <div class="col-8 col-md-9">
                             <div class="tab-content" id="v-pills-with-icon-tabContent">
                                 <!-- Kata Pengantar -->
-                                <div class="tab-pane fade show active" id="v-pills-kata-pengantar" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
+                                <div class="tab-pane fade" id="v-pills-kata-pengantar" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
                                     <form action="">
                                         <div class="form-group">
                                             <label class="form-label fw-normal fst-italic">KATA PENGANTAR</label>
@@ -140,54 +140,93 @@
                                 </div>
                                 <!-- Jadwal akad -->
                                 <div class="tab-pane fade" id="v-pills-jadwal-akad" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
-                                    <form action="<?= base_url('customer/undangan/edit/j_akad/', $IDDU); ?>" method="POST">
-                                        <div class="mt-5">
-                                            <label class="form-label fw-normal fst-italic">TANGGAL</label>
-                                            <input class="form-control" id="datepicker" name="tanggal" type="date" value="<?= data_akad($IDDU, 'tanggal'); ?>">
+                                    <?= form_open_multipart(base_url('customer/undangan/edit/j_akad/' . $IDDU)); ?>
+                                    <div class="form-group">
+                                        <label class="form-label fw-normal fst-italic">TANGGAL</label>
+                                        <input class="form-control" id="datepicker" name="tanggal" type="date" value="<?= data_akad($IDDU, 'tanggal'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label fw-normal fst-italic">JAM</label>
+                                        <input class="form-control" id="timepicker" name="jam" type="time" value="<?= data_akad($IDDU, 'jam'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
+                                        <input class="form-control" id="lokasi" name="lokasi" type="text" placeholder="paste link google maps lokasi" value="<?= data_akad($IDDU, 'lokasi'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="image-container">
+                                            <div class="video-wrapper text-end">
+                                                <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
+                                                    Lihat cara embed
+                                                </a>
+                                            </div> <!-- end of video-wrapper -->
                                         </div>
-                                        <div class="mt-2">
-                                            <label class="form-label fw-normal fst-italic">JAM</label>
-                                            <input class="form-control" id="timepicker" name="jam" type="time">
-                                        </div>
-                                        <div class="mt-2">
-                                            <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
-                                            <input class="form-control" id="lokasi" name="lokasi" type="text" placeholder="paste link google maps lokasi">
-                                        </div>
-                                        <div class="mt-2">
-                                            <label class="form-label fw-normal fst-italic text-uppercase">embed lokasi maps</label>
-                                            <input class="form-control" id="lokasi_embed" name="lokasi_embed" type="text" placeholder="paste script embed">
-                                        </div>
-                                        <div class="mt-2">
-                                            <div class="image-container">
-                                                <div class="video-wrapper text-end">
-                                                    <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
-                                                        Lihat cara embed
-                                                    </a>
-                                                </div> <!-- end of video-wrapper -->
-                                            </div>
-                                        </div>
-                                        <div class="submit text-center">
-                                            <button type="button" class="btn btn-primary" id="submit-4">ubah</button>
-                                        </div>
+                                    </div>
+                                    <div class="submit text-center">
+                                        <button type="submit" class="btn btn-primary" id="submit-4">ubah</button>
+                                    </div>
                                     </form>
                                 </div>
                                 <!-- Jadwal resepsi -->
                                 <div class="tab-pane fade" id="v-pills-jadwal-resepsi" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
-                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                    <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
-                                    </p>
+                                    <?= form_open_multipart(base_url('customer/undangan/edit/j_resepsi/' . $IDDU)); ?>
+                                    <div class="form-group">
+                                        <label class="form-label fw-normal fst-italic">TANGGAL</label>
+                                        <input class="form-control" id="datepicker" name="tanggal" type="date" value="<?= data_resepsi($IDDU, 'tanggal'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label fw-normal fst-italic">JAM</label>
+                                        <input class="form-control" id="timepicker" name="jam" type="time" value="<?= data_resepsi($IDDU, 'jam'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
+                                        <input class="form-control" id="lokasi" name="lokasi" type="text" placeholder="paste link google maps lokasi" value="<?= data_resepsi($IDDU, 'lokasi'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="image-container">
+                                            <div class="video-wrapper text-end">
+                                                <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
+                                                    Lihat cara embed
+                                                </a>
+                                            </div> <!-- end of video-wrapper -->
+                                        </div>
+                                    </div>
+                                    <div class="submit text-center">
+                                        <button type="submit" class="btn btn-primary" id="submit-4">ubah</button>
+                                    </div>
+                                    </form>
                                 </div>
                                 <!-- Foto - Foto Prewedd -->
                                 <div class="tab-pane fade" id="v-pills-foto-foto" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
-                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                    <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
-                                    </p>
+                                    <div class="row row-cols-1 row-cols-lg-4">
+                                        <?php foreach (foto_prewedd($IDDU) as $foto) : ?>
+                                            <div class="col-3">
+                                                <div class="card bg-light" style="width: 200px;">
+                                                    <img class="card-img-top" src="<?= base_url('assets'); ?>/img/<?= $this->session->userdata('role'); ?>/<?= $this->session->userdata('id'); ?>/<?= $foto['foto']; ?>" alt="Card image cap" height="200">
+                                                    <div class="card-footer d-flex justify-content-center">
+                                                        <a href="" class="btn btn-sm btn-primary mr-1 px-3"><i class="flaticon-pen mr-2"></i>Rubah</a>
+                                                        <a href="" class=" btn btn-sm btn-danger px-3"><i class="flaticon-interface-5 mr-2"></i>Hapus</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
                                 <!-- Video Prewedd -->
-                                <div class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
-                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                    <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
-                                    </p>
+                                <div class="tab-pane fade show active" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
+                                    <iframe width="340" height="199" src="https://www.youtube.com/embed/<?= format_link_youtube(data_undangan($IDDU, 'video')); ?>?autoplay=1&mute=1">
+                                        <!-- autoplay=1&mute=1 -->
+                                    </iframe>
+                                    <?= form_open_multipart(base_url('customer/undangan/edit/data_undangan/' . $IDDU)); ?>
+                                    <div class="form-group">
+                                        <label class="form-label fw-normal fst-italic">LINK YOUTUBE</label>
+                                        <input class="form-control" id="video" name="video" type="text" value="<?= data_undangan($IDDU, 'video'); ?>">
+                                    </div>
+                                    <div class="submit text-center">
+                                        <button type="submit" class="btn btn-primary" id="submit-4">ubah</button>
+                                    </div>
+                                    </form>
                                 </div>
                                 <!-- Kirim kado -->
                                 <div class="tab-pane fade" id="v-pills-kirim-kado" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
