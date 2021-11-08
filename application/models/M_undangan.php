@@ -136,6 +136,9 @@ class M_undangan extends CI_Model
 
     public function rubah_undangan($table, $IDDU)
     {
+        if (array_key_exists('tanggal', $_POST)) {
+            $_POST['tanggal'] = format_tanggal_database($this->input->post('tanggal'));
+        }
         $this->db->where('IDDU', $IDDU);
         $this->db->update($table, $_POST);
         if ($this->db->affected_rows() > 0) {

@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-<link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css">
-
 <div class="main-panel">
     <div class="content">
         <div class="page-inner">
@@ -146,11 +143,11 @@
                                     <form action="<?= base_url('customer/undangan/edit/j_akad/', $IDDU); ?>" method="POST">
                                         <div class="mt-5">
                                             <label class="form-label fw-normal fst-italic">TANGGAL</label>
-                                            <input class="form-control" id="datepicker" name="tanggal" type="text">
+                                            <input class="form-control" id="datepicker" name="tanggal" type="date" value="<?= data_akad($IDDU, 'tanggal'); ?>">
                                         </div>
                                         <div class="mt-2">
                                             <label class="form-label fw-normal fst-italic">JAM</label>
-                                            <input class="form-control" id="timepicker" name="jam" type="text">
+                                            <input class="form-control" id="timepicker" name="jam" type="time">
                                         </div>
                                         <div class="mt-2">
                                             <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
@@ -207,30 +204,6 @@
         </div>
     </div>
 </div>
-
-
-<script src="<?= base_url('assets'); ?>/vendor/bootstrap-material-datetimepicker/js/moment.min.js"></script>
-<script src="<?= base_url('assets'); ?>/vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js"></script>
-<!-- datepicker -->
-<script>
-    $(function() {
-        $('#datepicker').bootstrapMaterialDatePicker({
-            time: false,
-            format: 'DD MMMM YYYY'
-        });
-        $('#timepicker').bootstrapMaterialDatePicker({
-            date: false,
-            format: 'HH:mm'
-        });
-        $('#datepicker2').bootstrapMaterialDatePicker({
-            time: false,
-            format: 'DD MMMM YYYY'
-        });
-        $('#timepicker2').bootstrapMaterialDatePicker({
-            date: false,
-            format: 'HH:mm'
-        });
-    });
 </script>
 
 <script>
