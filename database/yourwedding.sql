@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Nov 2021 pada 06.03
+-- Waktu pembuatan: 08 Nov 2021 pada 10.35
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.4.16
 
@@ -52,7 +52,7 @@ INSERT INTO `administrator` (`ID_admin`, `nama_lengkap`, `jenis_kelamin`, `usern
 
 CREATE TABLE `buku_tamu` (
   `IDBT` int(11) NOT NULL,
-  `IDDU` int(11) NOT NULL,
+  `IDU` int(11) NOT NULL,
   `nama` varchar(45) NOT NULL,
   `hubungan` varchar(35) NOT NULL,
   `kehadiran` varchar(35) NOT NULL
@@ -62,8 +62,9 @@ CREATE TABLE `buku_tamu` (
 -- Dumping data untuk tabel `buku_tamu`
 --
 
-INSERT INTO `buku_tamu` (`IDBT`, `IDDU`, `nama`, `hubungan`, `kehadiran`) VALUES
-(1, 1, 'MUHAMMAD SAHRUL SAEFULAH', 'teman', 'hadir');
+INSERT INTO `buku_tamu` (`IDBT`, `IDU`, `nama`, `hubungan`, `kehadiran`) VALUES
+(1, 1, 'MUHAMMAD SAHRUL SAEFULAH', 'teman', 'hadir'),
+(2, 16, 'sahrul saefulah', 'teman', 'hadir');
 
 -- --------------------------------------------------------
 
@@ -100,15 +101,17 @@ CREATE TABLE `data_undangan` (
   `foto_Background` text NOT NULL,
   `kata_pengantar` text NOT NULL,
   `video` text NOT NULL,
-  `alamat_kirim_kado` text NOT NULL
+  `alamat_kirim_kado` text NOT NULL,
+  `embed_alamat_kirim_kado` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `data_undangan`
 --
 
-INSERT INTO `data_undangan` (`IDDU`, `IDC`, `foto_Background`, `kata_pengantar`, `video`, `alamat_kirim_kado`) VALUES
-(1, 22111001, 'background-default', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'video-defaut', 'Jalan Mawar kelurahan bahagia kecamatan selamat kabupaten sentosa propinsi sejahtera');
+INSERT INTO `data_undangan` (`IDDU`, `IDC`, `foto_Background`, `kata_pengantar`, `video`, `alamat_kirim_kado`, `embed_alamat_kirim_kado`) VALUES
+(1, 22111001, 'background-default', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://www.youtube.com/watch?v=eru_H6-7CSw', 'Jalan Mawar kelurahan bahagia kecamatan selamat kabupaten sentosa propinsi sejahtera', ''),
+(46, 22111002, '', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://www.youtube.com/watch?v=eru_H6-7CSw', 'https://goo.gl/maps/a8nxupZVQuoUR8EM7', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15868.050485871012!2d106.7116703!3d-6.1290032!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a039ac85af971%3A0x54d37c913eddd678!2sCitra%20garden%203!5e0!3m2!1sid!2sid!4v1636258183906!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>');
 
 -- --------------------------------------------------------
 
@@ -154,7 +157,12 @@ INSERT INTO `galery` (`IDG`, `foto`, `IDDU`) VALUES
 (2, 'foto2.jpg', 1),
 (3, 'foto3.jpg', 1),
 (4, 'foto4.jpg', 1),
-(5, 'foto5.jpg', 1);
+(5, 'foto5.jpg', 1),
+(34, '16362552602.jpeg', 46),
+(35, '16362552603.jpeg', 46),
+(36, '1636255260.png', 46),
+(37, '16362552601.png', 46),
+(38, '16362552602.png', 46);
 
 -- --------------------------------------------------------
 
@@ -181,16 +189,17 @@ CREATE TABLE `j_akad` (
   `IDDU` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `jam` time NOT NULL,
-  `lokasi` text NOT NULL
+  `lokasi` text NOT NULL,
+  `lokasi_embed` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `j_akad`
 --
 
-INSERT INTO `j_akad` (`IDJA`, `IDDU`, `tanggal`, `jam`, `lokasi`) VALUES
-(1, 1, '2021-12-23', '10:00:00', 'Masjid Jami at-taqwa jalan mawar'),
-(7, 1, '2021-05-11', '00:00:00', '');
+INSERT INTO `j_akad` (`IDJA`, `IDDU`, `tanggal`, `jam`, `lokasi`, `lokasi_embed`) VALUES
+(1, 1, '2021-12-23', '10:00:00', 'Masjid Jami at-taqwa jalan mawar', ''),
+(19, 46, '2021-11-30', '18:25:00', 'https://goo.gl/maps/a8nxupZVQuoUR8EM7', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15868.050485871012!2d106.7116703!3d-6.1290032!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a039ac85af971%3A0x54d37c913eddd678!2sCitra%20garden%203!5e0!3m2!1sid!2sid!4v1636258183906!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>');
 
 -- --------------------------------------------------------
 
@@ -203,15 +212,17 @@ CREATE TABLE `j_resepsi` (
   `IDDU` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `jam` time NOT NULL,
-  `lokasi` text NOT NULL
+  `lokasi` text NOT NULL,
+  `lokasi_embed` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `j_resepsi`
 --
 
-INSERT INTO `j_resepsi` (`IDJR`, `IDDU`, `tanggal`, `jam`, `lokasi`) VALUES
-(1, 1, '2021-12-23', '14:00:00', 'Jalan Mawar No 16 kelurahan bahagia kecamatan selamat kabupaten sentosa propinsi sejahtera');
+INSERT INTO `j_resepsi` (`IDJR`, `IDDU`, `tanggal`, `jam`, `lokasi`, `lokasi_embed`) VALUES
+(1, 1, '2021-12-23', '14:00:00', 'Jalan Mawar No 16 kelurahan bahagia kecamatan selamat kabupaten sentosa propinsi sejahtera', '0'),
+(10, 46, '2021-11-30', '20:18:00', 'https://goo.gl/maps/a8nxupZVQuoUR8EM7', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15868.050485871012!2d106.7116703!3d-6.1290032!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a039ac85af971%3A0x54d37c913eddd678!2sCitra%20garden%203!5e0!3m2!1sid!2sid!4v1636258183906!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>');
 
 -- --------------------------------------------------------
 
@@ -232,8 +243,7 @@ CREATE TABLE `komentar` (
 --
 
 INSERT INTO `komentar` (`IDK`, `IDU`, `nama_pengirim`, `pesan`, `tanggal_dikirim`) VALUES
-(6, 1, 'sahrul saefulah', 'halo', '2021-11-06 08:55:01'),
-(7, 1, 'naufal', 'juga', '2021-11-06 08:55:20');
+(8, 16, 'sahrul', 'test', '2021-11-07 14:10:47');
 
 -- --------------------------------------------------------
 
@@ -256,7 +266,8 @@ CREATE TABLE `mempelai_pria` (
 --
 
 INSERT INTO `mempelai_pria` (`IDMP`, `IDDU`, `nama_lengkap`, `profile_singkat`, `ortu`, `nama_panggilan`, `foto`) VALUES
-(1, 1, 'john samuel', 'merupakan lulusan sarjana Universitas Bina Sarana Informatika, Sekarang Bekerja Sebagai Direktur Pertamina Cabang Jawa Barat', 'bpk tono & ibu arsih', 'john', 'default-L.png');
+(1, 1, 'john samuel', 'merupakan lulusan sarjana Universitas Bina Sarana Informatika, Sekarang Bekerja Sebagai Direktur Pertamina Cabang Jawa Barat', 'bpk tono & ibu arsih', 'john', 'default-L.png'),
+(13, 46, 'yosua cahyadi  a', '', 'bpk mojo & ibu minah', 'yosua', '1636361129.jpeg');
 
 -- --------------------------------------------------------
 
@@ -279,36 +290,8 @@ CREATE TABLE `mempelai_wanita` (
 --
 
 INSERT INTO `mempelai_wanita` (`IDMW`, `IDDU`, `nama_lengkap`, `profile_singkat`, `ortu`, `nama_panggilan`, `foto`) VALUES
-(1, 1, 'merlin nasetion', 'merupakan lulusan sarjana Universitas Bina Sarana Informatika, Sekarang Bekerja Sebagai Asisten Direktur Pertamina Cabang Jawa Barat', 'bpk jojo & ibu minah', 'merlin', 'default-P.png');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `menu`
---
-
-CREATE TABLE `menu` (
-  `ID` int(11) NOT NULL,
-  `IDRole` int(11) NOT NULL,
-  `no urut` int(3) NOT NULL,
-  `nama_menu` varchar(45) NOT NULL,
-  `url` text NOT NULL,
-  `icon` varchar(50) NOT NULL,
-  `is_active` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `menu`
---
-
-INSERT INTO `menu` (`ID`, `IDRole`, `no urut`, `nama_menu`, `url`, `icon`, `is_active`) VALUES
-(1, 1, 1, 'Dashboard', '', '', 1),
-(2, 1, 2, 'Customer', '', '', 1),
-(3, 1, 3, 'pesanan', '', '', 1),
-(4, 1, 4, 'publish', '', '', 1),
-(5, 1, 5, 'Harga Publish', '', '', 1),
-(6, 2, 1, 'Dashboard', 'customer/home/dashboard', 'fas fa-home', 1),
-(7, 2, 2, 'Tambah Undangan', 'customer/undangan/tambah', 'fal fa-folder-open', 1);
+(1, 1, 'merlin nasetion', 'merupakan lulusan sarjana Universitas Bina Sarana Informatika, Sekarang Bekerja Sebagai Asisten Direktur Pertamina Cabang Jawa Barat', 'bpk jojo & ibu minah', 'merlin', 'default-P.png'),
+(11, 46, 'yuli amelia', '', 'bpk budi & ibu darsih', 'yuli', '1636360773.jpeg');
 
 -- --------------------------------------------------------
 
@@ -358,34 +341,8 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`IDRole`, `role`, `controller_akses`) VALUES
-(1, 'administrator', ''),
-(2, 'customer', '');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `sub_menu`
---
-
-CREATE TABLE `sub_menu` (
-  `ID` int(11) NOT NULL,
-  `IDMenu` int(11) NOT NULL,
-  `no_urut` int(11) NOT NULL,
-  `nama_sub_menu` varchar(45) NOT NULL,
-  `url` text NOT NULL,
-  `is_active` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `sub_menu`
---
-
-INSERT INTO `sub_menu` (`ID`, `IDMenu`, `no_urut`, `nama_sub_menu`, `url`, `is_active`) VALUES
-(1, 3, 1, 'Menunggu Pembayaran', '', 1),
-(2, 3, 2, 'Konfirmasi', '', 1),
-(3, 3, 3, 'Selesai', '', 1),
-(4, 4, 1, 'Berjalan', '', 1),
-(5, 4, 2, 'Durasi Habis', '', 1);
+(1, 'administrator', 'administrator'),
+(2, 'customer', 'customer');
 
 -- --------------------------------------------------------
 
@@ -446,7 +403,8 @@ INSERT INTO `undangan` (`IDU`, `url`, `IDDU`, `IDC`, `ID_Template`, `status`) VA
 (8, 'jon_merlin', 1, 22111001, 8, 'publish'),
 (9, 'john_merlin', 1, 22111001, 9, 'publish'),
 (10, 'john_merlin', 1, 22111001, 10, 'publish'),
-(11, 'john_merlin', 1, 22111001, 11, 'publish');
+(11, 'john_merlin', 1, 22111001, 11, 'publish'),
+(16, 'yosua_yuli', 46, 22111002, 3, '');
 
 -- --------------------------------------------------------
 
@@ -470,7 +428,35 @@ INSERT INTO `virtual_account` (`IDVA`, `IDDU`, `nomer_VA`, `nama_VA`, `A/N`) VAL
 (1, 1, '0123456789', 'dana', 'demo'),
 (2, 1, '098753677182', 'OVO', 'demo'),
 (3, 1, '32456789266', 'bank mandiri', 'demo'),
-(4, 1, '123456789', 'bank BCA', 'demo');
+(4, 1, '123456789', 'bank BCA', 'demo'),
+(9, 46, '0876353245', 'Dana', 'Yuli Amelia'),
+(10, 46, '0874542662722', 'OVO', 'Yosua ');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `v_template`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `v_template` (
+`IDU` int(11)
+,`url` varchar(25)
+,`IDDU` int(11)
+,`IDC` int(11)
+,`ID_Template` int(11)
+,`status` varchar(35)
+,`nama_template` varchar(35)
+,`tema` varchar(45)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `v_template`
+--
+DROP TABLE IF EXISTS `v_template`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_template`  AS SELECT `u`.`IDU` AS `IDU`, `u`.`url` AS `url`, `u`.`IDDU` AS `IDDU`, `u`.`IDC` AS `IDC`, `u`.`ID_Template` AS `ID_Template`, `u`.`status` AS `status`, `t`.`nama_template` AS `nama_template`, `t`.`tema` AS `tema` FROM (`undangan` `u` join `template` `t` on(`u`.`ID_Template` = `t`.`ID_Template`)) ;
 
 --
 -- Indexes for dumped tables
@@ -512,7 +498,7 @@ ALTER TABLE `dompet_admin`
 --
 ALTER TABLE `galery`
   ADD PRIMARY KEY (`IDG`),
-  ADD KEY `IDDU` (`IDDU`);
+  ADD KEY `galery_ibfk_1` (`IDDU`);
 
 --
 -- Indeks untuk tabel `harga_publish`
@@ -525,14 +511,14 @@ ALTER TABLE `harga_publish`
 --
 ALTER TABLE `j_akad`
   ADD PRIMARY KEY (`IDJA`),
-  ADD KEY `IDDU` (`IDDU`);
+  ADD KEY `j_akad_ibfk_1` (`IDDU`);
 
 --
 -- Indeks untuk tabel `j_resepsi`
 --
 ALTER TABLE `j_resepsi`
   ADD PRIMARY KEY (`IDJR`),
-  ADD KEY `IDDU` (`IDDU`);
+  ADD KEY `j_resepsi_ibfk_1` (`IDDU`);
 
 --
 -- Indeks untuk tabel `komentar`
@@ -546,21 +532,14 @@ ALTER TABLE `komentar`
 --
 ALTER TABLE `mempelai_pria`
   ADD PRIMARY KEY (`IDMP`),
-  ADD KEY `IDDU` (`IDDU`);
+  ADD KEY `mempelai_pria_ibfk_1` (`IDDU`);
 
 --
 -- Indeks untuk tabel `mempelai_wanita`
 --
 ALTER TABLE `mempelai_wanita`
   ADD PRIMARY KEY (`IDMW`),
-  ADD KEY `IDDU` (`IDDU`);
-
---
--- Indeks untuk tabel `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_menu_role` (`IDRole`);
+  ADD KEY `mempelai_wanita_ibfk_1` (`IDDU`);
 
 --
 -- Indeks untuk tabel `pembayaran`
@@ -585,13 +564,6 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`IDRole`);
 
 --
--- Indeks untuk tabel `sub_menu`
---
-ALTER TABLE `sub_menu`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_sub_menu_menu` (`IDMenu`);
-
---
 -- Indeks untuk tabel `template`
 --
 ALTER TABLE `template`
@@ -611,7 +583,7 @@ ALTER TABLE `undangan`
 --
 ALTER TABLE `virtual_account`
   ADD PRIMARY KEY (`IDVA`),
-  ADD KEY `IDDU` (`IDDU`);
+  ADD KEY `virtual_account_ibfk_1` (`IDDU`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -627,13 +599,13 @@ ALTER TABLE `administrator`
 -- AUTO_INCREMENT untuk tabel `buku_tamu`
 --
 ALTER TABLE `buku_tamu`
-  MODIFY `IDBT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDBT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_undangan`
 --
 ALTER TABLE `data_undangan`
-  MODIFY `IDDU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDDU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT untuk tabel `dompet_admin`
@@ -645,55 +617,43 @@ ALTER TABLE `dompet_admin`
 -- AUTO_INCREMENT untuk tabel `galery`
 --
 ALTER TABLE `galery`
-  MODIFY `IDG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IDG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT untuk tabel `j_akad`
 --
 ALTER TABLE `j_akad`
-  MODIFY `IDJA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IDJA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `j_resepsi`
 --
 ALTER TABLE `j_resepsi`
-  MODIFY `IDJR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDJR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `IDK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IDK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `mempelai_pria`
 --
 ALTER TABLE `mempelai_pria`
-  MODIFY `IDMP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDMP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `mempelai_wanita`
 --
 ALTER TABLE `mempelai_wanita`
-  MODIFY `IDMW` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `menu`
---
-ALTER TABLE `menu`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `IDMW` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `role`
 --
 ALTER TABLE `role`
   MODIFY `IDRole` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `sub_menu`
---
-ALTER TABLE `sub_menu`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `template`
@@ -705,13 +665,13 @@ ALTER TABLE `template`
 -- AUTO_INCREMENT untuk tabel `undangan`
 --
 ALTER TABLE `undangan`
-  MODIFY `IDU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IDU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `virtual_account`
 --
 ALTER TABLE `virtual_account`
-  MODIFY `IDVA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDVA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -727,19 +687,19 @@ ALTER TABLE `data_undangan`
 -- Ketidakleluasaan untuk tabel `galery`
 --
 ALTER TABLE `galery`
-  ADD CONSTRAINT `galery_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`);
+  ADD CONSTRAINT `galery_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `j_akad`
 --
 ALTER TABLE `j_akad`
-  ADD CONSTRAINT `j_akad_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`);
+  ADD CONSTRAINT `j_akad_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `j_resepsi`
 --
 ALTER TABLE `j_resepsi`
-  ADD CONSTRAINT `j_resepsi_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`);
+  ADD CONSTRAINT `j_resepsi_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `komentar`
@@ -751,19 +711,13 @@ ALTER TABLE `komentar`
 -- Ketidakleluasaan untuk tabel `mempelai_pria`
 --
 ALTER TABLE `mempelai_pria`
-  ADD CONSTRAINT `mempelai_pria_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`);
+  ADD CONSTRAINT `mempelai_pria_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `mempelai_wanita`
 --
 ALTER TABLE `mempelai_wanita`
-  ADD CONSTRAINT `mempelai_wanita_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`);
-
---
--- Ketidakleluasaan untuk tabel `menu`
---
-ALTER TABLE `menu`
-  ADD CONSTRAINT `FK_menu_role` FOREIGN KEY (`IDRole`) REFERENCES `role` (`IDRole`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `mempelai_wanita_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `pembayaran`
@@ -780,12 +734,6 @@ ALTER TABLE `publishing`
   ADD CONSTRAINT `publishing_ibfk_2` FOREIGN KEY (`IDU`) REFERENCES `undangan` (`IDU`);
 
 --
--- Ketidakleluasaan untuk tabel `sub_menu`
---
-ALTER TABLE `sub_menu`
-  ADD CONSTRAINT `FK_sub_menu_menu` FOREIGN KEY (`IDMenu`) REFERENCES `menu` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Ketidakleluasaan untuk tabel `undangan`
 --
 ALTER TABLE `undangan`
@@ -797,7 +745,7 @@ ALTER TABLE `undangan`
 -- Ketidakleluasaan untuk tabel `virtual_account`
 --
 ALTER TABLE `virtual_account`
-  ADD CONSTRAINT `virtual_account_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`);
+  ADD CONSTRAINT `virtual_account_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

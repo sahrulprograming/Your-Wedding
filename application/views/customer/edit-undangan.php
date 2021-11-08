@@ -144,23 +144,23 @@
                                 <!-- Jadwal akad -->
                                 <div class="tab-pane fade" id="v-pills-jadwal-akad" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
                                     <form action="<?= base_url('customer/undangan/edit/j_akad/', $IDDU); ?>" method="POST">
-                                        <div class="mt-5">
+                                        <div class="form-group">
                                             <label class="form-label fw-normal fst-italic">TANGGAL</label>
                                             <input class="form-control" id="datepicker" name="tanggal" type="text">
                                         </div>
-                                        <div class="mt-2">
+                                        <div class="form-group">
                                             <label class="form-label fw-normal fst-italic">JAM</label>
                                             <input class="form-control" id="timepicker" name="jam" type="text">
                                         </div>
-                                        <div class="mt-2">
+                                        <div class="form-group">
                                             <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
                                             <input class="form-control" id="lokasi" name="lokasi" type="text" placeholder="paste link google maps lokasi">
                                         </div>
-                                        <div class="mt-2">
+                                        <div class="form-group">
                                             <label class="form-label fw-normal fst-italic text-uppercase">embed lokasi maps</label>
                                             <input class="form-control" id="lokasi_embed" name="lokasi_embed" type="text" placeholder="paste script embed">
                                         </div>
-                                        <div class="mt-2">
+                                        <div class="form-group">
                                             <div class="image-container">
                                                 <div class="video-wrapper text-end">
                                                     <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
@@ -176,9 +176,36 @@
                                 </div>
                                 <!-- Jadwal resepsi -->
                                 <div class="tab-pane fade" id="v-pills-jadwal-resepsi" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
-                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                    <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
-                                    </p>
+                                    <form action="<?= base_url('customer/undangan/edit/j_akad/', $IDDU); ?>" method="POST">
+                                        <div class="form-group">
+                                            <label class="form-label fw-normal fst-italic">TANGGAL</label>
+                                            <input class="form-control" id="datepicker" name="tanggal" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label fw-normal fst-italic">JAM</label>
+                                            <input class="form-control" id="timepicker" name="jam" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
+                                            <input class="form-control" id="lokasi" name="lokasi" type="text" placeholder="paste link google maps lokasi">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label fw-normal fst-italic text-uppercase">embed lokasi maps</label>
+                                            <input class="form-control" id="lokasi_embed" name="lokasi_embed" type="text" placeholder="paste script embed">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="image-container">
+                                                <div class="video-wrapper text-end">
+                                                    <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
+                                                        Lihat cara embed
+                                                    </a>
+                                                </div> <!-- end of video-wrapper -->
+                                            </div>
+                                        </div>
+                                        <div class="submit text-center">
+                                            <button type="button" class="btn btn-primary" id="submit-4">ubah</button>
+                                        </div>
+                                    </form>
                                 </div>
                                 <!-- Foto - Foto Prewedd -->
                                 <div class="tab-pane fade" id="v-pills-foto-foto" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
