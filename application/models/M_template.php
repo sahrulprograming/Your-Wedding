@@ -8,11 +8,11 @@ class M_template extends CI_Model
         if ($where) {
             $this->db->where($where);
         }
-        return $this->db->get('v_template')->result_array();
+        return $this->db->get('template')->result_array();
     }
     public function ambil_satu_data($where)
     {
         $this->db->where($where);
-        return $this->db->get('v_template')->row_array();
+        return $this->db->get('template')->row_array();
     }
 }

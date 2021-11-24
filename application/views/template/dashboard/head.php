@@ -27,7 +27,7 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/dashboard/bootstrap.min.css">
 	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/dashboard/atlantis.min.css">
-	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/vendor/bootstrap-5/css/bootstrap.min.css">
+
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/dashboard/demo.css">
@@ -35,4 +35,4 @@
 </head>
 
 <body data-background-color="dark">
-	<div class="wrapper sidebar_minimize">
+	<div class="wrapper">

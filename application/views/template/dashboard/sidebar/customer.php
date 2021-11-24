@@ -1,31 +1,6 @@
 <div class="sidebar" data-background-color="dark2">
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
-            <div class="user">
-                <div class="avatar-sm float-left mr-2">
-                    <img src="<?= base_url('assets'); ?>/img/atlantis/profile.jpg" alt="..." class="avatar-img rounded-circle">
-                </div>
-                <div class="info">
-                    <a href="#collapseExample" aria-expanded="true">
-                        <span>
-                            <?= $this->session->userdata('nama'); ?>
-                            <span class="user-level"><?= $this->session->userdata('role'); ?></span>
-                            <span class="caret"></span>
-                        </span>
-                    </a>
-                    <div class="clearfix"></div>
-
-                    <div class="collapse in" id="collapseExample">
-                        <ul class="nav">
-                            <li>
-                                <a href="#profile">
-                                    <span class="link-collapse">My Profile</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <ul class="nav nav-primary">
                 <li class="nav-item">
                     <a href="<?= base_url($this->session->userdata('role') . '/home/dashboard'); ?>">
@@ -50,6 +25,24 @@
                         <i class="far fa-file-alt"></i>
                         <p>Undangan Saya</p>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#buku-tamu">
+                        <i class="flaticon-agenda-1"></i>
+                        <p>Buku Tamu</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="buku-tamu">
+                        <ul class="nav nav-collapse">
+                            <?php foreach (undangan_user($this->IDC) as $undangan) : ?>
+                                <li>
+                                    <a href="<?= base_url('customer/buku_tamu/index/' . $undangan['IDU']); ?>">
+                                        <span class="sub-item"><?= str_replace('_', ' & ', $undangan['url']); ?></span>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#base">

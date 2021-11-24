@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'security', 'form', 'your-wedding', 'data_undangan', 'formater');
+$autoload['helper'] = array('url', 'security', 'form', 'your-wedding', 'data_undangan', 'formater', 'transaksi');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('M_template', 'M_auth', 'M_undangan');
+$autoload['model'] = array('M_template', 'M_auth', 'M_undangan', 'M_transaksi');

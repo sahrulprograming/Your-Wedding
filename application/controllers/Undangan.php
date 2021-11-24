@@ -11,6 +11,8 @@ class Undangan extends CI_Controller
     {
         $undangan = $this->M_undangan->ambil_satu_data(['IDU' => $IDU]);
         if ($undangan) {
+            $this->db->where('IDU', $IDU);
+            $this->db->update('undangan', ['dilihat' => $undangan['dilihat'] + 1]);
             if ($undangan['IDC'] === $this->session->userdata('id')) {
                 $data['kembali'] = $this->session->userdata('kembali');
             }

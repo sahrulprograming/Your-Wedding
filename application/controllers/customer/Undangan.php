@@ -6,7 +6,6 @@ class Undangan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->session->set_userdata('kembali', current_url());
         $this->role = $this->session->userdata('role');
         $this->IDC = $this->session->userdata('id');
     }
@@ -19,6 +18,7 @@ class Undangan extends CI_Controller
         $this->load->view('template/dashboard/sidebar/' . $this->role);
         $this->load->view('customer/tambah_undangan');
         $this->load->view('template/dashboard/footer');
+        $this->session->set_userdata('kembali', current_url());
     }
     public function form($id_template = null)
     {
@@ -43,31 +43,32 @@ class Undangan extends CI_Controller
     {
         $undangan = $this->M_undangan->ambil_satu_data(['IDU' => $IDU]);
         if ($undangan) {
-            $template = $this->M_template->ambil_satu_data(['ID_Template' => $undangan['ID_Template']]);
-            $data['template'] = $template;
             $data['IDC'] = $undangan['IDC'];
             $data['IDU'] = $undangan['IDU'];
             $data['IDDU'] = $undangan['IDDU'];
             $data['contekan'] = $this->M_undangan->kata_pengantar();
+            $data['title'] = "Data undangan Saya";
             $this->load->view('template/dashboard/head', $data);
             $this->load->view('template/dashboard/header');
             $this->load->view('template/dashboard/sidebar/' . $this->role);
             $this->load->view('customer/edit-undangan');
             $this->load->view('template/dashboard/footer');
             $this->session->set_userdata('link_form', current_url());
+            $this->session->set_userdata('kembali', current_url());
         }
     }
     public function saya($IDC = null)
     {
         if ($IDC) {
             $role = $this->session->userdata('role');
-            $data['template'] = $this->M_template->ambil_semua(['IDC' => $IDC]);
+            $data['undangan_saya'] = $this->db->get_where('v_undangan_saya', ['IDC' => $this->IDC])->result_array();
             $data['title'] = "Undangan saya | " . nama_web();
             $this->load->view('template/dashboard/head', $data);
             $this->load->view('template/dashboard/header');
             $this->load->view('template/dashboard/sidebar/' . $role);
             $this->load->view('customer/undangan_saya');
             $this->load->view('template/dashboard/footer');
+            $this->session->set_userdata('kembali', current_url());
         } else {
             redirect('customer/home/dashboard');
         }

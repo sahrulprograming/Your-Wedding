@@ -1,9 +1,8 @@
 <div class="main-header">
 	<!-- Logo Header -->
 	<div class="logo-header" data-background-color="dark2">
-
 		<a href="index.html" class="logo">
-			<img src="<?= base_url('assets'); ?>/img/atlantis/logo.svg" alt="navbar brand" class="navbar-brand">
+			<img src="<?= base_url('assets'); ?>/img/YourWedding/1.png" alt="navbar brand" class="navbar-brand" width="120">
 		</a>
 		<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon">

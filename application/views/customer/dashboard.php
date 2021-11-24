@@ -8,10 +8,6 @@
                         <h2 class="text-white pb-2 fw-bold"><?= $title; ?></h2>
                         <h5 class="text-white op-7 mb-2">Selamat Datang <?= $this->session->userdata('nama'); ?></h5>
                     </div>
-                    <div class="ml-md-auto py-2 py-md-0">
-                        <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
-                        <a href="#" class="btn btn-secondary btn-round">Add Customer</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -28,8 +24,8 @@
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Undangan</p>
-                                        <h4 class="card-title">11</h4>
+                                        <p class="card-category">Undangan Saya</p>
+                                        <h4 class="card-title"><?= jumlah_data('undangan'); ?></h4>
                                     </div>
                                 </div>
                             </div>
@@ -47,8 +43,8 @@
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Jumlah Pengunjung</p>
-                                        <h4 class="card-title">100</h4>
+                                        <p class="card-category">Total Pengunjung</p>
+                                        <h4 class="card-title"><?= dilihat() ?></h4>
                                     </div>
                                 </div>
                             </div>
@@ -66,8 +62,8 @@
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Jumlah Tamu</p>
-                                        <h4 class="card-title">23</h4>
+                                        <p class="card-category">Total Tamu</p>
+                                        <h4 class="card-title"><?= jumlah_data('v_total_tamu'); ?></h4>
                                     </div>
                                 </div>
                             </div>
@@ -85,8 +81,8 @@
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Jumlah Komentar</p>
-                                        <h4 class="card-title">+45K</h4>
+                                        <p class="card-category">Total Komentar</p>
+                                        <h4 class="card-title"><?= jumlah_data('v_semua_komentar'); ?></h4>
                                     </div>
                                 </div>
                             </div>
@@ -98,86 +94,92 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-head-row">
-                                <div class="card-title">Support Tickets</div>
-                                <div class="card-tools">
-                                    <ul class="nav nav-pills nav-secondary nav-pills-no-bd nav-sm" id="pills-tab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="pills-today" data-toggle="pill" href="#pills-today" role="tab" aria-selected="true">Today</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="pills-week" data-toggle="pill" href="#pills-week" role="tab" aria-selected="false">Week</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="pills-month" data-toggle="pill" href="#pills-month" role="tab" aria-selected="false">Month</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="card-tools d-flex justify-content-between">
+                                <h3>Komentar Undangan Anda</h3>
+                                <ul class="nav nav-pills nav-secondary nav-pills-no-bd nav-sm justify-content-end" id="pills-tab-without-border" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="pills-home-tab-nobd" data-toggle="pill" href="#pills-home-nobd" role="tab" aria-controls="pills-home-nobd" aria-selected="true">Hari ini</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-profile-tab-nobd" data-toggle="pill" href="#pills-profile-nobd" role="tab" aria-controls="pills-profile-nobd" aria-selected="false">Minggu Ini</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-contact-tab-nobd" data-toggle="pill" href="#pills-contact-nobd" role="tab" aria-controls="pills-contact-nobd" aria-selected="false">Semua</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="d-flex">
-                                <div class="avatar avatar-online">
-                                    <span class="avatar-title rounded-circle border border-white bg-info">J</span>
+                            <div class="tab-content mt-2 mb-3" id="pills-without-border-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home-nobd" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
+
+                                    <?php if ($komentar_hari_ini) : ?>
+                                        <?php foreach ($komentar_hari_ini as $k_day) : ?>
+                                            <div class="d-flex">
+                                                <div class="avatar">
+                                                    <span class="avatar-title rounded-circle border border-white bg-info"><?= substr($k_day['nama_pengirim'], 0, 1); ?></span>
+                                                </div>
+                                                <div class="flex-1 ml-3 pt-1">
+                                                    <h6 class="text-uppercase fw-bold mb-1"><?= $k_day['nama_pengirim']; ?> <span class="text-success pl-3">undangan <?= str_replace('_', ' & ', $k_day['url']); ?></span></h6>
+                                                    <span class="text-muted"><?= $k_day['pesan']; ?> </span>
+                                                </div>
+                                                <div class="float-right pt-1">
+                                                    <small class="text-muted"><?= $k_day['tanggal_dikirim']; ?></small>
+                                                </div>
+                                            </div>
+                                            <div class="separator-dashed"></div>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <div class="text-center">
+                                            <h2>Tidak ada komentar</h2>
+                                        </div>
+                                    <?php endif ?>
                                 </div>
-                                <div class="flex-1 ml-3 pt-1">
-                                    <h6 class="text-uppercase fw-bold mb-1">Joko Subianto <span class="text-warning pl-3">pending</span></h6>
-                                    <span class="text-muted">I am facing some trouble with my viewport. When i start my</span>
+                                <div class="tab-pane fade" id="pills-profile-nobd" role="tabpanel" aria-labelledby="pills-profile-tab-nobd">
+                                    <?php if ($komentar_minggu_ini) : ?>
+                                        <?php foreach ($komentar_minggu_ini as $k_week) : ?>
+                                            <div class="d-flex">
+                                                <div class="avatar">
+                                                    <span class="avatar-title rounded-circle border border-white bg-info"><?= substr($k_week['nama_pengirim'], 0, 1); ?></span>
+                                                </div>
+                                                <div class="flex-1 ml-3 pt-1">
+                                                    <h6 class="text-uppercase fw-bold mb-1"><?= $k_week['nama_pengirim']; ?> <span class="text-success pl-3">undangan <?= str_replace('_', ' & ', $k_week['url']); ?></span></h6>
+                                                    <span class="text-muted"><?= $k_week['pesan']; ?> </span>
+                                                </div>
+                                                <div class="float-right pt-1">
+                                                    <small class="text-muted"><?= $k_week['tanggal_dikirim']; ?></small>
+                                                </div>
+                                            </div>
+                                            <div class="separator-dashed"></div>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <div class="text-center">
+                                            <h2>Tidak ada komentar</h2>
+                                        </div>
+                                    <?php endif ?>
                                 </div>
-                                <div class="float-right pt-1">
-                                    <small class="text-muted">8:40 PM</small>
-                                </div>
-                            </div>
-                            <div class="separator-dashed"></div>
-                            <div class="d-flex">
-                                <div class="avatar avatar-offline">
-                                    <span class="avatar-title rounded-circle border border-white bg-secondary">P</span>
-                                </div>
-                                <div class="flex-1 ml-3 pt-1">
-                                    <h6 class="text-uppercase fw-bold mb-1">Prabowo Widodo <span class="text-success pl-3">open</span></h6>
-                                    <span class="text-muted">I have some query regarding the license issue.</span>
-                                </div>
-                                <div class="float-right pt-1">
-                                    <small class="text-muted">1 Day Ago</small>
-                                </div>
-                            </div>
-                            <div class="separator-dashed"></div>
-                            <div class="d-flex">
-                                <div class="avatar avatar-away">
-                                    <span class="avatar-title rounded-circle border border-white bg-danger">L</span>
-                                </div>
-                                <div class="flex-1 ml-3 pt-1">
-                                    <h6 class="text-uppercase fw-bold mb-1">Lee Chong Wei <span class="text-muted pl-3">closed</span></h6>
-                                    <span class="text-muted">Is there any update plan for RTL version near future?</span>
-                                </div>
-                                <div class="float-right pt-1">
-                                    <small class="text-muted">2 Days Ago</small>
-                                </div>
-                            </div>
-                            <div class="separator-dashed"></div>
-                            <div class="d-flex">
-                                <div class="avatar avatar-offline">
-                                    <span class="avatar-title rounded-circle border border-white bg-secondary">P</span>
-                                </div>
-                                <div class="flex-1 ml-3 pt-1">
-                                    <h6 class="text-uppercase fw-bold mb-1">Peter Parker <span class="text-success pl-3">open</span></h6>
-                                    <span class="text-muted">I have some query regarding the license issue.</span>
-                                </div>
-                                <div class="float-right pt-1">
-                                    <small class="text-muted">2 Day Ago</small>
-                                </div>
-                            </div>
-                            <div class="separator-dashed"></div>
-                            <div class="d-flex">
-                                <div class="avatar avatar-away">
-                                    <span class="avatar-title rounded-circle border border-white bg-danger">L</span>
-                                </div>
-                                <div class="flex-1 ml-3 pt-1">
-                                    <h6 class="text-uppercase fw-bold mb-1">Logan Paul <span class="text-muted pl-3">closed</span></h6>
-                                    <span class="text-muted">Is there any update plan for RTL version near future?</span>
-                                </div>
-                                <div class="float-right pt-1">
-                                    <small class="text-muted">2 Days Ago</small>
+                                <div class="tab-pane fade" id="pills-contact-nobd" role="tabpanel" aria-labelledby="pills-contact-tab-nobd">
+                                    <?php if ($semua_komentar) : ?>
+                                        <?php foreach ($semua_komentar as $k_all) : ?>
+                                            <div class="d-flex">
+                                                <div class="avatar">
+                                                    <span class="avatar-title rounded-circle border border-white bg-info"><?= substr($k_all['nama_pengirim'], 0, 1); ?></span>
+                                                </div>
+                                                <div class="flex-1 ml-3 pt-1">
+                                                    <h6 class="text-uppercase fw-bold mb-1"><?= $k_all['nama_pengirim']; ?> <span class="text-success pl-3">undangan <?= str_replace('_', ' & ', $k_all['url']); ?></span></h6>
+                                                    <span class="text-muted"><?= $k_all['pesan']; ?> </span>
+                                                </div>
+                                                <div class="float-right pt-1">
+                                                    <small class="text-muted"><?= $k_all['tanggal_dikirim']; ?></small>
+                                                </div>
+                                            </div>
+                                            <div class="separator-dashed"></div>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <div class="text-center">
+                                            <h2>Tidak ada komentar</h2>
+                                        </div>
+                                    <?php endif ?>
                                 </div>
                             </div>
                         </div>

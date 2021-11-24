@@ -60,3 +60,32 @@ function upload_foto($name, $index_ke = null)
         return false;
     }
 }
+function undangan_user($IDC)
+{
+    $ci3 = get_instance();
+    $data = $ci3->M_undangan->semua_data('undangan', ['IDC' => $IDC]);
+    if ($data) {
+        return $data;
+    }
+}
+
+function jumlah_data($table)
+{
+    $ci3 = get_instance();
+    $ci3->db->where('IDC', $ci3->IDC);
+    return $ci3->db->count_all_results($table);
+}
+
+function dilihat()
+{
+    $ci3 = get_instance();
+    $ci3->db->where('IDC', $ci3->IDC);
+    $data = $ci3->db->get('undangan')->result_array();
+    if ($data) {
+        $dilihat = 0;
+        foreach ($data as $data) {
+            $dilihat += $data['dilihat'];
+        }
+        return $dilihat;
+    }
+}

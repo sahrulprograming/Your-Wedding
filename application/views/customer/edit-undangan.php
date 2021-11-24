@@ -64,7 +64,7 @@
                         <div class="col-8 col-md-9">
                             <div class="tab-content" id="v-pills-with-icon-tabContent">
                                 <!-- Kata Pengantar -->
-                                <div class="tab-pane fade" id="v-pills-kata-pengantar" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
+                                <div class="tab-pane fade show active" id="v-pills-kata-pengantar" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
                                     <form action="">
                                         <div class="form-group">
                                             <label class="form-label fw-normal fst-italic">KATA PENGANTAR</label>
@@ -153,15 +153,6 @@
                                         <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
                                         <input class="form-control" id="lokasi" name="lokasi" type="text" placeholder="paste link google maps lokasi" value="<?= data_akad($IDDU, 'lokasi'); ?>">
                                     </div>
-                                    <div class="form-group">
-                                        <div class="image-container">
-                                            <div class="video-wrapper text-end">
-                                                <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
-                                                    Lihat cara embed
-                                                </a>
-                                            </div> <!-- end of video-wrapper -->
-                                        </div>
-                                    </div>
                                     <div class="submit text-center">
                                         <button type="submit" class="btn btn-primary" id="submit-4">ubah</button>
                                     </div>
@@ -182,15 +173,6 @@
                                         <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
                                         <input class="form-control" id="lokasi" name="lokasi" type="text" placeholder="paste link google maps lokasi" value="<?= data_resepsi($IDDU, 'lokasi'); ?>">
                                     </div>
-                                    <div class="form-group">
-                                        <div class="image-container">
-                                            <div class="video-wrapper text-end">
-                                                <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
-                                                    Lihat cara embed
-                                                </a>
-                                            </div> <!-- end of video-wrapper -->
-                                        </div>
-                                    </div>
                                     <div class="submit text-center">
                                         <button type="submit" class="btn btn-primary" id="submit-4">ubah</button>
                                     </div>
@@ -198,6 +180,7 @@
                                 </div>
                                 <!-- Foto - Foto Prewedd -->
                                 <div class="tab-pane fade" id="v-pills-foto-foto" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
+                                    <div class="card-title mb-3"><button type="button" class="btn btn-primary">TAMBAH</button></div>
                                     <div class="row row-cols-1 row-cols-lg-4">
                                         <?php foreach (foto_prewedd($IDDU) as $foto) : ?>
                                             <div class="col-3">
@@ -208,13 +191,12 @@
                                                         <a href="" class=" btn btn-sm btn-danger px-3"><i class="flaticon-interface-5 mr-2"></i>Hapus</a>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>
                                 <!-- Video Prewedd -->
-                                <div class="tab-pane fade show active" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
+                                <div class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
                                     <iframe width="340" height="199" src="https://www.youtube.com/embed/<?= format_link_youtube(data_undangan($IDDU, 'video')); ?>?autoplay=1&mute=1">
                                         <!-- autoplay=1&mute=1 -->
                                     </iframe>
@@ -230,11 +212,41 @@
                                 </div>
                                 <!-- Kirim kado -->
                                 <div class="tab-pane fade" id="v-pills-kirim-kado" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
-                                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                    <p>The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. She packed her seven versalia, put her initial into the belt and made herself on the way.
-                                    </p>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-title"><button type="button" class="btn btn-primary">TAMBAH</button></div>
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-head-bg-primary">
+                                                <thead>
+                                                    <tr class="text-center">
+                                                        <th scope="col">No</th>
+                                                        <th scope="col">NAMA VIRTUAL AKUN</th>
+                                                        <th scope="col">NOMER VIRTUAL AKUN</th>
+                                                        <th scope="col">ATAS NAMA</th>
+                                                        <th scope="col">ACTION</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $no = 1;
+                                                    foreach (virtual_account($IDDU) as $va) : ?>
+                                                        <tr>
+                                                            <td><?= $no; ?></td>
+                                                            <td><?= $va['nama_VA']; ?></td>
+                                                            <td><?= $va['nomer_VA']; ?></td>
+                                                            <td><?= $va['A/N']; ?></td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-primary">UBAH</button>
+                                                                <button type="button" class="btn btn-danger">HAPUS</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php $no++;
+                                                    endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -266,7 +278,7 @@
                     kata_pengantar: $('#kata_pengantar').val()
                 }
                 $.ajax({
-                    url: "<?= base_url('customer/undangan/edit/data_undangan/' . $IDDU); ?>",
+                    url: "<?= base_url('customer/undangan/edit_ajax/data_undangan/' . $IDDU); ?>",
                     type: "POST",
                     data: data,
                     success: function(result) {

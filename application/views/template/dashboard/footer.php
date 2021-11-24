@@ -73,7 +73,6 @@
 <!--   Core JS Files   -->
 <script src="<?= base_url('assets'); ?>/js/dashboard/core/popper.min.js"></script>
 <script src="<?= base_url('assets'); ?>/js/dashboard/core/bootstrap.min.js"></script>
-<script src="<?= base_url('assets'); ?>/vendor/bootstrap-5/js/bootstrap.bundle.min.js"></script>
 
 <!-- jQuery UI -->
 <script src="<?= base_url('assets'); ?>/vendor/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>

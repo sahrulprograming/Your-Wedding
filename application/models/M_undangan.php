@@ -38,6 +38,7 @@ class M_undangan extends CI_Model
             'alamat_kirim_kado' => $this->input->post('alamat_kado'),
             'embed_alamat_kirim_kado' => $this->input->post('embed_alamat_kado'),
         ];
+        $this->db->trans_begin();
         $this->db->insert('data_undangan', $data);
         $hasil = $this->db->affected_rows();
         if ($hasil > 0) {
@@ -91,7 +92,6 @@ class M_undangan extends CI_Model
                     'A/N' => $this->input->post('atas_nama_' . $i),
                 ];
             }
-            $this->db->trans_begin();
             $this->db->insert('mempelai_pria', $m_pria);
             $this->db->insert('mempelai_wanita', $m_wanita);
             $this->db->insert('j_akad', $j_akad);

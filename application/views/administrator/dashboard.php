@@ -8,10 +8,6 @@
                         <h2 class="text-white pb-2 fw-bold"><?= $title; ?></h2>
                         <h5 class="text-white op-7 mb-2">Selamat Datang <?= $this->session->userdata('nama'); ?></h5>
                     </div>
-                    <div class="ml-md-auto py-2 py-md-0">
-                        <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
-                        <a href="#" class="btn btn-secondary btn-round">Add Customer</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -28,7 +24,7 @@
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Number</p>
+                                        <p class="card-category">Customer</p>
                                         <h4 class="card-title">150GB</h4>
                                     </div>
                                 </div>
@@ -47,7 +43,7 @@
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Revenue</p>
+                                        <p class="card-category">Publish</p>
                                         <h4 class="card-title">$ 1,345</h4>
                                     </div>
                                 </div>
@@ -66,7 +62,7 @@
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Errors</p>
+                                        <p class="card-category">Undangan</p>
                                         <h4 class="card-title">23</h4>
                                     </div>
                                 </div>
@@ -85,7 +81,7 @@
                                 </div>
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
-                                        <p class="card-category">Followers</p>
+                                        <p class="card-category">Penghasilan</p>
                                         <h4 class="card-title">+45K</h4>
                                     </div>
                                 </div>
@@ -94,44 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body pb-0">
-                            <div class="h1 fw-bold float-right text-primary">+5%</div>
-                            <h2 class="mb-2">17</h2>
-                            <p class="text-muted">Users online</p>
-                            <div class="pull-in sparkline-fix">
-                                <div id="lineChart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body pb-0">
-                            <div class="h1 fw-bold float-right text-danger">-3%</div>
-                            <h2 class="mb-2">27</h2>
-                            <p class="text-muted">New Users</p>
-                            <div class="pull-in sparkline-fix">
-                                <div id="lineChart2"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body pb-0">
-                            <div class="h1 fw-bold float-right text-warning">+7%</div>
-                            <h2 class="mb-2">213</h2>
-                            <p class="text-muted">Transactions</p>
-                            <div class="pull-in sparkline-fix">
-                                <div id="lineChart3"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col">
                     <div class="card">
