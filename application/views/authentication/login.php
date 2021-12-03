@@ -103,34 +103,45 @@
     <script src="<?= base_url('assets'); ?>/js/auth.js"></script>
     <script>
         $('#login').on('click', function() {
-            data = {
-                email: $('input[name="email"]').val(),
-                password: $('input[name="password"]').val(),
-            }
-            $.ajax({
-                url: '<?= base_url('authentication/loginAct') ?>',
-                data: data,
-                type: 'POST',
-                dataType: 'JSON',
-                success: function(output) {
-                    swal(output.judul, output.pesan, {
-                        icon: output.status,
-                        buttons: {
-                            confirm: {
-                                className: output.button
-                            }
-                        }
-                    })
-                    if (output.status == "success") {
-                        let dashboard = '<?= base_url(); ?>' + output.link;
-                        setTimeout(function() {
-                            window.location.replace(dashboard)
-                        }, 2000);
-
-
-                    }
+            if ($($('input[name="email"]').val() && 'input[name="password"]').val()) {
+                data = {
+                    email: $('input[name="email"]').val(),
+                    password: $('input[name="password"]').val(),
                 }
-            })
+                $.ajax({
+                    url: '<?= base_url('authentication/loginAct') ?>',
+                    data: data,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    success: function(output) {
+                        swal(output.judul, output.pesan, {
+                            icon: output.status,
+                            buttons: {
+                                confirm: {
+                                    className: output.button
+                                }
+                            }
+                        })
+                        if (output.status == "success") {
+                            let dashboard = '<?= base_url(); ?>' + output.link;
+                            setTimeout(function() {
+                                window.location.replace(dashboard)
+                            }, 2000);
+
+
+                        }
+                    }
+                })
+            } else {
+                swal('Opss..!', 'Email & Password Wajib di isi', {
+                    icon: 'error',
+                    buttons: {
+                        confirm: {
+                            className: 'btn btn-danger'
+                        }
+                    }
+                })
+            }
         })
     </script>
 
