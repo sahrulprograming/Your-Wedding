@@ -44,7 +44,7 @@
                                             <td><?= format_nama_mempelai($p['url']); ?></td>
                                             <td><?= $p['judul_durasi']; ?></td>
                                             <td><span class="badge badge-pill badge-<?= warna_status($p['status_lunas']); ?>"><?= $p['status_lunas']; ?></span></td>
-                                            <td><span class="badge badge-pill badge-info" style="cursor: pointer" data-toggle="modal" data-target="#bukti<?= $p['no_pembayaran']; ?>">LIHAT</span></td>
+                                            <td><span class="badge badge-pill badge-info" style="cursor: pointer" data-toggle="modal" data-target="#bukti<?= $p['no_pembayaran']; ?>">KONFIRMASI</span></td>
                                         </tr>
                                         <div class="modal fade" id="bukti<?= $p['no_pembayaran']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">

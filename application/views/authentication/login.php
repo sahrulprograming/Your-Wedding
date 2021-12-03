@@ -100,47 +100,87 @@
         })
     </script>
     <!--===============================================================================================-->
-    <script src="<?= base_url('assets'); ?>/js/auth.js"></script>
     <script>
+        var input = $('.validate-input .input100');
         $('#login').on('click', function() {
-            if ($($('input[name="email"]').val() && 'input[name="password"]').val()) {
-                data = {
-                    email: $('input[name="email"]').val(),
-                    password: $('input[name="password"]').val(),
+            var check = true;
+
+            for (var i = 0; i < input.length; i++) {
+                if (validate(input[i]) == false) {
+                    showValidate(input[i]);
+                    check = false;
                 }
-                $.ajax({
-                    url: '<?= base_url('authentication/loginAct') ?>',
-                    data: data,
-                    type: 'POST',
-                    dataType: 'JSON',
-                    success: function(output) {
-                        swal(output.judul, output.pesan, {
-                            icon: output.status,
-                            buttons: {
-                                confirm: {
-                                    className: output.button
+            }
+
+            if (check) {
+                if ($($('input[name="email"]').val() && 'input[name="password"]').val()) {
+                    data = {
+                        email: $('input[name="email"]').val(),
+                        password: $('input[name="password"]').val(),
+                    }
+                    $.ajax({
+                        url: '<?= base_url('authentication/loginAct') ?>',
+                        data: data,
+                        type: 'POST',
+                        dataType: 'JSON',
+                        success: function(output) {
+                            swal(output.judul, output.pesan, {
+                                icon: output.status,
+                                buttons: {
+                                    confirm: {
+                                        className: output.button
+                                    }
                                 }
+                            })
+                            if (output.status == "success") {
+                                let dashboard = '<?= base_url(); ?>' + output.link;
+                                setTimeout(function() {
+                                    window.location.replace(dashboard)
+                                }, 2000);
+
+
                             }
-                        })
-                        if (output.status == "success") {
-                            let dashboard = '<?= base_url(); ?>' + output.link;
-                            setTimeout(function() {
-                                window.location.replace(dashboard)
-                            }, 2000);
-
-
                         }
-                    }
-                })
-            } else {
-                swal('Opss..!', 'Email & Password Wajib di isi', {
-                    icon: 'error',
-                    buttons: {
-                        confirm: {
-                            className: 'btn btn-danger'
+                    })
+                } else {
+                    swal('Opss..!', 'Email & Password Wajib di isi', {
+                        icon: 'error',
+                        buttons: {
+                            confirm: {
+                                className: 'btn btn-danger'
+                            }
                         }
+                    })
+                }
+            }
+            $('.validate-form .input100').each(function() {
+                $(this).focus(function() {
+                    hideValidate(this);
+                });
+            });
+
+            function validate(input) {
+                if ($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+                    if ($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+                        return false;
                     }
-                })
+                } else {
+                    if ($(input).val().trim() == '') {
+                        return false;
+                    }
+                }
+            }
+
+            function showValidate(input) {
+                var thisAlert = $(input).parent();
+
+                $(thisAlert).addClass('alert-validate');
+            }
+
+            function hideValidate(input) {
+                var thisAlert = $(input).parent();
+
+                $(thisAlert).removeClass('alert-validate');
             }
         })
     </script>
