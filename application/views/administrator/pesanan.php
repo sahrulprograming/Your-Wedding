@@ -110,9 +110,11 @@
                                                                                             }
                                                                                         },
                                                                                     });
-                                                                                    setTimeout(function() {
-                                                                                        window.location.reload();
-                                                                                    }, 2000);
+                                                                                    if (output.status == 'success') {
+                                                                                        setTimeout(function() {
+                                                                                            window.location.replace('<?= base_url('administrator/pesanan/index/lunas'); ?>');
+                                                                                        }, 2000);
+                                                                                    }
                                                                                 } else {
                                                                                     swal('Opss...!', 'ada yang salah!', {
                                                                                         icon: 'error',
