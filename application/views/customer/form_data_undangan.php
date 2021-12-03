@@ -12,6 +12,23 @@
     <!-- material icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/icons.css">
+    <!-- flaticon -->
+    <!-- Fonts and icons -->
+    <script src="<?= base_url('assets'); ?>/vendor/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Lato:300,400,700,900"]
+            },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
+                urls: ['<?= base_url('assets'); ?>/css/dashboard/fonts.min.css']
+            },
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
     <!-- CSS -->
     <link href="<?= base_url('assets'); ?>/vendor/bootstrap-5/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url('assets'); ?>/css/form-steps.css" rel="stylesheet">
@@ -31,6 +48,15 @@
 <body>
     <!-- CONTAINER -->
     <div class="container d-flex align-items-center justify-content-center min-vh-100">
+        <style>
+            #kembali {
+                cursor: pointer;
+                position: fixed;
+                top: 30px;
+                left: 30px;
+            }
+        </style>
+        <a href="<?= $this->session->userdata('kembali') ?>" id="kembali" class="btn btn-secondary border ps-2"><i class="flaticon-left-arrow-4 text-light me-3"></i>kembali</a>
         <div class="row g-0 justify-content-center" style="height: 85vh;">
             <!-- TITLE -->
             <div class="col-lg-4 offset-lg-1 mx-0 px-0 shadow " style="overflow-y: hidden; height: 100%;">
@@ -56,7 +82,7 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic">FOTO PRIA</label>
-                                    <input class="form-control" id="foto_pria" name="foto_pria" type="file">
+                                    <input class="form-control" id="foto_pria" name="foto_pria" type="file" accept="image/png, image/jpg, image/jpeg">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">NAMA LENGKAP</label>
@@ -83,7 +109,7 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic text-uppercase">foto wanita</label>
-                                    <input class="form-control" id="foto_wanita" name="foto_wanita" type="file">
+                                    <input class="form-control" id="foto_wanita" name="foto_wanita" type="file" accept="image/png, image/jpg, image/jpeg">
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label fw-normal fst-italic">NAMA LENGKAP</label>
@@ -127,7 +153,7 @@
                                 <div class="mt-2">
                                     <div class="image-container">
                                         <div class="video-wrapper text-end">
-                                            <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=fLCjQJCekTs" data-effect="fadeIn">
+                                            <a class="popup-youtube btn btn-warning" target="_blank" href="https://www.youtube.com/watch?v=4mgBLVta0jA" data-effect="fadeIn">
                                                 Lihat cara embed
                                             </a>
                                         </div> <!-- end of video-wrapper -->
@@ -163,7 +189,7 @@
                                 </div>
                                 <div class="card mt-5">
                                     <div class="card-body">
-                                        <input id="image-uploadify" type="file" accept="image/*" name="foto[]" multiple>
+                                        <input id="image-uploadify" type="file" accept="image/png, image/jpg, image/jpeg" name="foto[]" multiple>
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +283,13 @@
         <div class="preloader-section section-left"></div>
         <div class="preloader-section section-right"></div>
     </div>
-
+    <script>
+        $('input').on('keypress', function(e) {
+            if (e.which == 13) {
+                event.preventDefault();
+            }
+        });
+    </script>
 
     <script src="<?= base_url('assets'); ?>/vendor/bootstrap-material-datetimepicker/js/moment.min.js"></script>
     <script src="<?= base_url('assets'); ?>/vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js"></script>
@@ -288,6 +320,11 @@
     <script>
         $(document).ready(function() {
             $('#image-uploadify').imageuploadify();
+            $('#image-uploadify').on('change', function() {
+                if ($('#image-uploadify')) {
+                    $('.imageuploadify-container').remove();
+                }
+            })
         })
     </script>
 

@@ -6,11 +6,17 @@ class Transaksi extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        cek_akses();
         $this->role = $this->session->userdata('role');
-        $this->IDC = $this->session->userdata('id');
+        $this->ID = $this->session->userdata('id');
     }
-    public function publish($IDU)
+    public function publish($IDU, $no_pembayaran = null)
     {
+        $data['judul'] = "PUBLISHING UNDANGAN";
+        if ($no_pembayaran) {
+            $data['judul'] = "UBAH PUBLISHING UNDANGAN";
+            $data['pembayaran'] = $this->CRUD->ambilSatuData('v_transaksi', ['no_pembayaran' => $no_pembayaran]);
+        }
         $data['undangan'] = $this->db->get_where('v_undangan_saya', ['IDU' => $IDU])->row_array();
         $data['IDU'] = $IDU;
         $data['pilih_publish'] = $this->M_transaksi->pilih_publish();
@@ -21,14 +27,17 @@ class Transaksi extends CI_Controller
         $this->load->view('template/dashboard/sidebar/' . $this->role);
         $this->load->view('customer/transaksi');
         $this->load->view('template/dashboard/footer');
+        $this->session->set_userdata('transaksi', current_url());
     }
+
+    // Ajax
     public function metode()
     {
         $metode = $this->db->get_where('dompet_admin', ['id_dompet' => $this->input->post('id_dompet')])->row_array();
         if ($metode) {
             $nama_dompet = $metode['nama_dompet'];
             $nomer = $metode['nomer'];
-            $AN = $metode['A/N'];
+            $AN = $metode['atas_nama'];
             $harga = $this->M_transaksi->harga_publish($this->input->post('IDHP'));
             $harga_rupiah = number_format($harga, 0, ',', '.');
             $output = <<<HTML
@@ -73,89 +82,62 @@ class Transaksi extends CI_Controller
         if ($_FILES['bukti_bayar']['name']) {
             $bukti = upload_foto('bukti_bayar');
             if ($bukti) {
-                $publish = [
-                    'status' => 'menunggu',
-                    'IDHP' => $this->input->post('IDHP'),
-                    'IDU' => $this->input->post('IDU'),
-                ];
-                $this->db->trans_begin();
-                $this->db->insert('publishing', $publish);
-                if ($this->db->affected_rows() > 0) {
-                    $this->db->order_by('invoice', 'DESC');
-                    $this->db->limit(1);
-                    $publishing = $this->db->get_where('publishing', ['IDU' => $this->input->post('IDU'), 'status' => 'menunggu'])->row_array();
+                if ($this->input->post('invoice')) {
                     $data = [
                         'tanggal_upload' => date('Y-m-d'),
                         'bukti_bayar' => $bukti,
                         'total_bayar' => $this->input->post('harga'),
-                        'status_lunas' => 'belum lunas',
-                        'invoice' => $publishing['invoice'],
+                        'status_lunas' => 'menunggu',
                         'id_dompet' => $this->input->post('id_dompet'),
                     ];
-                    $cek = $this->db->get_where('pembayaran', ['invoice' => $this->input->post('invoice')])->row_array();
-                    if (!$cek) {
+                    $this->db->update('pembayaran', $data, ['invoice' => $this->input->post('invoice')]);
+                    if ($this->db->trans_status() === FALSE) {
+                        $this->db->trans_rollback();
+                        notif_gagal('Gagal upload bukti!');
+                        redirect($this->session->userdata('transaksi'));
+                    } else {
+                        $this->db->trans_commit();
+                        notif_berhasil('Berhasil upload bukti tunggu konfirmasi admin yah!');
+                        redirect($this->session->userdata('kembali'));
+                    }
+                } else {
+                    $invoice = generate_invoice();
+                    $publish = [
+                        'invoice' => $invoice,
+                        'IDHP' => $this->input->post('IDHP'),
+                        'IDU' => $this->input->post('IDU'),
+                    ];
+                    $this->db->trans_begin();
+                    $this->db->insert('publishing', $publish);
+                    if ($this->db->affected_rows() > 0) {
+                        $data = [
+                            'tanggal_upload' => date('Y-m-d'),
+                            'bukti_bayar' => $bukti,
+                            'total_bayar' => $this->input->post('harga'),
+                            'status_lunas' => 'menunggu',
+                            'invoice' => $invoice,
+                            'id_dompet' => $this->input->post('id_dompet'),
+                        ];
                         $this->db->insert('pembayaran', $data);
                         if ($this->db->trans_status() === FALSE) {
                             $this->db->trans_rollback();
-                            $this->session->set_flashdata('notif', '<div class="alert alert-danger bg-danger text-white alert-dismissible fade show" role="alert">
-                            <strong>Gagal upload bukti!</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>');
-                            redirect($this->session->userdata('kembali'));
+                            notif_gagal('Gagal upload bukti!');
+                            redirect($this->session->userdata('transaksi'));
                         } else {
                             $this->db->trans_commit();
-                            $this->db->update('publishing', ['status' => 'menunggu'], ['invoice' => $this->input->post('invoice')]);
-                            $this->session->set_flashdata('notif', '<div class="alert alert-success bg-success text-white alert-dismissible fade show" role="alert">
-                            <strong>Berhasil upload bukti tunggu konfirmasi admin yah!</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>');
-                            redirect($this->session->userdata('kembali'));
-                        }
-                    } else {
-                        $this->db->update('pembayaran', $data, ['invoice' => $this->input->post('invoice')]);
-                        if ($this->db->trans_status() === FALSE) {
-                            $this->db->trans_rollback();
-                            $this->session->set_flashdata('notif', '<div class="alert alert-danger bg-danger text-white alert-dismissible fade show" role="alert">
-                            <strong>Gagal upload bukti!</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>');
-                            redirect($this->session->userdata('kembali'));
-                        } else {
-                            $this->db->trans_commit();
-                            $this->db->update('publishing', ['status' => 'menunggu'], ['invoice' => $this->input->post('invoice')]);
-                            $this->session->set_flashdata('notif', '<div class="alert alert-success bg-success text-white alert-dismissible fade show" role="alert">
-                            <strong>Berhasil upload bukti tunggu konfirmasi admin yah!</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>');
+                            $this->db->update('undangan', ['status' => 'menunggu'], ['IDU' => $this->input->post('IDU')]);
+                            notif_berhasil('Berhasil upload bukti tunggu konfirmasi admin yah!');
                             redirect($this->session->userdata('kembali'));
                         }
                     }
                 }
             } else {
-                $this->session->set_flashdata('notif', '<div class="alert alert-danger bg-danger text-white alert-dismissible fade show" role="alert">
-                    <strong>Format foto dilarang!!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>');
-                redirect($this->session->userdata('kembali'));
+                notif_gagal('Format foto dilarang!!');
+                redirect($this->session->userdata('transaksi'));
             }
         } else {
-            $this->session->set_flashdata('notif', '<div class="alert alert-danger bg-danger text-white alert-dismissible fade show" role="alert">
-                    <strong>Anda belum upload bukti!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>');
-            redirect($this->session->userdata('kembali'));
+            notif_gagal('Anda belum upload bukti!');
+            redirect($this->session->userdata('transaksi'));
         }
     }
 }

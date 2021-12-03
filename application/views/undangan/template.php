@@ -1,11 +1,11 @@
 <audio loop autoplay id="music">
-    <source src="<?= base_url('assets'); ?>/demo/audio/Its_You.mp3" type="audio/mpeg">
+    <source src="<?= base_url('assets'); ?>/undangan/audio/Its_You.mp3" type="audio/mpeg">
 </audio>
-<div class="background" style="background-image: linear-gradient(rgba(46,27,23,0.7),rgba(46,27,23,0.7)), url(<?= base_url('assets'); ?>/demo/image/bg3.jpg);"></div>
+<div class="background" style="background-image: linear-gradient(rgba(46,27,23,0.7),rgba(46,27,23,0.7)), url(<?= base_url('assets'); ?>/undangan/image/bg3.jpg);"></div>
 <div class="content" id="pembungkus-konten">
     <!-- Music -->
     <div class="music">
-        <img src="<?= base_url('assets'); ?>/demo/audio/volume.svg" id="icon-music">
+        <img src="<?= base_url('assets'); ?>/undangan/audio/volume.svg" id="icon-music">
     </div>
     <style>
         #kembali {
@@ -16,7 +16,7 @@
         }
     </style>
     <!-- Hero -->
-    <section class="bg-light" id="hero" style="background-image: url(<?= base_url('assets'); ?>/demo/image/template/<?= $tema; ?>); background-repeat: no-repeat;background-size: cover;">
+    <section class="bg-light" id="hero" style="background-image: url(<?= base_url('assets'); ?>/undangan/image/template/<?= $tema; ?>); background-repeat: no-repeat;background-size: cover;">
         <?php if (isset($kembali)) : ?>
             <a href="<?= $kembali ?>" id="kembali" class="btn btn-secondary border ps-0"><i class="flaticon-left-arrow-4 text-light me-3"></i>kembali</a>
         <?php endif ?>
@@ -61,13 +61,13 @@
                     </div>
                 </div>
                 <div class="pria p-0 mb-5">
-                    <img src="<?= base_url('assets'); ?>/img/customer/<?= $IDC; ?>/<?= mempelai_pria($IDDU, 'foto'); ?>" alt="Foto pria" width="100" height="100" class="foto-pria rounded-circle">
+                    <img src="<?= base_url('assets'); ?>/img/customer/<?= $IDC; ?>/<?= mempelai_pria($IDDU, 'foto'); ?>" alt="Foto pria" width="100" height="100" style="object-fit: cover;" class="foto-pria rounded-circle">
                     <h5 class="fs-4"><?= mempelai_pria($IDDU, 'nama_lengkap'); ?></h5>
                     <p class="mb-2" style="font-size: 14;font-weight: bold;">Putra Dari</p>
                     <p style="font-style: italic;"><?= mempelai_pria($IDDU, "ortu"); ?></p>
                 </div>
                 <div class="wanita p-0">
-                    <img src="<?= base_url('assets'); ?>/img/customer/<?= $IDC; ?>/<?= mempelai_wanita($IDDU, 'foto'); ?>" alt="Foto Wanita" width="100" height="100" class="foto-wanita rounded-circle">
+                    <img src="<?= base_url('assets'); ?>/img/customer/<?= $IDC; ?>/<?= mempelai_wanita($IDDU, 'foto'); ?>" alt="Foto Wanita" width="100" height="100" style="object-fit: cover;" class="foto-wanita rounded-circle">
                     <h5 class="fs-4"><?= mempelai_wanita($IDDU, 'nama_lengkap'); ?></h5>
                     <p class="mb-2 fw-bold" style="font-size: 14;">Putri Dari</p>
                     <p style="font-style: italic;"><?= mempelai_wanita($IDDU, "ortu"); ?></p>
@@ -88,15 +88,15 @@
             <div class="akad card-jadwal">
                 <div class="judul">
                     <h1 class="fw-normal">Akad</h1>
-                    <img class="" src="<?= base_url('assets'); ?>/demo/element/hiasan-judul.png" alt="hiasan" width="80" height="28.16">
+                    <img class="" src="<?= base_url('assets'); ?>/undangan/image/hiasan-judul.png" alt="hiasan" width="80" height="28.16">
                 </div>
                 <div class="row justify-content-end mx-3 mb-3">
                     <div class="col tanggal me-3 p-0">
-                        <img class="mb-3" src="<?= base_url('assets'); ?>/demo/icon/calendar.svg" alt="calender" width="50" height="50">
+                        <img class="mb-3" src="<?= base_url('assets'); ?>/undangan/icon/calendar.svg" alt="calender" width="50" height="50">
                         <p><?= ambil_hari(data_akad($IDDU, 'tanggal')); ?>, <?= format_tanggal(data_akad($IDDU, 'tanggal')); ?></p>
                     </div>
                     <div class="col jam p-0">
-                        <img class="mt-2 mb-2" src="<?= base_url('assets'); ?>/demo/icon/clock.svg" alt="calender" width="50" height="50">
+                        <img class="mt-2 mb-2" src="<?= base_url('assets'); ?>/undangan/icon/clock.svg" alt="calender" width="50" height="50">
                         <p><?= format_jam(data_akad($IDDU, 'jam')); ?> WIB <br> s/d Selesai</p>
                     </div>
                 </div>
@@ -104,12 +104,12 @@
             <div class="lokasi-acara d-flex flex-column align-items-center justify-content-start mt-4" data-aos="fade-left" data-aos-duration="1200">
                 <div class="judul text-center">
                     <h1 class="mb-2 fs-3">Lokasi Akad</h1>
-                    <img class="mb-2" src="<?= base_url('assets'); ?>/demo/icon/location.svg" alt="lokasi-icon" width="40" height="40">
+                    <img class="mb-2" src="<?= base_url('assets'); ?>/undangan/icon/location.svg" alt="lokasi-icon" width="40" height="40">
                 </div>
                 <div class="gmaps">
                     <div class="mapouter">
                         <div class="gmap_canvas">
-                            <iframe <?= format_embed(data_akad($IDDU, 'lokasi_embed')); ?> width="300" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe <?= data_akad($IDDU, 'lokasi_embed'); ?> width="300" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
                 </div>
@@ -168,15 +168,15 @@
             <div class="akad card-jadwal">
                 <div class="judul">
                     <h1 class="fw-normal">Resepsi</h1>
-                    <img class="" src="<?= base_url('assets'); ?>/demo/element/hiasan-judul.png" alt="hiasan" width="80" height="28.16">
+                    <img class="" src="<?= base_url('assets'); ?>/undangan/image/hiasan-judul.png" alt="hiasan" width="80" height="28.16">
                 </div>
                 <div class="row justify-content-end mx-3 mb-3">
                     <div class="col tanggal me-3 p-0">
-                        <img class="mb-3" src="<?= base_url('assets'); ?>/demo/icon/calendar.svg" alt="calender" width="50" height="50">
+                        <img class="mb-3" src="<?= base_url('assets'); ?>/undangan/icon/calendar.svg" alt="calender" width="50" height="50">
                         <p><?= ambil_hari(data_resepsi($IDDU, 'tanggal')); ?>, <?= format_tanggal(data_resepsi($IDDU, 'tanggal')); ?></p>
                     </div>
                     <div class="col jam p-0">
-                        <img class="mt-2 mb-2" src="<?= base_url('assets'); ?>/demo/icon/clock.svg" alt="calender" width="50" height="50">
+                        <img class="mt-2 mb-2" src="<?= base_url('assets'); ?>/undangan/icon/clock.svg" alt="calender" width="50" height="50">
                         <p><?= format_jam(data_resepsi($IDDU, 'jam')); ?> WIB <br> s/d Selesai</p>
                     </div>
                 </div>
@@ -184,12 +184,12 @@
             <div class="lokasi-acara d-flex flex-column align-items-center justify-content-start mt-4" data-aos="fade-left" data-aos-duration="1200">
                 <div class="judul text-center">
                     <h1 class="mb-2 fs-3">Lokasi Resepsi</h1>
-                    <img class="mb-2" src="<?= base_url('assets'); ?>/demo/icon/location.svg" alt="lokasi-icon" width="40" height="40">
+                    <img class="mb-2" src="<?= base_url('assets'); ?>/undangan/icon/location.svg" alt="lokasi-icon" width="40" height="40">
                 </div>
                 <div class="gmaps">
                     <div class="mapouter">
                         <div class="gmap_canvas">
-                            <iframe <?= format_embed(data_resepsi($IDDU, 'lokasi_embed')); ?> width="300" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe <?= data_resepsi($IDDU, 'lokasi_embed'); ?> width="300" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
                 </div>
@@ -228,7 +228,7 @@
                         <div class="swiper-wrapper">
                             <?php foreach (foto_prewedd($IDDU) as $foto) : ?>
                                 <div class="swiper-slide">
-                                    <img src="<?= base_url('assets'); ?>/img/<?= $this->session->userdata('role'); ?>/<?= $this->session->userdata('id'); ?>/<?= $foto['foto']; ?>" />
+                                    <img src="<?= base_url('assets'); ?>/img/customer/<?= $IDC; ?>/<?= $foto['foto']; ?>" />
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -237,7 +237,7 @@
                         <div class="swiper-wrapper">
                             <?php foreach (foto_prewedd($IDDU) as $foto) : ?>
                                 <div class="swiper-slide" style="cursor: pointer;">
-                                    <img src="<?= base_url('assets'); ?>/img/<?= $this->session->userdata('role'); ?>/<?= $this->session->userdata('id'); ?>/<?= $foto['foto']; ?>" />
+                                    <img src="<?= base_url('assets'); ?>/img/customer/<?= $IDC; ?>/<?= $foto['foto']; ?>" />
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -287,7 +287,7 @@
                     <div class="gmaps mb-3">
                         <div class="mapouter">
                             <div class="gmap_canvas">
-                                <iframe <?= format_embed(data_undangan($IDDU, 'embed_alamat_kirim_kado')); ?> width="300" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                <iframe <?= data_undangan($IDDU, 'embed_alamat_kirim_kado'); ?> width="300" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                             </div>
                         </div>
                     </div>
@@ -306,7 +306,7 @@
         <div class="doa-ucapan">
             <div class="judul text-center my-4">
                 <h1 class="fs-3">Do'a & Ucapan</h1>
-                <img src="<?= base_url('assets'); ?>/demo/icon/pesan.svg" alt="icon pesan" width="30" height="30">
+                <img src="<?= base_url('assets'); ?>/undangan/icon/pesan.svg" alt="icon pesan" width="30" height="30">
             </div>
             <div class="kirim-pesan p-3">
                 <form action="#">
@@ -326,7 +326,7 @@
             <?php if (semua_komentar($IDU)) : ?>
                 <div class="card-pesan text-dark my-2 p-2">
                     <div class="pengirim">
-                        <img class="rounded-circle" src="<?= base_url('assets'); ?>/demo/image/avatar1.svg" alt="Avatar" width="25" height="25">
+                        <img class="rounded-circle" src="<?= base_url('assets'); ?>/undangan/image/avatar1.svg" alt="Avatar" width="25" height="25">
                         <h4 class="ms-2"><?= komentar_terbaru($IDU, 'nama_pengirim'); ?></h4>
                     </div>
                     <div class="waktu-dikirim">
@@ -347,7 +347,7 @@
                                 <div class="swiper-slide">
                                     <div class="card-pesan text-dark p-2">
                                         <div class="pengirim">
-                                            <img class="rounded-circle" src="<?= base_url('assets'); ?>/demo/image/avatar1.svg" alt="Avatar" width="25" height="25">
+                                            <img class="rounded-circle" src="<?= base_url('assets'); ?>/undangan/image/avatar1.svg" alt="Avatar" width="25" height="25">
                                             <h4 class="ms-2"><?= $k['nama_pengirim']; ?></h4>
                                         </div>
                                         <div class="waktu-dikirim">
@@ -377,48 +377,60 @@
     $(document).ready(function() {
         // konfirmasi kehadiran
         $('#konfirmasi_kehadiran').click(function() {
-            const value = {
-                IDU: <?= $IDU; ?>,
-                nama: $('#nama-lengkap').val(),
-                hubungan: $('#hubungan').val(),
-                kehadiran: $('input[name="kehadiran"]:checked').val(),
-            };
-            $.ajax({
-                url: "<?= base_url('undangan/kehadiran'); ?>",
-                type: "POST",
-                data: value,
-                success: function(result) {
-                    console.log(result);
-                    if (result == 'Berhasil') {
-                        swal("Selamat!", "Anda berhasil input kehadiran!", {
-                            icon: "success",
-                            buttons: {
-                                confirm: {
-                                    className: 'btn btn-success'
-                                }
-                            },
-                        });
-                    } else if (result == 'Ada') {
-                        swal("Gagal input!", "nama sudah terdata di buku tamu!", {
-                            icon: "error",
-                            buttons: {
-                                confirm: {
-                                    className: 'btn btn-danger'
-                                }
-                            },
-                        });
-                    } else {
-                        swal("Gagal input!", "ada yang salah coba cek lagi!", {
-                            icon: "error",
-                            buttons: {
-                                confirm: {
-                                    className: 'btn btn-danger'
-                                }
-                            },
-                        });
+            if ($('#nama-lengkap').val() && $('#hubungan').val() && $('input[name="kehadiran"]:checked').val()) {
+
+                const value = {
+                    IDU: <?= $IDU; ?>,
+                    nama: $('#nama-lengkap').val(),
+                    hubungan: $('#hubungan').val(),
+                    kehadiran: $('input[name="kehadiran"]:checked').val(),
+                };
+                $.ajax({
+                    url: "<?= base_url('undangan/kehadiran'); ?>",
+                    type: "POST",
+                    data: value,
+                    success: function(result) {
+                        console.log(result);
+                        if (result == 'Berhasil') {
+                            swal("Selamat!", "Anda berhasil input kehadiran!", {
+                                icon: "success",
+                                buttons: {
+                                    confirm: {
+                                        className: 'btn btn-success'
+                                    }
+                                },
+                            });
+                        } else if (result == 'Ada') {
+                            swal("Gagal input!", "nama sudah terdata di buku tamu!", {
+                                icon: "error",
+                                buttons: {
+                                    confirm: {
+                                        className: 'btn btn-danger'
+                                    }
+                                },
+                            });
+                        } else {
+                            swal("Gagal input!", "ada yang salah coba cek lagi!", {
+                                icon: "error",
+                                buttons: {
+                                    confirm: {
+                                        className: 'btn btn-danger'
+                                    }
+                                },
+                            });
+                        }
                     }
-                }
-            })
+                })
+            } else {
+                swal("Opss..!", "tolong di isi terlebih dahulu!", {
+                    icon: "error",
+                    buttons: {
+                        confirm: {
+                            className: 'btn btn-danger'
+                        }
+                    },
+                });
+            }
         })
 
         // Kirim Hadiah

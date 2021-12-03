@@ -6,13 +6,37 @@ class Undangan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        cek_akses();
         $this->role = $this->session->userdata('role');
-        $this->IDC = $this->session->userdata('id');
+        $this->ID = $this->session->userdata('id');
+    }
+    public function index($IDU, $url = null, $tamu = null)
+    {
+        $undangan = $this->M_undangan->ambil_satu_data(['IDU' => $IDU]);
+        if ($undangan) {
+            if ($undangan['IDC'] === $this->session->userdata('id')) {
+                $data['kembali'] = $this->session->userdata('kembali');
+            }
+            $ID_Template = $undangan['ID_Template'];
+            $template = $this->M_template->ambil_satu_data(['ID_Template' => $ID_Template]);
+            $data['tamu'] = str_replace('%20', ' ', $tamu);
+            $data['template'] = $template['nama_template'];
+            $data['tema'] = $template['tema'];
+            $data['IDDU'] = $undangan['IDDU'];
+            $data['IDC'] = $undangan['IDC'];
+            $data['IDU'] = $IDU;
+            $data['title'] = str_replace('_', ' & ', $url);
+            $this->load->view('template/undangan/head', $data);
+            $this->load->view('undangan/template', $data);
+            $this->load->view('template/undangan/footer');
+        } else {
+            redirect('home');
+        }
     }
     public function tambah()
     {
         $data['template'] = $this->M_template->ambil_semua();
-        $data['title'] = "Dashboard " . nama_web();
+        $data['title'] = "Pilih Template " . nama_web();
         $this->load->view('template/dashboard/head', $data);
         $this->load->view('template/dashboard/header');
         $this->load->view('template/dashboard/sidebar/' . $this->role);
@@ -32,11 +56,8 @@ class Undangan extends CI_Controller
             $data['title'] = "Form Data Undangan " . nama_web();
             $this->load->view('customer/form_data_undangan', $data);
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-            <strong>Daftar Gagal!</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>');
-            redirect('customer/undangan/tambah');
+            notif_gagal('anda sudah menggunakan template tersebut!');
+            redirect($this->session->userdata('kembali'));
         }
     }
     public function semua_data($IDU = null)
@@ -61,7 +82,8 @@ class Undangan extends CI_Controller
     {
         if ($IDC) {
             $role = $this->session->userdata('role');
-            $data['undangan_saya'] = $this->db->get_where('v_undangan_saya', ['IDC' => $this->IDC])->result_array();
+            $this->db->order_by('IDU', 'DESC');
+            $data['undangan_saya'] = $this->db->get_where('v_undangan_saya', ['IDC' => $this->ID])->result_array();
             $data['title'] = "Undangan saya | " . nama_web();
             $this->load->view('template/dashboard/head', $data);
             $this->load->view('template/dashboard/header');

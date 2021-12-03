@@ -24,6 +24,9 @@
 		});
 	</script>
 
+	<!-- input drag & drop -->
+	<link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/Drag-And-Drop/dist/imageuploadify.min.css">
+
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/dashboard/bootstrap.min.css">
 	<link rel="stylesheet" href="<?= base_url('assets'); ?>/css/dashboard/atlantis.min.css">

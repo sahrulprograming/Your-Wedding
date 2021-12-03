@@ -22,38 +22,44 @@
                     <h4 class="card-title">Buku Tamu</h4>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="basic-datatables" class="display table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>NO</th>
-                                    <th>NAMA</th>
-                                    <th>HUBUNGAN</th>
-                                    <th>KEHADIRAN</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>NO</th>
-                                    <th>NAMA</th>
-                                    <th>HUBUNGAN</th>
-                                    <th>KEHADIRAN</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                <?php $no = 1;
-                                foreach ($tamu as $tamu) : ?>
+                    <?php if ($tamu) : ?>
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table table-striped table-hover">
+                                <thead>
                                     <tr>
-                                        <td><?= $no; ?></td>
-                                        <td><?= $tamu['nama']; ?></td>
-                                        <td><?= $tamu['hubungan']; ?></td>
-                                        <td><?= $tamu['kehadiran']; ?></td>
+                                        <th>NO</th>
+                                        <th>NAMA</th>
+                                        <th>HUBUNGAN</th>
+                                        <th>KEHADIRAN</th>
                                     </tr>
-                                <?php $no++;
-                                endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>NAMA</th>
+                                        <th>HUBUNGAN</th>
+                                        <th>KEHADIRAN</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <?php $no = 1;
+                                    foreach ($tamu as $tamu) : ?>
+                                        <tr>
+                                            <td><?= $no; ?></td>
+                                            <td><?= $tamu['nama']; ?></td>
+                                            <td><?= $tamu['hubungan']; ?></td>
+                                            <td><?= $tamu['kehadiran']; ?></td>
+                                        </tr>
+                                    <?php $no++;
+                                    endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php else : ?>
+                        <div class="text-center">
+                            <h4>BELUM ADA TAMU</h4>
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
         </div>

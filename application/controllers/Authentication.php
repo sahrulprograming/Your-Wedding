@@ -7,16 +7,19 @@ class Authentication extends CI_Controller
     {
         parent::__construct();
     }
-    public function index()
+    public function login()
     {
         $data['title'] = "Authentication " . nama_web();
-        $this->load->view('authentication');
+        $this->load->view('template/default/head', $data);
+        $this->load->view('authentication/login');
+        $this->load->view('template/default/footer');
     }
-    public function login()
+    // login with ajax
+    public function loginAct()
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        $this->M_auth->login($email, $password);
+        echo json_encode($this->M_auth->login($email, $password));
     }
     public function daftar()
     {
@@ -24,30 +27,14 @@ class Authentication extends CI_Controller
             $role = $this->session->userdata('role');
             redirect($this->session->userdata('dashboard/home/' . $role));
         }
-        $this->form_validation->set_rules('nama_lengkap', 'nama_lengkap', 'required|trim', [
-            'required' => 'Nama Lengkap wajib di isi',
-        ]);
-        $this->form_validation->set_rules('jenis_kelamin', 'jenis_kelamin', 'required|trim', [
-            'required' => 'Jenis kelamin wajib di isi',
-        ]);
-        $this->form_validation->set_rules('email', 'email', 'required|trim|is_unique[customer.email]', [
-            'required' => 'Email wajib di isi',
-            'is_unique' => 'Email sudah terdaftar'
-        ]);
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|matches[konfirmasi_password]', [
-            'required' => 'Password wajib di isi',
-            'min_length' => 'Password Minimal 6 Character',
-            'matches' => ''
-        ]);
-        $this->form_validation->set_rules('konfirmasi_password', 'konfirmasi_password', 'trim|required|matches[password]', [
-            'required' => 'Password konfirmasi wajib di isi',
-            'matches' => 'Password konfirmasi tidak sama!'
-        ]);
-        if ($this->form_validation->run() === false) {
-            $this->load->view('authentication');
-        } else {
-            $this->M_auth->daftar();
-        }
+        $data['title'] = "Authentication " . nama_web();
+        $this->load->view('template/default/head', $data);
+        $this->load->view('authentication/daftar');
+        $this->load->view('template/default/footer');
+    }
+    public function daftarAct()
+    {
+        echo json_encode($this->M_auth->daftar());
     }
     public function logout()
     {

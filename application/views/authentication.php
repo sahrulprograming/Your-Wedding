@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/bootstrap-5/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/auth.css">
     <script src="<?= base_url('assets'); ?>/vendor/jquery/jquery.min.js"></script>
-    <title>Document</title>
+    <!-- Favicon  -->
+    <link rel="icon" href="<?= base_url('assets'); ?>/img/logo.ico">
+    <title>Authentication</title>
 
 </head>
 

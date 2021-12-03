@@ -110,6 +110,7 @@
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="<?= base_url('assets'); ?>/js/dashboard/setting-demo.js"></script>
 <script src="<?= base_url('assets'); ?>/js/dashboard/demo.js"></script>
+<script src="<?= base_url('assets'); ?>/vendor/Drag-And-Drop/dist/imageuploadify.min.js"></script>
 <script>
 	$('#lineChart').sparkline([102, 109, 120, 99, 110, 105, 115], {
 		type: 'line',
@@ -137,6 +138,66 @@
 		lineColor: '#ffa534',
 		fillColor: 'rgba(255, 165, 52, .14)'
 	});
+
+	function hapus_foto(table, field, id, foto) {
+		$.ajax({
+			url: '<?= base_url('hapus/foto/'); ?>' + table + '/' + field + '/' + id + '/' + foto,
+			dataType: 'JSON',
+			success: function(result) {
+				console.log(result.status);
+				console.log(result.pesan);
+				if (result.status == 'berhasil') {
+					swal("Berhasil!", result.pesan, {
+						icon: "success",
+						buttons: {
+							confirm: {
+								className: 'btn btn-success'
+							}
+						},
+					});
+				} else {
+					swal("Gagal!", result.pesan, {
+						icon: "error",
+						buttons: {
+							confirm: {
+								className: 'btn btn-danger'
+							}
+						},
+					});
+				}
+				galery()
+			}
+		})
+	}
+
+	function hapus_data(table, field, id) {
+		$.ajax({
+			url: '<?= base_url('hapus/data/'); ?>' + table + '/' + field + '/' + id,
+			dataType: 'JSON',
+			success: function(hasil) {
+				if (hasil.status) {
+					swal(hasil.judul, hasil.pesan, {
+						icon: hasil.status,
+						buttons: {
+							confirm: {
+								className: hasil.button
+							}
+						},
+					});
+				} else {
+					swal('Opss...!', 'ada yang salah!', {
+						icon: 'error',
+						buttons: {
+							confirm: {
+								className: 'btn btn-danger',
+							}
+						},
+					});
+				}
+			}
+		})
+
+	}
 </script>
 </body>
 

@@ -36,7 +36,7 @@ class M_undangan extends CI_Model
             'kata_pengantar' => $this->input->post('kata_pengantar'),
             'video' => $this->input->post('video_youtube'),
             'alamat_kirim_kado' => $this->input->post('alamat_kado'),
-            'embed_alamat_kirim_kado' => $this->input->post('embed_alamat_kado'),
+            'embed_alamat_kirim_kado' => format_embed($this->input->post('embed_alamat_kado')),
         ];
         $this->db->trans_begin();
         $this->db->insert('data_undangan', $data);
@@ -65,14 +65,14 @@ class M_undangan extends CI_Model
                 'tanggal' => format_tanggal_database($this->input->post('tanggal_akad')),
                 'jam' => $this->input->post('jam_akad'),
                 'lokasi' => $this->input->post('lokasi_akad'),
-                'lokasi_embed' => $this->input->post('lokasi_akad_embed'),
+                'lokasi_embed' => format_embed($this->input->post('lokasi_akad_embed')),
             ];
             $j_resepsi = [
                 'IDDU' => $du['IDDU'],
                 'tanggal' => format_tanggal_database($this->input->post('tanggal_resepsi')),
                 'jam' => $this->input->post('jam_resepsi'),
                 'lokasi' => $this->input->post('lokasi_resepsi'),
-                'lokasi_embed' => $this->input->post('lokasi_resepsi_embed'),
+                'lokasi_embed' => format_embed($this->input->post('lokasi_resepsi_embed')),
             ];
             if (count($_FILES['foto']['name'])) {
                 $galery = [];
@@ -111,17 +111,11 @@ class M_undangan extends CI_Model
                 $this->db->insert('undangan', $undangan);
                 $result = $this->db->affected_rows();
                 if ($result > 0) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                    <strong>Buat Undangan Berhasil!</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>');
-                    redirect('customer/home/dashboard');
+                    notif_berhasil('Berhasil Membuat Undangan');
+                    redirect('customer/undangan/saya/' . $this->ID);
                 } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                <strong>gagal buat undangan!</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>');
-                    redirect('administrator/home/dashboard');
+                    notif_gagal('Gagal Membuat Undangan');
+                    redirect('customer/undangan/saya/' . $this->ID);
                 }
             }
         }

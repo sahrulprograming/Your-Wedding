@@ -6436,12 +6436,11 @@ label {
 }
 .form-control:disabled,
 .form-control[readonly] {
-	background: #e8e8e8 !important;
-	border-color: #e8e8e8 !important;
+	background: #1a2035 !important;
 }
 .form-control:disabled,
 .form-control[readonly] {
-	opacity: 0.6 !important;
+	opacity: 0.8 !important;
 }
 .input-group-text {
 	font-size: 14px;

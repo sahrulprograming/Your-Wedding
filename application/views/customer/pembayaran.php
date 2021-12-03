@@ -1,0 +1,92 @@
+<div class="main-panel">
+    <div class="content">
+        <div class="page-inner">
+            <div class="page-header">
+                <h4 class="page-title">Publishing</h4>
+                <ul class="breadcrumbs">
+                    <li class="nav-home">
+                        <a href="#">
+                            <i class="flaticon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= current_url(); ?>">Publishing</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4 class="card-title"><?= $judul; ?></h4>
+                </div>
+                <div class="card-body">
+                    <?php if ($pembayaran) : ?>
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table table-striped table-hover">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>NO</th>
+                                        <th>INVOICE</th>
+                                        <th>UNDANGAN</th>
+                                        <th>DURASI PUBLISH</th>
+                                        <th>STATUS</th>
+                                        <th>BUKTI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $no = 1;
+                                    foreach ($pembayaran as $pembayaran) : ?>
+                                        <tr class="text-center">
+                                            <td><?= $no; ?></td>
+                                            <td><?= $pembayaran['invoice']; ?></td>
+                                            <td><?= format_nama_mempelai($pembayaran['url']); ?></td>
+                                            <td><?= $pembayaran['judul_durasi']; ?></td>
+                                            <td><span class="badge badge-pill badge-<?= warna_status($pembayaran['status_lunas']); ?>"><?= $pembayaran['status_lunas']; ?></span></td>
+                                            <td><span class="badge badge-pill badge-info" style="cursor: pointer" data-toggle="modal" data-target="#bukti<?= $pembayaran['no_pembayaran']; ?>">LIHAT</span></td>
+                                        </tr>
+                                        <div class="modal fade" id="bukti<?= $pembayaran['no_pembayaran']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content bg-dark2">
+                                                    <div class="modal-body">
+                                                        <div class="card-title d-flex align-items-center justify-content-center">
+                                                            <h5 class="mb-0">Bukti Pembayaran</h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <style>
+                                                                .bukti_pembayaran img {
+                                                                    width: 180px;
+                                                                    height: 360px;
+                                                                    object-fit: cover;
+                                                                }
+                                                            </style>
+                                                            <div class="bukti_pembayaran text-center">
+                                                                <img src="<?= base_url('assets'); ?>/img/<?= $this->role; ?>/<?= $this->ID; ?>/<?= $pembayaran['bukti_bayar']; ?>" alt="bukti bayar">
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer text-center">
+                                                            <?php if ($pembayaran['status_lunas'] === 'menunggu') : ?>
+                                                                <a href="<?= base_url('customer/transaksi/publish/' . $pembayaran['IDU']); ?>/<?= $pembayaran['no_pembayaran']; ?>" class="btn btn-primary">UBAH</a>
+                                                            <?php endif ?>
+                                                            <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php $no++;
+                                    endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php else : ?>
+                        <div class="text-center">
+                            <h3>TIDAK ADA</h3>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,8 +6,9 @@ class Buku_tamu extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        cek_akses();
         $this->role = $this->session->userdata('role');
-        $this->IDC = $this->session->userdata('id');
+        $this->ID = $this->session->userdata('id');
     }
     public function index($IDU = null)
     {

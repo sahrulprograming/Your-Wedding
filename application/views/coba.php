@@ -1,6 +1,6 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-?>
+<!-- <?php
+        defined('BASEPATH') or exit('No direct script access allowed');
+        ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,11 +51,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
         })
     </script>
 
-</body>
+</body> -->
 
 </html>
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -69,43 +69,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <body>
     <?php
 
-    print_r($_POST);
-    print_r($_FILES);
+    var_dump($_POST);
+    var_dump($_FILES);
     ?>
 
     <form id="data" method="post" enctype="multipart/form-data">
-        <input type="text" name="first" value="Bob" />
-        <input type="text" name="middle" value="James" />
-        <input type="text" name="last" value="Smith" />
-        <input name="image" type="file" id="image" multiple />
-        <button type="submit">Submit</button>
+        <input name="image" type="file" id="image" accept="image/*" />
+        <button type="button" id="submit">Submit</button>
     </form>
     <script>
-        const fileSelector = $('#image');
-        const fd = new FormData();
-        let ke = 0;
-        fileSelector.on('change', (event) => {
-            const fileList = event.target.files;
-            console.log(fileList);
-            console.log(fileList[0]);
-            console.log(fileList.length);
-            if (fileList.length > 1) {
-                for (let i = 0; i < fileList.length; i++) {
-                    fd.append('image_' + ke, fileList[i]);
-                    ke++
-                }
-            }
-            fd.append('image_' + ke, fileList[0]);
-            console.log(fd.get('image_' + ke));
-            ke++
-
-        });
-    </script>
-    <script>
-        $("form#data").submit(function(e) {
+        console.log($('form#data')[0])
+        $("#submit").on("click", function() {
             $.ajax({
-                url: window.location.href,
-                data: fd.getAll('image'),
+                url: '<?= base_url('coba/data_form'); ?>',
+                data: new FormData($('form#data')[0]),
                 processData: false,
                 contentType: false,
                 type: 'POST',
@@ -117,4 +94,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </script>
 </body>
 
-</html> -->
+</html>

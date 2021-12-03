@@ -25,4 +25,19 @@ class M_transaksi extends CI_Model
             return $invoice['invoice'];
         }
     }
+    public function penghasilan()
+    {
+        $total = 0;
+        $data = $this->db->get_where('pembayaran', ['status_lunas' => 'lunas'])->result_array();
+        if ($data) {
+            foreach ($data as $d) {
+                $total += (int)$d['total_bayar'];
+            }
+        }
+        return $total;
+    }
+    public function transaksi_minggu_ini()
+    {
+        return $this->db->query("SELECT * FROM v_transaksi WHERE tanggal_upload between current_timestamp() + interval -7 day and current_timestamp() + interval -1 day")->result_array();
+    }
 }

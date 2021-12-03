@@ -3,7 +3,7 @@
         <div class="sidebar-content">
             <ul class="nav nav-primary">
                 <li class="nav-item">
-                    <a href="<?= base_url($this->session->userdata('role')); ?>.'home/dashboard') ?>">
+                    <a href="<?= base_url($this->session->userdata('role')); ?>/home/dashboard">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
@@ -23,8 +23,18 @@
                     <div class="collapse" id="master">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="components/typography.html">
+                                <a href="<?= base_url($this->role . '/master/customer'); ?>">
                                     <span class="sub-item">Customer</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url($this->role . '/master/harga_publish'); ?>">
+                                    <span class="sub-item">Harga Publish</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url($this->role . '/master/dompet_admin'); ?>">
+                                    <span class="sub-item">Dompet Admin</span>
                                 </a>
                             </li>
                         </ul>
@@ -44,8 +54,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= base_url('administrator/pesanan/index/selesai'); ?>">
-                                    <span class="sub-item">Selesai</span>
+                                <a href="<?= base_url('administrator/pesanan/index/lunas'); ?>">
+                                    <span class="sub-item">Lunas</span>
                                 </a>
                             </li>
                         </ul>
@@ -60,12 +70,12 @@
                     <div class="collapse" id="publishing">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="components/typography.html">
+                                <a href="<?= base_url('administrator/publishing/index/publish'); ?>">
                                     <span class="sub-item">Berlangsung</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="components/typography.html">
+                                <a href="<?= base_url('administrator/publishing/index/habis'); ?>">
                                     <span class="sub-item">Habis</span>
                                 </a>
                             </li>

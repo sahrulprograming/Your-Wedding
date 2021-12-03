@@ -34,7 +34,7 @@
                     </a>
                     <div class="collapse" id="buku-tamu">
                         <ul class="nav nav-collapse">
-                            <?php foreach (undangan_user($this->IDC) as $undangan) : ?>
+                            <?php foreach (undangan_user($this->ID) as $undangan) : ?>
                                 <li>
                                     <a href="<?= base_url('customer/buku_tamu/index/' . $undangan['IDU']); ?>">
                                         <span class="sub-item"><?= str_replace('_', ' & ', $undangan['url']); ?></span>
@@ -45,26 +45,42 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#base">
+                    <a data-toggle="collapse" href="#publishing">
                         <i class="flaticon-internet"></i>
                         <p>Publishing</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="base">
+                    <div class="collapse" id="publishing">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="components/avatars.html">
-                                    <span class="sub-item">Menunggu</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="components/avatars.html">
+                                <a href="<?= base_url('customer/publishing/index/publish'); ?>">
                                     <span class="sub-item">Berlangsung</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="components/avatars.html">
-                                    <span class="sub-item">Selesai</span>
+                                <a href="<?= base_url('customer/publishing/index/habis'); ?>">
+                                    <span class="sub-item">Habis</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#pembayaran">
+                        <i class="flaticon-credit-card"></i>
+                        <p>Pembayaran</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="pembayaran">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="<?= base_url('customer/pembayaran/index/menunggu'); ?>">
+                                    <span class="sub-item">Menunggu</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= base_url('customer/pembayaran/index/lunas'); ?>">
+                                    <span class="sub-item">Lunas</span>
                                 </a>
                             </li>
                         </ul>

@@ -20,19 +20,20 @@ class M_auth extends CI_Model
                 if (!$cek_file) {
                     mkdir(FCPATH . "./assets/img/customer/" . $this->session->userdata('id'));
                 }
-                $this->session->set_flashdata('notif', '<div class="alert alert-success bg-success text-white alert-dismissible fade show" role="alert">
-                <strong>Login berhasil!</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>');
-                redirect('customer/home/dashboard');
+                $output = [
+                    'status' => 'success',
+                    'judul' => 'Selamat!',
+                    'pesan' => 'Login Berhasil!',
+                    'button' => 'btn btn-success',
+                    'link' => $this->session->userdata('role') . '/home/dashboard'
+                ];
             } else {
-                $this->session->set_flashdata('notif', '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                <strong>Password Salah!</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>');
-                redirect('authentication');
+                $output = [
+                    'status' => 'error',
+                    'judul' => 'Opss..!',
+                    'pesan' => 'Password salah!',
+                    'button' => 'btn btn-danger'
+                ];
             }
         } elseif ($administrator) {
             if (password_verify($password, $administrator['password'])) {
@@ -47,56 +48,74 @@ class M_auth extends CI_Model
                 if (!$cek_file) {
                     mkdir(FCPATH . "./assets/img/" . $this->session->userdata('role') . "/" . $this->session->userdata('id'));
                 }
-                $this->session->set_flashdata('notif', '<div class="alert alert-success bg-success text-white alert-dismissible fade show" role="alert">
-                <strong>Login berhasil!</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                </div>');
-                redirect('administrator/home/dashboard');
+                $output = [
+                    'status' => 'success',
+                    'judul' => 'Selamat!',
+                    'pesan' => 'Login Berhasil!',
+                    'button' => 'btn btn-success',
+                    'link' => $this->session->userdata('role') . '/home/dashboard'
+                ];
             } else {
-                $this->session->set_flashdata('notif', '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                <strong>Password Salah!</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>');
-                redirect('authentication');
+                $output = [
+                    'status' => 'error',
+                    'judul' => 'Opss..!',
+                    'pesan' => 'Password salah!',
+                    'button' => 'btn btn-danger'
+                ];
             }
         } else {
-            $this->session->set_flashdata('notif', '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                <strong>Email Belum Terdaftar!</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>');
-            redirect('authentication');
+            $output = [
+                'status' => 'error',
+                'judul' => 'Opss..!',
+                'pesan' => 'Email belum terdaftar ',
+                'button' => 'btn btn-danger'
+            ];
         }
+        return $output;
     }
     public function daftar()
     {
-        $nama_lengkap = $this->input->post('nama_lengkap');
-        $jenis_kelamin = $this->input->post('jenis_kelamin');
         $email = $this->input->post('email');
-        $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-        $data = [
-            'IDC' => generate_ID('customer', 'IDC'),
-            'nama_lengkap' => $nama_lengkap,
-            'jenis_kelamin' => $jenis_kelamin,
-            'email' => $email,
-            'password' => $password,
-            'foto' => 'default-' . $jenis_kelamin . '.png',
-        ];
-        $this->db->insert('customer', $data);
-        $hasil = $this->db->affected_rows();
-        if ($hasil > 0) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-            <strong>Daftar Berhasil Silahkan Login!</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>');
-            redirect('authentication');
+        $cek_user = $this->CRUD->ambilSatuData('customer', ['email' => $email]);
+        $cek_admin = $this->CRUD->ambilSatuData('administrator', ['email' => $email]);
+        if ($cek_user || $cek_admin) {
+            $output = [
+                'status' => 'error',
+                'judul' => 'Opss..!',
+                'pesan' => 'Email sudah terdaftar!',
+                'button' => 'btn btn-danger'
+            ];
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-            <strong>Daftar Gagal!</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>');
-            redirect(current_url());
+            $nama_lengkap = $this->input->post('nama_lengkap');
+            $jenis_kelamin = $this->input->post('jenis_kelamin');
+            $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+            $data = [
+                'IDC' => generate_ID('customer', 'IDC'),
+                'nama_lengkap' => $nama_lengkap,
+                'jenis_kelamin' => $jenis_kelamin,
+                'email' => $email,
+                'password' => $password,
+                'foto' => 'default-' . $jenis_kelamin . '.png',
+            ];
+            $this->db->insert('customer', $data);
+            $hasil = $this->db->affected_rows();
+            if ($hasil > 0) {
+                $output = [
+                    'status' => 'success',
+                    'judul' => 'Selamat!',
+                    'pesan' => 'Daftar Berhasil, silahkan login!',
+                    'button' => 'btn btn-success',
+                    'link' => base_url('authentication/login'),
+                ];
+            } else {
+                $output = [
+                    'status' => 'error',
+                    'judul' => 'Opss..!',
+                    'pesan' => 'Daftar gagal, ada yang salah! ',
+                    'button' => 'btn btn-danger'
+                ];
+            }
         }
+        return $output;
     }
 }

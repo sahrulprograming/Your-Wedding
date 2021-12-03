@@ -10,7 +10,7 @@ class Undangan extends CI_Controller
     public function index($IDU, $url = null, $tamu = null)
     {
         $undangan = $this->M_undangan->ambil_satu_data(['IDU' => $IDU]);
-        if ($undangan) {
+        if ($undangan && date('Y-m-d') <= $undangan['selesai_publish']) {
             $this->db->where('IDU', $IDU);
             $this->db->update('undangan', ['dilihat' => $undangan['dilihat'] + 1]);
             if ($undangan['IDC'] === $this->session->userdata('id')) {
@@ -25,9 +25,9 @@ class Undangan extends CI_Controller
             $data['IDC'] = $undangan['IDC'];
             $data['IDU'] = $IDU;
             $data['title'] = str_replace('_', ' & ', $url);
-            $this->load->view('demo/template/head', $data);
+            $this->load->view('template/undangan/head', $data);
             $this->load->view('undangan/template', $data);
-            $this->load->view('demo/template/footer');
+            $this->load->view('template/undangan/footer');
         } else {
             redirect('home');
         }

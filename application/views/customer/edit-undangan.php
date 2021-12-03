@@ -92,7 +92,7 @@
                                     <input type="hidden" name="foto_lama" value="<?= mempelai_pria($IDDU, 'foto'); ?>">
                                     <div class="form-group">
                                         <label class="form-label fw-normal fst-italic">FOTO PRIA</label>
-                                        <img src="<?= base_url('assets'); ?>/img/customer/<?= $this->IDC; ?>/<?= mempelai_pria($IDDU, 'foto'); ?>" alt="..." class="img-thumbnail d-block mb-2" width="200">
+                                        <img src="<?= base_url('assets'); ?>/img/customer/<?= $this->ID; ?>/<?= mempelai_pria($IDDU, 'foto'); ?>" alt="..." class="img-thumbnail d-block mb-2" style="object-fit: cover;width: 200px;height: 200px;">
                                         <input class="form-control" id="foto" name="foto" type="file">
                                     </div>
                                     <div class="form-group">
@@ -118,7 +118,7 @@
                                     <input type="hidden" name="foto_lama" value="<?= mempelai_wanita($IDDU, 'foto'); ?>">
                                     <div class="form-group">
                                         <label class="form-label fw-normal fst-italic">FOTO WANITA</label>
-                                        <img src="<?= base_url('assets'); ?>/img/customer/<?= $this->IDC; ?>/<?= mempelai_wanita($IDDU, 'foto'); ?>" alt="..." class="img-thumbnail d-block mb-2" width="200">
+                                        <img src="<?= base_url('assets'); ?>/img/customer/<?= $this->ID; ?>/<?= mempelai_wanita($IDDU, 'foto'); ?>" alt="..." class="img-thumbnail d-block mb-2" style="object-fit: cover;width: 200px;height: 200px;">
                                         <input class="form-control" id="foto" name="foto" type="file">
                                     </div>
                                     <div class="form-group">
@@ -180,19 +180,80 @@
                                 </div>
                                 <!-- Foto - Foto Prewedd -->
                                 <div class="tab-pane fade" id="v-pills-foto-foto" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
-                                    <div class="card-title mb-3"><button type="button" class="btn btn-primary">TAMBAH</button></div>
-                                    <div class="row row-cols-1 row-cols-lg-4">
-                                        <?php foreach (foto_prewedd($IDDU) as $foto) : ?>
-                                            <div class="col-3">
-                                                <div class="card bg-light" style="width: 200px;">
-                                                    <img class="card-img-top" src="<?= base_url('assets'); ?>/img/<?= $this->session->userdata('role'); ?>/<?= $this->session->userdata('id'); ?>/<?= $foto['foto']; ?>" alt="Card image cap" height="200">
-                                                    <div class="card-footer d-flex justify-content-center">
-                                                        <a href="" class="btn btn-sm btn-primary mr-1 px-3"><i class="flaticon-pen mr-2"></i>Rubah</a>
-                                                        <a href="" class=" btn btn-sm btn-danger px-3"><i class="flaticon-interface-5 mr-2"></i>Hapus</a>
+                                    <div class="card-title mb-3">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah-foto">TAMBAH</button>
+                                    </div>
+                                    <div class=" row row-cols-1 row-cols-lg-4" id="galery">
+                                        <!-- Galerry From Ajax -->
+                                        <script>
+                                            galery()
+
+                                            function galery() {
+                                                $.ajax({
+                                                    url: "<?= base_url('ajax_customer/galery/' . $IDDU); ?>",
+                                                    success: function(galery) {
+                                                        $("#galery").html(galery);
+                                                    }
+                                                })
+                                            }
+                                        </script>
+                                    </div>
+                                    <div class="modal fade" id="tambah-foto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content bg-dark2">
+                                                <div class="modal-body">
+                                                    <div class="card-title d-flex align-items-center justify-content-center">
+                                                        <h5 class="mb-0">Tambah Foto Prewedd</h5>
                                                     </div>
+                                                    <hr class="bg-light">
+                                                    <form id="data-foto" method="post" enctype="multipart/form-data">
+                                                        <div class="card mt-5">
+                                                            <div class="card-body">
+                                                                <input id="image-uploadify" type="file" accept="image/png, image/jpg, image/jpeg" name="foto[]" multiple>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <button type="button" class="btn btn-primary" id="tambah-gambar">TAMBAH</button>
+                                                        </div>
+                                                    </form>
+                                                    <script>
+                                                        $(document).ready(function() {
+                                                            $('#image-uploadify').imageuploadify();
+                                                            $('#image-uploadify').on('change', function() {
+                                                                if ($('#image-uploadify')) {
+                                                                    $('.imageuploadify-container').remove();
+                                                                }
+                                                            })
+                                                        })
+                                                        $('#tambah-gambar').on('click', function() {
+                                                            $.ajax({
+                                                                data: new FormData($('form#data-foto')[0]),
+                                                                type: 'POST',
+                                                                dataType: 'JSON',
+                                                                url: '<?= base_url('ajax_customer/tambah_galery/' . $IDDU); ?>',
+                                                                processData: false,
+                                                                contentType: false,
+                                                                success: function(hasil) {
+                                                                    console.log(hasil);
+                                                                    if (hasil.status) {
+                                                                        swal(hasil.judul, hasil.pesan, {
+                                                                            icon: hasil.status,
+                                                                            buttons: {
+                                                                                confirm: {
+                                                                                    className: hasil.button
+                                                                                }
+                                                                            },
+                                                                        });
+                                                                        galery()
+                                                                        $('.imageuploadify-container').remove();
+                                                                    }
+                                                                }
+                                                            })
+                                                        })
+                                                    </script>
                                                 </div>
                                             </div>
-                                        <?php endforeach; ?>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- Video Prewedd -->
@@ -214,7 +275,7 @@
                                 <div class="tab-pane fade" id="v-pills-kirim-kado" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
                                     <div class="card">
                                         <div class="card-header">
-                                            <div class="card-title"><button type="button" class="btn btn-primary">TAMBAH</button></div>
+                                            <div class="card-title"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambah-va">TAMBAH</button></div>
                                         </div>
                                         <div class="card-body">
                                             <table class="table table-head-bg-primary">
@@ -227,25 +288,98 @@
                                                         <th scope="col">ACTION</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <?php $no = 1;
-                                                    foreach (virtual_account($IDDU) as $va) : ?>
-                                                        <tr>
-                                                            <td><?= $no; ?></td>
-                                                            <td><?= $va['nama_VA']; ?></td>
-                                                            <td><?= $va['nomer_VA']; ?></td>
-                                                            <td><?= $va['A/N']; ?></td>
-                                                            <td>
-                                                                <button type="button" class="btn btn-primary">UBAH</button>
-                                                                <button type="button" class="btn btn-danger">HAPUS</button>
-                                                            </td>
-                                                        </tr>
-                                                    <?php $no++;
-                                                    endforeach; ?>
+                                                <tbody id="data-va">
+                                                    <!-- data from ajax -->
+                                                    <script>
+                                                        virtual_akun();
+
+                                                        function virtual_akun() {
+                                                            $.ajax({
+                                                                url: '<?= base_url('ajax_customer/virtual_account/' . $IDDU); ?>',
+                                                                success: function(data) {
+                                                                    $('#data-va').html(data);
+                                                                }
+                                                            })
+                                                        }
+                                                    </script>
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <div class="modal fade" id="tambah-va" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content bg-dark2">
+                                                    <div class="modal-body">
+                                                        <div class="card-title d-flex align-items-center justify-content-center">
+                                                            <h5 class="mb-0">Tambah Virtual Akun</h5>
+                                                        </div>
+                                                        <hr class="bg-light">
+                                                        <form id="data-va" method="post">
+                                                            <div class="card-body">
+                                                                <div class="mt-5">
+                                                                    <label class="form-label fw-normal fst-italic">NAMA VIRTUAL AKUN</label>
+                                                                    <input class="form-control" id="nama_VA" name="nama_VA" type="text">
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <label class="form-label fw-normal fst-italic">NOMER VIRTUAL AKUN</label>
+                                                                    <input class="form-control" id="nomer_VA" name="nomer_VA" type="number">
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <label class="form-label fw-normal fst-italic text-uppercase">ATAS NAMA</label>
+                                                                    <input class="form-control" id="atas_nama" name="atas_nama" type="text">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-center">
+                                                                <button type="button" class="btn btn-primary" id="insert-va">TAMBAH</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <script>
+                                        $('#insert-va').on('click', function() {
+                                            var isi = {
+                                                nama_VA: $('#nama_VA').val(),
+                                                nomer_VA: $('#nomer_VA').val(),
+                                                atas_nama: $('#atas_nama').val(),
+                                            }
+                                            if ($('#nama_VA').val() && $('#nomer_VA').val(), $('#atas_nama').val()) {
+                                                $.ajax({
+                                                    url: '<?= base_url('ajax_customer/tambah_va/' . $IDDU); ?>',
+                                                    dataType: 'json',
+                                                    data: isi,
+                                                    method: 'POST',
+                                                    success: function(hasil) {
+                                                        console.log(hasil);
+                                                        if (hasil.status) {
+                                                            swal(hasil.judul, hasil.pesan, {
+                                                                icon: hasil.status,
+                                                                buttons: {
+                                                                    confirm: {
+                                                                        className: hasil.button
+                                                                    }
+                                                                },
+                                                            });
+                                                            $('#nama_VA').val('');
+                                                            $('#nomer_VA').val('');
+                                                            $('#atas_nama').val('');
+                                                            virtual_akun();
+                                                        }
+                                                    }
+                                                })
+                                            } else {
+                                                swal('Ops..!', 'isi semua data dulu', {
+                                                    icon: 'error',
+                                                    buttons: {
+                                                        confirm: {
+                                                            className: 'btn btn-danger'
+                                                        }
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    </script>
                                 </div>
                             </div>
                         </div>

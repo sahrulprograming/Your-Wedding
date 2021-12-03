@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Nov 2021 pada 09.31
+-- Waktu pembuatan: 03 Des 2021 pada 09.34
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.4.16
 
@@ -70,7 +70,8 @@ INSERT INTO `buku_tamu` (`IDBT`, `IDU`, `nama`, `hubungan`, `kehadiran`) VALUES
 (5, 17, 'ALDIAN VARONITTI', 'sahabat', 'hadir'),
 (6, 17, 'Sahrul', 'sahabat', 'hadir'),
 (7, 18, 'yesicha Audria', 'mantan', 'hadir'),
-(8, 6, 'Sahrul saefulah', 'teman', 'hadir');
+(8, 6, 'Sahrul saefulah', 'teman', 'hadir'),
+(9, 11, 'MUHAMMAD SAHRUL SAEFULAH', 'tamu', 'hadir');
 
 -- --------------------------------------------------------
 
@@ -80,10 +81,10 @@ INSERT INTO `buku_tamu` (`IDBT`, `IDU`, `nama`, `hubungan`, `kehadiran`) VALUES
 
 CREATE TABLE `customer` (
   `IDC` int(11) NOT NULL,
+  `foto` text DEFAULT NULL,
+  `email` varchar(125) NOT NULL,
   `nama_lengkap` varchar(45) NOT NULL,
   `jenis_kelamin` varchar(1) NOT NULL,
-  `email` varchar(125) NOT NULL,
-  `foto` text DEFAULT NULL,
   `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -91,9 +92,9 @@ CREATE TABLE `customer` (
 -- Dumping data untuk tabel `customer`
 --
 
-INSERT INTO `customer` (`IDC`, `nama_lengkap`, `jenis_kelamin`, `email`, `foto`, `password`) VALUES
-(22111001, 'demo', 'P', 'demo@gmail.com', 'default-P.png', '$2y$10$dVMsM.gdD9itL8cUb7nKw.IFAU4QLC6QPsntgFs2ZjPlvPnPJor0m'),
-(22111002, 'naufal', 'L', 'naufal@gmail.com', 'default-L.png', '$2y$10$.YvYDUYOoCMmZIb4K/6WiuKXpad1sGqd2No0Xke7jCmMnoaxvRASK');
+INSERT INTO `customer` (`IDC`, `foto`, `email`, `nama_lengkap`, `jenis_kelamin`, `password`) VALUES
+(22111001, 'default-P.png', 'demo@gmail.com', 'demo', 'P', '$2y$10$dVMsM.gdD9itL8cUb7nKw.IFAU4QLC6QPsntgFs2ZjPlvPnPJor0m'),
+(22111002, 'default-L.png', 'naufal@gmail.com', 'naufal', 'L', '$2y$10$.YvYDUYOoCMmZIb4K/6WiuKXpad1sGqd2No0Xke7jCmMnoaxvRASK');
 
 -- --------------------------------------------------------
 
@@ -117,9 +118,11 @@ CREATE TABLE `data_undangan` (
 
 INSERT INTO `data_undangan` (`IDDU`, `IDC`, `foto_Background`, `kata_pengantar`, `video`, `alamat_kirim_kado`, `embed_alamat_kirim_kado`) VALUES
 (1, 22111001, 'background-default', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://www.youtube.com/watch?v=eru_H6-7CSw', 'Jalan Mawar kelurahan bahagia kecamatan selamat kabupaten sentosa propinsi sejahtera', ''),
-(46, 22111002, '', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://www.youtube.com/watch?v=eru_H6-7CSw', 'https://goo.gl/maps/a8nxupZVQuoUR8EM7', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15868.050485871012!2d106.7116703!3d-6.1290032!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a039ac85af971%3A0x54d37c913eddd678!2sCitra%20garden%203!5e0!3m2!1sid!2sid!4v1636258183906!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
 (51, 22111002, '', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://youtu.be/iAfzVpmZZSY', 'https://g.page/HiltonBandung?share', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
-(52, 22111002, '', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://www.youtube.com/watch?v=uLxQVu8hy7E', 'https://goo.gl/maps/2zZLhvVr3Evdpqnc8', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126907.08037413789!2d106.73186743327949!3d-6.283931233337718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1ec2422b0b3%3A0x39a0d0fe47404d02!2sJakarta%20Selatan%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1636710383416!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>');
+(58, 22111002, '', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://youtu.be/iAfzVpmZZSY', 'hgfds', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
+(61, 22111002, '', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://youtu.be/iAfzVpmZZSY', 'https://goo.gl/maps/s2wFg8cmvjBsWXtu9', 'src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.706201619785!2d106.61472625058643!3d-6.170080362161959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ff3a713e0d39%3A0xd19baf967dc2bf3d!2shotel!5e0!3m2!1sid!2sid!4v1638448651736!5m2!1sid!2sid\"'),
+(62, 22111002, '', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://youtu.be/iAfzVpmZZSY', 'JL JAWA / JLN SUMBAWA DALAM blok F3 no 16', 'src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.706201619785!2d106.61472625058643!3d-6.170080362161959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ff3a713e0d39%3A0xd19baf967dc2bf3d!2shotel!5e0!3m2!1sid!2sid!4v1638448651736!5m2!1sid!2sid\"'),
+(63, 22111002, '', 'Dengan memohon rahmat & ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/I dalam acara pernikahan dan resepsi putra-putri kami ', 'https://youtu.be/iAfzVpmZZSY', 'aaaa', 'src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\"');
 
 -- --------------------------------------------------------
 
@@ -131,18 +134,19 @@ CREATE TABLE `dompet_admin` (
   `id_dompet` int(11) NOT NULL,
   `nama_dompet` varchar(35) NOT NULL,
   `nomer` varchar(25) NOT NULL,
-  `A/N` varchar(45) NOT NULL
+  `atas_nama` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `dompet_admin`
 --
 
-INSERT INTO `dompet_admin` (`id_dompet`, `nama_dompet`, `nomer`, `A/N`) VALUES
+INSERT INTO `dompet_admin` (`id_dompet`, `nama_dompet`, `nomer`, `atas_nama`) VALUES
 (1, 'dana', '245678927552', 'admin your wedding'),
 (2, 'OVO', '421678982753', 'admin your wedding'),
 (3, 'bank mandiri', '345267819', 'admin your wedding'),
-(4, 'bank BCA', '123456789', 'admin your wedding');
+(4, 'bank BCA', '123456789', 'admin your wedding'),
+(7, 'Gopay', '09876544567', 'admin your wedding');
 
 -- --------------------------------------------------------
 
@@ -166,23 +170,50 @@ INSERT INTO `galery` (`IDG`, `foto`, `IDDU`) VALUES
 (3, 'foto3.jpg', 1),
 (4, 'foto4.jpg', 1),
 (5, 'foto5.jpg', 1),
-(34, '16362552602.jpeg', 46),
-(35, '16362552603.jpeg', 46),
-(36, '1636255260.png', 46),
-(37, '16362552601.png', 46),
-(38, '16362552602.png', 46),
 (39, '1636437391.jpg', 51),
 (40, '16364373911.jpg', 51),
 (41, '16364373912.jpg', 51),
 (42, '16364373913.jpg', 51),
 (43, '16364373914.jpg', 51),
 (44, '16364373915.jpg', 51),
-(45, '1636710759.jpg', 52),
-(46, '16367107591.jpg', 52),
-(47, '16367107592.jpg', 52),
-(48, '16367107593.jpg', 52),
-(49, '16367107594.jpg', 52),
-(50, '16367107595.jpg', 52);
+(113, '1638462924.jpg', 61),
+(114, '16384629241.jpg', 61),
+(115, '16384629242.jpg', 61),
+(116, '16384629243.jpg', 61),
+(117, '16384629244.jpg', 61),
+(118, '1638462925.jpg', 61),
+(119, '1638509998.jpg', 62),
+(120, '16385099981.jpg', 62),
+(121, '16385099982.jpg', 62),
+(122, '16385099983.jpg', 62),
+(123, '16385099984.jpg', 62),
+(124, '16385099985.jpg', 62),
+(125, '1638510176.jpg', 63),
+(126, '16385101761.jpg', 63),
+(127, '16385101762.jpg', 63),
+(128, '16385101763.jpg', 63),
+(129, '16385101764.jpg', 63),
+(130, '16385101765.jpg', 63);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `hak_akses`
+--
+
+CREATE TABLE `hak_akses` (
+  `IDAkses` int(11) NOT NULL,
+  `role` varchar(45) NOT NULL,
+  `controller_akses` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `hak_akses`
+--
+
+INSERT INTO `hak_akses` (`IDAkses`, `role`, `controller_akses`) VALUES
+(1, 'administrator', 'administrator'),
+(2, 'customer', 'customer');
 
 -- --------------------------------------------------------
 
@@ -192,20 +223,20 @@ INSERT INTO `galery` (`IDG`, `foto`, `IDDU`) VALUES
 
 CREATE TABLE `harga_publish` (
   `IDHP` int(11) NOT NULL,
-  `durasi_hari` int(11) NOT NULL,
-  `keterangan` text NOT NULL,
   `judul_durasi` varchar(45) NOT NULL,
-  `harga` double NOT NULL
+  `durasi_hari` int(11) NOT NULL,
+  `harga` double NOT NULL,
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `harga_publish`
 --
 
-INSERT INTO `harga_publish` (`IDHP`, `durasi_hari`, `keterangan`, `judul_durasi`, `harga`) VALUES
-(1, 7, 'publish berlaku 7 hari setelah habis maka tidak bisa di lihat orang lain', '1 minggu', 50000),
-(2, 30, 'Durasi Publish berlaku selama 30 hari jika melewati, undangan tidak akan bisa di lihat orang lain', '1 bulan', 100000),
-(3, 180, 'Durasi Publish berlaku selama 180 hari jika melewati, undangan tidak akan bisa di lihat orang lain', '6 bulan', 350000);
+INSERT INTO `harga_publish` (`IDHP`, `judul_durasi`, `durasi_hari`, `harga`, `keterangan`) VALUES
+(1, '1 minggu', 7, 50000, 'publish berlaku 7 hari setelah habis maka tidak bisa di lihat orang lain'),
+(2, '1 bulan', 30, 100000, 'Durasi Publish berlaku selama 30 hari jika melewati, undangan tidak akan bisa di lihat orang lain'),
+(3, '6 bulan', 180, 350000, 'Durasi Publish berlaku selama 180 hari jika melewati, undangan tidak akan bisa di lihat orang lain');
 
 -- --------------------------------------------------------
 
@@ -228,9 +259,11 @@ CREATE TABLE `j_akad` (
 
 INSERT INTO `j_akad` (`IDJA`, `IDDU`, `tanggal`, `jam`, `lokasi`, `lokasi_embed`) VALUES
 (1, 1, '2021-12-23', '10:00:00', 'Masjid Jami at-taqwa jalan mawar', ''),
-(19, 46, '2021-11-30', '18:25:00', 'https://goo.gl/maps/a8nxupZVQuoUR8EM7', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15868.050485871012!2d106.7116703!3d-6.1290032!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a039ac85af971%3A0x54d37c913eddd678!2sCitra%20garden%203!5e0!3m2!1sid!2sid!4v1636258183906!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
-(20, 51, '2021-11-14', '10:00:00', 'https://g.page/HiltonBandung?share', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
-(21, 52, '2021-11-30', '10:45:00', 'https://goo.gl/maps/2zZLhvVr3Evdpqnc8', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126907.08037413789!2d106.73186743327949!3d-6.283931233337718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1ec2422b0b3%3A0x39a0d0fe47404d02!2sJakarta%20Selatan%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1636710383416!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>');
+(20, 51, '2021-12-01', '02:20:56', 'https://g.page/HiltonBandung?share', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
+(27, 58, '2021-12-07', '10:05:00', 'https://g.page/HiltonBandung?share', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
+(30, 61, '2021-12-24', '23:33:00', 'https://goo.gl/maps/s2wFg8cmvjBsWXtu9', 'src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.706201619785!2d106.61472625058643!3d-6.170080362161959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ff3a713e0d39%3A0xd19baf967dc2bf3d!2shotel!5e0!3m2!1sid!2sid!4v1638448651736!5m2!1sid!2sid\"'),
+(31, 62, '2021-12-03', '12:38:00', 'https://g.page/HiltonBandung?share', 'src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\"'),
+(32, 63, '2021-12-03', '12:42:00', 'fsghjak', 'src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\"');
 
 -- --------------------------------------------------------
 
@@ -253,9 +286,11 @@ CREATE TABLE `j_resepsi` (
 
 INSERT INTO `j_resepsi` (`IDJR`, `IDDU`, `tanggal`, `jam`, `lokasi`, `lokasi_embed`) VALUES
 (1, 1, '2021-12-23', '14:00:00', 'Jalan Mawar No 16 kelurahan bahagia kecamatan selamat kabupaten sentosa propinsi sejahtera', '0'),
-(10, 46, '2021-11-30', '11:18:00', 'https://goo.gl/maps/a8nxupZVQuoUR8EM7', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15868.050485871012!2d106.7116703!3d-6.1290032!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a039ac85af971%3A0x54d37c913eddd678!2sCitra%20garden%203!5e0!3m2!1sid!2sid!4v1636258183906!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
 (11, 51, '2021-11-20', '13:00:00', 'https://g.page/HiltonBandung?share', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
-(12, 52, '2021-12-01', '13:46:00', 'https://goo.gl/maps/2zZLhvVr3Evdpqnc8', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126907.08037413789!2d106.73186743327949!3d-6.283931233337718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1ec2422b0b3%3A0x39a0d0fe47404d02!2sJakarta%20Selatan%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1636710383416!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>');
+(18, 58, '2021-12-10', '10:30:00', 'https://g.page/HiltonBandung?share', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\"></iframe>'),
+(21, 61, '2021-12-31', '10:34:00', 'https://goo.gl/maps/s2wFg8cmvjBsWXtu9', 'src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.706201619785!2d106.61472625058643!3d-6.170080362161959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ff3a713e0d39%3A0xd19baf967dc2bf3d!2shotel!5e0!3m2!1sid!2sid!4v1638448651736!5m2!1sid!2sid\"'),
+(22, 62, '2021-12-29', '12:39:00', 'https://g.page/HiltonBandung?share', 'src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\"'),
+(23, 63, '2021-12-03', '12:42:00', 'https://g.page/HiltonBandung?share', 'src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8116197652694!2d107.59558885037805!3d-6.913113769556222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e66a9e40f8cd%3A0xf85c3bc286fb3a55!2sHilton%20Bandung!5e0!3m2!1sid!2sid!4v1636436726319!5m2!1sid!2sid\"');
 
 -- --------------------------------------------------------
 
@@ -276,10 +311,8 @@ CREATE TABLE `komentar` (
 --
 
 INSERT INTO `komentar` (`IDK`, `IDU`, `nama_pengirim`, `pesan`, `tanggal_dikirim`) VALUES
-(8, 16, 'sahrul', 'test', '2021-11-07 14:10:47'),
 (9, 2, 'sahrul saefulah', 'semoga sakinah mawaddah warohmah', '2021-11-09 03:34:20'),
-(10, 9, 'sahrul', 'ggwp', '2021-11-09 12:26:13'),
-(11, 17, 'ALDIAN VARONITTI', 'halo', '2021-11-09 14:43:08');
+(10, 9, 'sahrul', 'ggwp', '2021-11-09 12:26:13');
 
 -- --------------------------------------------------------
 
@@ -303,9 +336,11 @@ CREATE TABLE `mempelai_pria` (
 
 INSERT INTO `mempelai_pria` (`IDMP`, `IDDU`, `nama_lengkap`, `profile_singkat`, `ortu`, `nama_panggilan`, `foto`) VALUES
 (1, 1, 'john samuel', 'merupakan lulusan sarjana Universitas Bina Sarana Informatika, Sekarang Bekerja Sebagai Direktur Pertamina Cabang Jawa Barat', 'bpk tono & ibu arsih', 'john', 'default-L.png'),
-(13, 46, 'yosua cahyadi ', '', 'bpk mojo & ibu minah', 'yosua', '1636361129.jpeg'),
 (16, 51, 'Mochamad Naufal', '', 'bpk susanto & ibu yulia', 'Naufal', '1636437391.jpeg'),
-(17, 52, 'Dede Maulana', '', 'bpk Tono & ibu Yuli', 'Maulana', '1636710759.jpeg');
+(23, 58, 'dfghjk', '', 'bpk fghjkl & ibu ghjk', 'aa', '1638276742.png'),
+(26, 61, 'Tono sutisna', '', 'bpk adfghj & ibu fghjk', 'Tono', '1638462924.jpeg'),
+(27, 62, 'sgahjk', '', 'bpk ghjkl; & ibu vbjkl;', 'fghjkl', '1638509998.jpeg'),
+(28, 63, 'sdfghjkl', '', 'bpk xchjkl; & ibu ghjkl', 'fghjkl;', '1638510176.png');
 
 -- --------------------------------------------------------
 
@@ -329,9 +364,11 @@ CREATE TABLE `mempelai_wanita` (
 
 INSERT INTO `mempelai_wanita` (`IDMW`, `IDDU`, `nama_lengkap`, `profile_singkat`, `ortu`, `nama_panggilan`, `foto`) VALUES
 (1, 1, 'merlin nasetion', 'merupakan lulusan sarjana Universitas Bina Sarana Informatika, Sekarang Bekerja Sebagai Asisten Direktur Pertamina Cabang Jawa Barat', 'bpk jojo & ibu minah', 'merlin', 'default-P.png'),
-(11, 46, 'yuli amelia', '', 'bpk budi & ibu darsih', 'yuli', '1636360773.jpeg'),
 (12, 51, 'Rosmawati', '', 'bpk Isacc & ibu Elizabeth', 'Rosma', '16364373911.jpeg'),
-(13, 52, 'Adinda Maulana', '', 'bpk sumanto & ibu sutijem', 'Dinda', '16367107591.jpeg');
+(19, 58, 'fghjkl;', '', 'bpk cghjk & ibu cfghjkl', 'cvghjkl', '16382767421.png'),
+(22, 61, 'mursinah', '', 'bpk fghjk & ibu ghjk', 'mursinah', '16384629241.jpeg'),
+(23, 62, 'dfghjkl;', '', 'bpk ghjkl & ibu fghjkl;', 'ghjkl;', '1638509998.png'),
+(24, 63, 'dfghjkl;', '', 'bpk chjkl; & ibu cfghjkl;', 'cj./', '16385101761.png');
 
 -- --------------------------------------------------------
 
@@ -345,7 +382,7 @@ CREATE TABLE `pembayaran` (
   `bukti_bayar` text NOT NULL,
   `total_bayar` double NOT NULL,
   `status_lunas` varchar(25) NOT NULL,
-  `invoice` int(11) NOT NULL,
+  `invoice` varchar(30) NOT NULL,
   `id_dompet` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -354,8 +391,12 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`no_pembayaran`, `tanggal_upload`, `bukti_bayar`, `total_bayar`, `status_lunas`, `invoice`, `id_dompet`) VALUES
-(3, '2021-11-12', '1636704972.jpg', 50000, 'belum lunas', 3, 3),
-(4, '2021-11-12', '1636710985.jpg', 50000, 'belum lunas', 4, 4);
+(8, '2021-11-30', '1638259359.png', 350000, 'lunas', 'INV/20211130/1638255201', 2),
+(9, '2021-11-30', '1638270583.png', 50000, 'lunas', 'INV/20211130/1638270583', 2),
+(10, '2021-11-29', '1638277134.jpg', 100000, 'lunas', 'INV/20211130/1638277134', 3),
+(11, '2021-11-30', '1638277155.jpg', 100000, 'lunas', 'INV/20211130/1638277155', 4),
+(12, '2021-12-02', '1638463089.png', 350000, 'lunas', 'INV/20211202/1638463062', 2),
+(13, '2021-12-03', '1638510068.png', 50000, 'menunggu', 'INV/20211203/1638510068', 3);
 
 -- --------------------------------------------------------
 
@@ -364,10 +405,7 @@ INSERT INTO `pembayaran` (`no_pembayaran`, `tanggal_upload`, `bukti_bayar`, `tot
 --
 
 CREATE TABLE `publishing` (
-  `invoice` int(11) NOT NULL,
-  `status` varchar(35) NOT NULL,
-  `mulai_publish` date NOT NULL,
-  `selesai_publish` date NOT NULL,
+  `invoice` varchar(30) NOT NULL,
   `IDHP` int(11) NOT NULL,
   `IDU` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -376,29 +414,8 @@ CREATE TABLE `publishing` (
 -- Dumping data untuk tabel `publishing`
 --
 
-INSERT INTO `publishing` (`invoice`, `status`, `mulai_publish`, `selesai_publish`, `IDHP`, `IDU`) VALUES
-(3, 'menunggu', '0000-00-00', '0000-00-00', 1, 16),
-(4, 'menunggu', '0000-00-00', '0000-00-00', 1, 18);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `role`
---
-
-CREATE TABLE `role` (
-  `IDRole` int(11) NOT NULL,
-  `role` varchar(45) NOT NULL,
-  `controller_akses` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `role`
---
-
-INSERT INTO `role` (`IDRole`, `role`, `controller_akses`) VALUES
-(1, 'administrator', 'administrator'),
-(2, 'customer', 'customer');
+INSERT INTO `publishing` (`invoice`, `IDHP`, `IDU`) VALUES
+('INV/20211202/1638463062', 1, 11);
 
 -- --------------------------------------------------------
 
@@ -441,6 +458,8 @@ CREATE TABLE `undangan` (
   `IDC` int(11) DEFAULT NULL,
   `ID_Template` int(11) NOT NULL,
   `status` varchar(35) NOT NULL,
+  `mulai_publish` date DEFAULT NULL,
+  `selesai_publish` date DEFAULT NULL,
   `dilihat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -448,20 +467,19 @@ CREATE TABLE `undangan` (
 -- Dumping data untuk tabel `undangan`
 --
 
-INSERT INTO `undangan` (`IDU`, `url`, `IDDU`, `IDC`, `ID_Template`, `status`, `dilihat`) VALUES
-(1, 'john_merlin', 1, 22111001, 1, 'publish', 2),
-(2, 'john_merlin', 1, 22111001, 2, 'publish', 0),
-(3, 'john_merlin', 1, 22111001, 3, 'publish', 0),
-(4, 'john_merlin', 1, 22111001, 4, 'publish', 0),
-(5, 'john_merlin', 1, 22111001, 5, 'publish', 0),
-(6, 'john_merlin', 1, 22111001, 6, 'publish', 0),
-(7, 'john_merlin', 1, 22111001, 7, 'publish', 0),
-(8, 'jon_merlin', 1, 22111001, 8, 'publish', 0),
-(9, 'john_merlin', 1, 22111001, 9, 'publish', 0),
-(10, 'john_merlin', 1, 22111001, 10, 'publish', 0),
-(16, 'yosua_yuli', 46, 22111002, 3, '', 2),
-(17, 'Naufal_Rosma', 51, 22111002, 6, '', 9),
-(18, 'Maulana_Dinda', 52, 22111002, 9, '', 3);
+INSERT INTO `undangan` (`IDU`, `url`, `IDDU`, `IDC`, `ID_Template`, `status`, `mulai_publish`, `selesai_publish`, `dilihat`) VALUES
+(1, 'john_merlin', 1, 22111001, 1, 'publish', NULL, NULL, 2),
+(2, 'john_merlin', 1, 22111001, 2, 'publish', NULL, NULL, 0),
+(3, 'john_merlin', 1, 22111001, 3, 'publish', NULL, NULL, 0),
+(4, 'john_merlin', 1, 22111001, 4, 'publish', NULL, NULL, 0),
+(5, 'john_merlin', 1, 22111001, 5, 'publish', NULL, NULL, 0),
+(6, 'john_merlin', 1, 22111001, 6, 'publish', NULL, NULL, 0),
+(7, 'john_merlin', 1, 22111001, 7, 'publish', NULL, NULL, 0),
+(8, 'jon_merlin', 1, 22111001, 8, 'publish', NULL, NULL, 0),
+(9, 'john_merlin', 1, 22111001, 9, 'publish', NULL, NULL, 0),
+(10, 'john_merlin', 1, 22111001, 10, 'publish', NULL, NULL, 0),
+(11, 'Tono_mursinah', 61, 22111002, 2, 'publish', '2021-12-02', '2021-12-09', 36),
+(20211134, 'fghjkl;_cj./', 63, 22111002, 1, '', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -486,10 +504,13 @@ INSERT INTO `virtual_account` (`IDVA`, `IDDU`, `nomer_VA`, `nama_VA`, `A/N`) VAL
 (2, 1, '098753677182', 'OVO', 'demo'),
 (3, 1, '32456789266', 'bank mandiri', 'demo'),
 (4, 1, '123456789', 'bank BCA', 'demo'),
-(9, 46, '0876353245', 'Dana', 'Yuli Amelia'),
-(10, 46, '0874542662722', 'OVO', 'Yosua '),
 (11, 51, '86672892', 'BCA', 'Naufal Setiawan'),
-(12, 52, '3456789', 'aaaa', 'maulana');
+(26, 58, '45678', 'aaaa', 'sdfghjk'),
+(30, 61, '0824567336728', 'OVO', 'Mursinah'),
+(31, 61, '323456788', 'BCA', 'Tono'),
+(32, 61, '118246743020', 'Mandiri', 'Tono'),
+(34, 62, '02345678', 'BCA', 'aaaa'),
+(35, 63, '0345678', 'Dana', 'dfhjkl');
 
 -- --------------------------------------------------------
 
@@ -556,17 +577,22 @@ CREATE TABLE `v_total_tamu` (
 -- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `v_transaksi` (
-`invoice` int(11)
-,`status` varchar(35)
-,`mulai_publish` date
-,`selesai_publish` date
+`no_pembayaran` int(11)
+,`invoice` varchar(30)
 ,`IDHP` int(11)
+,`IDU` int(11)
+,`url` varchar(25)
+,`IDC` int(11)
+,`status_lunas` varchar(25)
+,`bukti_bayar` text
+,`tanggal_upload` date
+,`id_dompet` int(11)
+,`total_bayar` double
 ,`judul_durasi` varchar(45)
 ,`durasi_hari` int(11)
-,`harga` double
-,`keterangan` text
-,`IDU` int(11)
-,`IDC` int(11)
+,`nama_dompet` varchar(35)
+,`atas nama` varchar(45)
+,`nomer` varchar(25)
 );
 
 -- --------------------------------------------------------
@@ -629,7 +655,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_transaksi`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_transaksi`  AS SELECT `p`.`invoice` AS `invoice`, `p`.`status` AS `status`, `p`.`mulai_publish` AS `mulai_publish`, `p`.`selesai_publish` AS `selesai_publish`, `p`.`IDHP` AS `IDHP`, `hp`.`judul_durasi` AS `judul_durasi`, `hp`.`durasi_hari` AS `durasi_hari`, `hp`.`harga` AS `harga`, `hp`.`keterangan` AS `keterangan`, `p`.`IDU` AS `IDU`, `u`.`IDC` AS `IDC` FROM ((`publishing` `p` join `harga_publish` `hp` on(`p`.`IDHP` = `hp`.`IDHP`)) join `undangan` `u` on(`p`.`IDU` = `u`.`IDU`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_transaksi`  AS SELECT `pm`.`no_pembayaran` AS `no_pembayaran`, `p`.`invoice` AS `invoice`, `p`.`IDHP` AS `IDHP`, `p`.`IDU` AS `IDU`, `u`.`url` AS `url`, `u`.`IDC` AS `IDC`, `pm`.`status_lunas` AS `status_lunas`, `pm`.`bukti_bayar` AS `bukti_bayar`, `pm`.`tanggal_upload` AS `tanggal_upload`, `pm`.`id_dompet` AS `id_dompet`, `pm`.`total_bayar` AS `total_bayar`, `hp`.`judul_durasi` AS `judul_durasi`, `hp`.`durasi_hari` AS `durasi_hari`, `da`.`nama_dompet` AS `nama_dompet`, `da`.`atas_nama` AS `atas nama`, `da`.`nomer` AS `nomer` FROM ((((`publishing` `p` join `harga_publish` `hp` on(`p`.`IDHP` = `hp`.`IDHP`)) join `undangan` `u` on(`p`.`IDU` = `u`.`IDU`)) join `pembayaran` `pm` on(`p`.`invoice` = `pm`.`invoice`)) join `dompet_admin` `da` on(`pm`.`id_dompet` = `da`.`id_dompet`)) ;
 
 -- --------------------------------------------------------
 
@@ -683,6 +709,12 @@ ALTER TABLE `galery`
   ADD KEY `galery_ibfk_1` (`IDDU`);
 
 --
+-- Indeks untuk tabel `hak_akses`
+--
+ALTER TABLE `hak_akses`
+  ADD PRIMARY KEY (`IDAkses`);
+
+--
 -- Indeks untuk tabel `harga_publish`
 --
 ALTER TABLE `harga_publish`
@@ -707,7 +739,7 @@ ALTER TABLE `j_resepsi`
 --
 ALTER TABLE `komentar`
   ADD PRIMARY KEY (`IDK`),
-  ADD KEY `IDU` (`IDU`);
+  ADD KEY `komentar_ibfk_1` (`IDU`);
 
 --
 -- Indeks untuk tabel `mempelai_pria`
@@ -727,23 +759,15 @@ ALTER TABLE `mempelai_wanita`
 -- Indeks untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  ADD PRIMARY KEY (`no_pembayaran`),
-  ADD KEY `pembayaran_ibfk_1` (`invoice`),
-  ADD KEY `pembayaran_ibfk_2` (`id_dompet`);
+  ADD PRIMARY KEY (`no_pembayaran`);
 
 --
 -- Indeks untuk tabel `publishing`
 --
 ALTER TABLE `publishing`
   ADD PRIMARY KEY (`invoice`),
-  ADD KEY `IDHP` (`IDHP`),
-  ADD KEY `IDU` (`IDU`);
-
---
--- Indeks untuk tabel `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`IDRole`);
+  ADD KEY `publishing_ibfk_1` (`IDHP`),
+  ADD KEY `publishing_ibfk_2` (`IDU`);
 
 --
 -- Indeks untuk tabel `template`
@@ -756,9 +780,9 @@ ALTER TABLE `template`
 --
 ALTER TABLE `undangan`
   ADD PRIMARY KEY (`IDU`),
-  ADD KEY `IDDU` (`IDDU`),
   ADD KEY `IDC` (`IDC`),
-  ADD KEY `ID_Template` (`ID_Template`);
+  ADD KEY `ID_Template` (`ID_Template`),
+  ADD KEY `undangan_ibfk_1` (`IDDU`);
 
 --
 -- Indeks untuk tabel `virtual_account`
@@ -781,43 +805,49 @@ ALTER TABLE `administrator`
 -- AUTO_INCREMENT untuk tabel `buku_tamu`
 --
 ALTER TABLE `buku_tamu`
-  MODIFY `IDBT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IDBT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_undangan`
 --
 ALTER TABLE `data_undangan`
-  MODIFY `IDDU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `IDDU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `dompet_admin`
 --
 ALTER TABLE `dompet_admin`
-  MODIFY `id_dompet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_dompet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `galery`
 --
 ALTER TABLE `galery`
-  MODIFY `IDG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `IDG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+
+--
+-- AUTO_INCREMENT untuk tabel `hak_akses`
+--
+ALTER TABLE `hak_akses`
+  MODIFY `IDAkses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `harga_publish`
 --
 ALTER TABLE `harga_publish`
-  MODIFY `IDHP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IDHP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `j_akad`
 --
 ALTER TABLE `j_akad`
-  MODIFY `IDJA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `IDJA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `j_resepsi`
 --
 ALTER TABLE `j_resepsi`
-  MODIFY `IDJR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `IDJR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `komentar`
@@ -829,31 +859,19 @@ ALTER TABLE `komentar`
 -- AUTO_INCREMENT untuk tabel `mempelai_pria`
 --
 ALTER TABLE `mempelai_pria`
-  MODIFY `IDMP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `IDMP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `mempelai_wanita`
 --
 ALTER TABLE `mempelai_wanita`
-  MODIFY `IDMW` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IDMW` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `no_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `publishing`
---
-ALTER TABLE `publishing`
-  MODIFY `invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `role`
---
-ALTER TABLE `role`
-  MODIFY `IDRole` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `no_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `template`
@@ -865,13 +883,13 @@ ALTER TABLE `template`
 -- AUTO_INCREMENT untuk tabel `undangan`
 --
 ALTER TABLE `undangan`
-  MODIFY `IDU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `IDU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20211135;
 
 --
 -- AUTO_INCREMENT untuk tabel `virtual_account`
 --
 ALTER TABLE `virtual_account`
-  MODIFY `IDVA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `IDVA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -905,7 +923,7 @@ ALTER TABLE `j_resepsi`
 -- Ketidakleluasaan untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`IDU`) REFERENCES `undangan` (`IDU`);
+  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`IDU`) REFERENCES `undangan` (`IDU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `mempelai_pria`
@@ -920,24 +938,17 @@ ALTER TABLE `mempelai_wanita`
   ADD CONSTRAINT `mempelai_wanita_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `pembayaran`
---
-ALTER TABLE `pembayaran`
-  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`invoice`) REFERENCES `publishing` (`invoice`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `pembayaran_ibfk_2` FOREIGN KEY (`id_dompet`) REFERENCES `dompet_admin` (`id_dompet`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
 -- Ketidakleluasaan untuk tabel `publishing`
 --
 ALTER TABLE `publishing`
-  ADD CONSTRAINT `publishing_ibfk_1` FOREIGN KEY (`IDHP`) REFERENCES `harga_publish` (`IDHP`),
-  ADD CONSTRAINT `publishing_ibfk_2` FOREIGN KEY (`IDU`) REFERENCES `undangan` (`IDU`);
+  ADD CONSTRAINT `publishing_ibfk_1` FOREIGN KEY (`IDHP`) REFERENCES `harga_publish` (`IDHP`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `publishing_ibfk_2` FOREIGN KEY (`IDU`) REFERENCES `undangan` (`IDU`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `undangan`
 --
 ALTER TABLE `undangan`
-  ADD CONSTRAINT `undangan_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`),
+  ADD CONSTRAINT `undangan_ibfk_1` FOREIGN KEY (`IDDU`) REFERENCES `data_undangan` (`IDDU`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `undangan_ibfk_2` FOREIGN KEY (`IDC`) REFERENCES `customer` (`IDC`),
   ADD CONSTRAINT `undangan_ibfk_3` FOREIGN KEY (`ID_Template`) REFERENCES `template` (`ID_Template`);
 

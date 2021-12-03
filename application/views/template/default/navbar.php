@@ -34,12 +34,12 @@
                 </li>
                 <?php if (!$this->session->userdata('id')) : ?>
                     <li class="nav-item">
-                        <a href="<?= base_url('authentication'); ?>">
+                        <a href="<?= base_url('authentication/login'); ?>">
                             <button class="btn btn-outline-reg m-2">LOGIN</button>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url('authentication'); ?>">
+                        <a href="<?= base_url('authentication/daftar'); ?>">
                             <button class="btn btn-solid-reg">DAFTAR</button>
                         </a>
                     </li>

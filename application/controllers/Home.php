@@ -16,5 +16,6 @@ class Home extends CI_Controller
 		$this->load->view('template/default/navbar');
 		$this->load->view('home');
 		$this->load->view('template/default/footer');
+		$this->session->set_userdata('kembali', current_url());
 	}
 }

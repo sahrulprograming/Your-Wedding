@@ -19,9 +19,10 @@ class Demo extends CI_Controller
             $data['IDDU'] = $undangan['IDDU'];
             $data['IDU'] = $IDU;
             $data['title'] = str_replace('_', ' & ', $url);
-            $this->load->view('demo/template/head', $data);
+            $data['kembali'] = $this->session->userdata('kembali');
+            $this->load->view('template/undangan/head', $data);
             $this->load->view('demo/template-demo', $data);
-            $this->load->view('demo/template/footer');
+            $this->load->view('template/undangan/footer');
         } else {
             redirect('home');
         }

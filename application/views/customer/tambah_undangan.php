@@ -1,6 +1,7 @@
 <div class="main-panel">
     <div class="content">
         <div class="page-inner">
+            <?= $this->session->flashdata('notif'); ?>
             <div class="page-header">
                 <h4 class="page-title">Buat Undangan</h4>
                 <ul class="breadcrumbs">

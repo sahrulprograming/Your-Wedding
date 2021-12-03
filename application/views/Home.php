@@ -6,8 +6,8 @@
 				<div class="text-container">
 					<h1 class="h1-large">Solusi Template Undangan Online</h1>
 					<p class="p-large"><span class="text-primary">Your Wedding</span> penyedia template undangan pernikahan online, juga tersedia custom website sesuai keinginan</p>
-					<a class="btn-solid-reg page-scroll" href="#registration">BUAT</a>
-					<a class="btn-outline-reg page-scroll" href="#features">DEMO</a>
+					<a class="btn-solid-reg page-scroll" href="<?= base_url('customer/undangan/tambah'); ?>">BUAT</a>
+					<a class="btn-outline-reg page-scroll" href="#demo">DEMO</a>
 				</div>
 			</div>
 			<div class="col-lg-4">
@@ -202,7 +202,7 @@
 							<i class="fa fa-check mr-2 text-primary"></i> kirim hadiah virtual account
 						</li>
 					</ul>
-					<a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
+					<a href="<?= base_url('customer/undangan/tambah'); ?>" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
 				</div>
 			</div>
 			<div class="col-lg-4 mb-5 mb-lg-0">
@@ -226,7 +226,7 @@
 							<i class="fa fa-check mr-2 text-primary"></i> kirim hadiah virtual account
 						</li>
 					</ul>
-					<a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
+					<a href="<?= base_url('customer/undangan/tambah'); ?>" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
 				</div>
 			</div>
 			<div class="col-lg-4 mb-5 mb-lg-0">
@@ -250,7 +250,7 @@
 							<i class="fa fa-check mr-2 text-primary"></i> kirim hadiah virtual account
 						</li>
 					</ul>
-					<a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
+					<a href="<?= base_url('customer/undangan/tambah'); ?>" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
 				</div>
 			</div>
 			<!-- END -->
@@ -281,7 +281,7 @@
 							<i class="fa fa-check mr-2 text-primary"></i> Semuanya terserah anda
 						</li>
 					</ul>
-					<a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
+					<a href="<?= base_url('customer/undangan/tambah'); ?>" class="btn btn-primary btn-block p-2 shadow rounded-pill">Beli</a>
 				</div>
 			</div>
 			<!-- END -->

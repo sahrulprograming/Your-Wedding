@@ -66,3 +66,22 @@ function format_nama_ibu($ortu)
     $ibu = explode(' ', $ortu);
     return $ibu[4];
 }
+
+function format_nama_mempelai($url)
+{
+    return str_replace('_', ' & ', $url);
+}
+
+function format_rupiah($uang)
+{
+    return 'Rp. ' . number_format($uang, 0, ',', '.');
+}
+
+function format_jenis_kelamin($jenis_kelamin)
+{
+    if (strtolower($jenis_kelamin) == 'l') {
+        return 'Laki - Laki';
+    } else {
+        return 'Perempuan';
+    }
+}
