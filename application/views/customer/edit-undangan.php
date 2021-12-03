@@ -140,22 +140,6 @@
                                 </div>
                                 <!-- Jadwal akad -->
                                 <div class="tab-pane fade" id="v-pills-jadwal-akad" role="tabpanel" aria-labelledby="v-pills-profile-tab-icons">
-                                    <?= form_open_multipart(base_url('customer/undangan/edit/j_akad/' . $IDDU)); ?>
-                                    <div class="form-group">
-                                        <label class="form-label fw-normal fst-italic">TANGGAL</label>
-                                        <input class="form-control" id="datepicker" name="tanggal" type="date" value="<?= data_akad($IDDU, 'tanggal'); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label fw-normal fst-italic">JAM</label>
-                                        <input class="form-control" id="timepicker" name="jam" type="time" value="<?= data_akad($IDDU, 'jam'); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label fw-normal fst-italic text-uppercase">lokasi google maps</label>
-                                        <input class="form-control" id="lokasi" name="lokasi" type="text" placeholder="paste link google maps lokasi" value="<?= data_akad($IDDU, 'lokasi'); ?>">
-                                    </div>
-                                    <div class="submit text-center">
-                                        <button type="submit" class="btn btn-primary" id="submit-4">ubah</button>
-                                    </div>
                                     </form>
                                 </div>
                                 <!-- Jadwal resepsi -->

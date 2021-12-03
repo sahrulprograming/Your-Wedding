@@ -243,7 +243,9 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="form-label fw-normal fst-italic">KATA PENGANTAR</label>
-                                    <textarea class="form-control" id="kata_pengantar" name="kata_pengantar" type="text" rows="5" placeholder="Ketik atau lihat contekan"></textarea>
+                                    <<<<<<< HEAD <textarea class="form-control" id="kata_pengantar" name="kata_pengantar" type="text"></textarea>
+                                        =======
+                                        <textarea class="form-control" id="kata_pengantar" name="kata_pengantar" type="text" rows="5" placeholder="Ketik atau lihat contekan"></textarea>
                                 </div>
                                 <div class="mt-2">
                                     <button type="button" class="btn btn-info" id="contek">lihat contekan</button>
@@ -255,6 +257,7 @@
                                             <option value="<?= $contekan['kata_pengantar']; ?>" style="word-wrap:break-word !importent"><?= substr($contekan['kata_pengantar'], 0, 35); ?></option>
                                         <?php endforeach; ?>
                                     </select>
+                                    >>>>>>> sahrul
                                 </div>
                             </div>
                             <div class="step">
