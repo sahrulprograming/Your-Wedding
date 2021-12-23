@@ -11,7 +11,6 @@
     <!-- Favicon  -->
     <link rel="icon" href="<?= base_url('assets'); ?>/img/logo.ico">
     <title>Authentication</title>
-
 </head>
 
 <body>

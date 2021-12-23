@@ -14,7 +14,6 @@
                                     position: relative;
                                     width: 200px;
                                 }
-
                                 #pen {
                                     position: absolute;
                                     font-size: 15px;

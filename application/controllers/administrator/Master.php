@@ -22,6 +22,7 @@ class Master extends CI_Controller
         }
         if ($this->form_validation->run() === false) {
             $data['field'] = array_slice($list_fields, 1, 4);
+            $this->db->where_not_in('email', 'demo@gmail.com');
             $this->db->order_by('IDC', 'DESC');
             $data['data'] = $this->CRUD->ambilSemuaData($data['table']);
             $data['text_align'] = [
