@@ -44,7 +44,7 @@
                                             <td><?= format_nama_mempelai($p['url']); ?></td>
                                             <td><?= $p['judul_durasi']; ?></td>
                                             <td><span class="badge badge-pill badge-<?= warna_status($p['status_lunas']); ?>"><?= $p['status_lunas']; ?></span></td>
-                                            <td><span class="badge badge-pill badge-info" style="cursor: pointer" data-toggle="modal" data-target="#bukti<?= $p['no_pembayaran']; ?>">LIHAT</span></td>
+                                            <td><span class="badge badge-pill badge-info" style="cursor: pointer" data-toggle="modal" data-target="#bukti<?= $p['no_pembayaran']; ?>"><?= $p['status_lunas'] == "menunggu" ? "KONFIRMASI" : "LIHAT"; ?></span></td>
                                         </tr>
                                         <div class="modal fade" id="bukti<?= $p['no_pembayaran']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -110,9 +110,11 @@
                                                                                             }
                                                                                         },
                                                                                     });
-                                                                                    setTimeout(function() {
-                                                                                        window.location.reload();
-                                                                                    }, 2000);
+                                                                                    if (output.status == 'success') {
+                                                                                        setTimeout(function() {
+                                                                                            window.location.replace('<?= base_url('administrator/pesanan/index/lunas'); ?>');
+                                                                                        }, 2000);
+                                                                                    }
                                                                                 } else {
                                                                                     swal('Opss...!', 'ada yang salah!', {
                                                                                         icon: 'error',

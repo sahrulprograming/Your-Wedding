@@ -1,3 +1,8 @@
+<?php
+if (isset($this->email)) {
+    $profile = $this->CRUD->ambilSatuData($this->role, ['email' => $this->email]);
+}
+?>
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container">
 
@@ -47,14 +52,14 @@
                     <li class="nav-item dropdown hidden-caret ml-3">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                             <div class="avatar-sm">
-                                <img src="<?= base_url('assets'); ?>/img/<?= $this->session->userdata('role'); ?>/<?= $this->session->userdata('foto'); ?>" alt="..." class="avatar-img rounded-circle">
+                                <img src="<?= foto_profile($profile['foto']); ?>" alt="..." class="avatar-img rounded-circle">
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated fadeIn">
                             <div class="dropdown-user-scroll scrollbar-outer">
                                 <li>
                                     <div class="user-box">
-                                        <div class="avatar-lg"><img src="<?= base_url('assets'); ?>/img/<?= $this->session->userdata('role'); ?>/<?= $this->session->userdata('foto'); ?>" alt="image profile" class="avatar-img rounded"></div>
+                                        <div class="avatar-lg"><img src="<?= foto_profile($profile['foto']);  ?>" alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text text-white">
                                             <h4><?= $this->session->userdata('nama'); ?></h4>
                                             <p class="text-muted"><?= $this->session->userdata('email'); ?></p>

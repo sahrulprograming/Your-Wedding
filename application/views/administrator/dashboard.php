@@ -138,9 +138,6 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="card-footer text-center">
-                                                                            <?php if ($t_day['status_lunas'] === 'menunggu') : ?>
-                                                                                <button type="button" class="btn btn-info mx-2">Konfirmasi</button>
-                                                                            <?php endif ?>
                                                                             <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                                                                         </div>
                                                                     </div>
@@ -208,9 +205,6 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="card-footer text-center">
-                                                                            <?php if ($t_week['status_lunas'] === 'menunggu') : ?>
-                                                                                <button type="button" class="btn btn-info mx-2">Konfirmasi</button>
-                                                                            <?php endif ?>
                                                                             <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                                                                         </div>
                                                                     </div>
@@ -273,9 +267,6 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="card-footer text-center">
-                                                                            <?php if ($t['status_lunas'] === 'menunggu') : ?>
-                                                                                <button type="button" class="btn btn-info mx-2">Konfirmasi</button>
-                                                                            <?php endif ?>
                                                                             <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                                                                         </div>
                                                                     </div>

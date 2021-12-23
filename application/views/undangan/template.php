@@ -452,36 +452,48 @@
 
     // kirim pesan
     $('#komentar').click(function() {
-        const komentar = {
-            IDU: <?= $IDU; ?>,
-            nama_pengirim: $('#nama-pengirim').val(),
-            pesan: $('#pesan').val(),
-        };
-        $.ajax({
-            url: "<?= base_url('undangan/komentar'); ?>",
-            type: "POST",
-            data: komentar,
-            success: function(result) {
-                if (result == 'Berhasil') {
-                    swal("Berhasil!", "Terima Kasih sudah berkomentar!", {
-                        icon: "success",
-                        buttons: {
-                            confirm: {
-                                className: 'btn btn-success'
-                            }
-                        },
-                    });
-                } else {
-                    swal("Gagal!", "ada yang salah coba di cek!", {
-                        icon: "error",
-                        buttons: {
-                            confirm: {
-                                className: 'btn btn-danger'
-                            }
-                        },
-                    });
+        if ($('#nama-pengirim').val() && $('#pesan').val()) {
+            const komentar = {
+                IDU: <?= $IDU; ?>,
+                nama_pengirim: $('#nama-pengirim').val(),
+                pesan: $('#pesan').val(),
+            };
+            $.ajax({
+                url: "<?= base_url('undangan/komentar'); ?>",
+                type: "POST",
+                data: komentar,
+                success: function(result) {
+                    if (result == 'Berhasil') {
+                        swal("Berhasil!", "Terima Kasih sudah berkomentar!", {
+                            icon: "success",
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-success'
+                                }
+                            },
+                        });
+                    } else {
+                        swal("Gagal!", "ada yang salah coba di cek!", {
+                            icon: "error",
+                            buttons: {
+                                confirm: {
+                                    className: 'btn btn-danger'
+                                }
+                            },
+                        });
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            swal("Gagal!", "nama & pesan wajib di isi!", {
+                icon: "error",
+                buttons: {
+                    confirm: {
+                        className: 'btn btn-danger'
+                    }
+                },
+            });
+        }
+
     })
 </script>
